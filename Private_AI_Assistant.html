@@ -1,0 +1,1562 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Private AI Assistant — Run LLMs Locally | Newegg AI Hub</title>
+  <meta name="description" content="Deploy a private AI chatbot on your ABS workstation. Zero API fees, 100% data sovereignty, and enterprise-grade performance — all running on your hardware.">
+<style>
+  /* Mark Fan - 2026-06-30 - Private AI Assistant scenario page */
+  :root {
+    --orange: #FF6600;
+    --orange-dim: #e55b00;
+    --orange-glow: rgba(255, 102, 0, 0.08);
+    --purple: #8b5cf6;
+    --purple-dim: rgba(139, 92, 246, 0.12);
+    --purple-glow: rgba(139, 92, 246, 0.08);
+    --purple-bright: #a78bfa;
+    --green: #22c55e;
+    --green-dim: rgba(34, 197, 94, 0.12);
+    --red: #ef4444;
+    --red-dim: rgba(239, 68, 68, 0.1);
+    --amber: #f59e0b;
+    --bg: #0a0e1a;
+    --bg-card: #111627;
+    --bg-card-hover: #161c33;
+    --bg-elevated: #1a2038;
+    --border: rgba(255,255,255,0.06);
+    --text: #e4e7ec;
+    --text-dim: #8b92a5;
+    --text-muted: #5a6178;
+    --white: #ffffff;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --mono: 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  }
+
+  /* Mark Fan - 2026-06-30 - Light theme */
+  [data-theme="light"] {
+    --bg: #f4f5f7;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0f1f4;
+    --bg-elevated: #e8eaef;
+    --border: rgba(0,0,0,0.08);
+    --text: #1a1d26;
+    --text-dim: #4a5068;
+    --text-muted: #7a819a;
+    --white: #111320;
+    --orange-glow: rgba(255, 102, 0, 0.1);
+    --purple-glow: rgba(139, 92, 246, 0.08);
+    --purple-dim: rgba(139, 92, 246, 0.1);
+    --green-dim: rgba(34, 197, 94, 0.1);
+    --red-dim: rgba(239, 68, 68, 0.08);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  /* ─── Nav ─────────────────────────────────────── */
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 14, 26, 0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+  [data-theme="light"] .topnav {
+    background: rgba(244, 245, 247, 0.92);
+  }
+  .topnav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+  .nav-left {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+  }
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    text-decoration: none;
+  }
+  .nav-egg {
+    width: 28px;
+    height: 28px;
+    background: var(--orange);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: white;
+    font-weight: 800;
+  }
+  .nav-back {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    text-decoration: none;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .nav-back:hover { color: var(--purple); border-color: var(--purple); }
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .nav-btn {
+    padding: 0.35rem 0.9rem;
+    font-size: 0.78rem;
+    font-weight: 600;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: transparent;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font);
+  }
+  .nav-btn:hover { border-color: var(--purple); color: var(--purple); }
+  .nav-btn.lang-active { border-color: var(--purple); color: var(--purple); background: var(--purple-dim); }
+
+  /* ─── Section base ────────────────────────────── */
+  .section { padding: 5rem 2rem; }
+  .section-inner { max-width: 1280px; margin: 0 auto; }
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--purple);
+    margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-size: clamp(1.7rem, 3.5vw, 2.4rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+    text-wrap: balance;
+  }
+  .section-desc {
+    font-size: 1rem;
+    color: var(--text-dim);
+    max-width: 600px;
+    line-height: 1.75;
+  }
+
+  /* ─── Hero ────────────────────────────────────── */
+  .hero {
+    position: relative;
+    padding: 5rem 2rem 4rem;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 650px;
+    height: 650px;
+    background: radial-gradient(circle, rgba(139,92,246,0.1) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -80px;
+    left: -80px;
+    width: 450px;
+    height: 450px;
+    background: radial-gradient(circle, rgba(255,102,0,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: var(--purple-dim);
+    border: 1px solid rgba(139,92,246,0.25);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--purple-bright);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--purple-bright);
+    animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.6rem);
+    font-weight: 700;
+    line-height: 1.13;
+    letter-spacing: -0.025em;
+    margin-bottom: 1.2rem;
+    max-width: 760px;
+  }
+  .hero h1 .accent {
+    background: linear-gradient(135deg, var(--purple), #c4b5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    max-width: 580px;
+    line-height: 1.75;
+    margin-bottom: 2.2rem;
+  }
+  .hero-metrics {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+  }
+  .hero-metric {
+    display: flex;
+    flex-direction: column;
+  }
+  .hero-metric-val {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .hero-metric-val .unit {
+    font-size: 1rem;
+    color: var(--purple-bright);
+    margin-left: 0.1rem;
+  }
+  .hero-metric-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+  .hero-cta {
+    display: flex;
+    gap: 1rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .btn-primary {
+    padding: 0.8rem 1.8rem;
+    background: var(--purple);
+    color: white;
+    font-weight: 700;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    font-family: var(--font);
+  }
+  .btn-primary:hover { background: #7c3aed; transform: translateY(-1px); }
+  .btn-secondary {
+    padding: 0.8rem 1.8rem;
+    background: transparent;
+    color: var(--text-dim);
+    font-weight: 600;
+    font-size: 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s;
+    font-family: var(--font);
+  }
+  .btn-secondary:hover { border-color: var(--purple); color: var(--purple); }
+
+  /* ─── Problem section ─────────────────────────── */
+  .problem { background: var(--bg); }
+  .problem-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .problem-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .problem-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--red);
+    opacity: 0.5;
+  }
+  .problem-icon {
+    font-size: 1.8rem;
+    margin-bottom: 1rem;
+  }
+  .problem-title {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    color: var(--white);
+  }
+  .problem-body {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+  .problem-stat {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.35rem 0.8rem;
+    background: var(--red-dim);
+    border: 1px solid rgba(239,68,68,0.2);
+    border-radius: 6px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #fca5a5;
+  }
+
+  /* ─── Solution stack ──────────────────────────── */
+  .solution { background: var(--bg-elevated); }
+  [data-theme="light"] .solution { background: #ebebf0; }
+  .solution-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    align-items: start;
+    margin-top: 3rem;
+  }
+  @media(max-width:768px) { .solution-layout { grid-template-columns: 1fr; gap: 2rem; } }
+  .stack-diagram {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .stack-layer {
+    border-radius: 10px;
+    padding: 1rem 1.3rem;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+  .stack-layer-icon { font-size: 1.4rem; flex-shrink: 0; }
+  .stack-layer-name {
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .stack-layer-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+  .stack-layer.l-app { background: var(--purple-dim); border-color: rgba(139,92,246,0.2); }
+  .stack-layer.l-ui  { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.15); }
+  .stack-layer.l-engine { background: rgba(34,197,94,0.07); border-color: rgba(34,197,94,0.15); }
+  .stack-layer.l-model { background: rgba(245,158,11,0.07); border-color: rgba(245,158,11,0.15); }
+  .stack-layer.l-hw { background: var(--bg-card); border-color: var(--border); }
+  .stack-arrow {
+    display: flex;
+    justify-content: center;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    line-height: 1;
+    margin: -0.1rem 0;
+  }
+  .solution-features {
+    display: flex;
+    flex-direction: column;
+    gap: 1.4rem;
+  }
+  .sol-feat {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+  .sol-feat-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: var(--purple-dim);
+    border: 1px solid rgba(139,92,246,0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+  .sol-feat-title {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.3rem;
+  }
+  .sol-feat-body {
+    font-size: 0.83rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  /* ─── Models table ────────────────────────────── */
+  .models { background: var(--bg); }
+  .models-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 1rem;
+    margin-top: 2.5rem;
+  }
+  .model-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1.25rem 1.4rem;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .model-card:hover { border-color: rgba(139,92,246,0.3); background: var(--bg-card-hover); }
+  .model-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.6rem;
+  }
+  .model-name {
+    font-size: 0.92rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .model-badge {
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.2rem 0.55rem;
+    border-radius: 5px;
+    letter-spacing: 0.03em;
+  }
+  .badge-chat { background: var(--purple-dim); color: var(--purple-bright); border: 1px solid rgba(139,92,246,0.2); }
+  .badge-code { background: rgba(34,197,94,0.1); color: #86efac; border: 1px solid rgba(34,197,94,0.2); }
+  .badge-vision { background: rgba(59,130,246,0.1); color: #93c5fd; border: 1px solid rgba(59,130,246,0.2); }
+  .badge-reason { background: rgba(245,158,11,0.1); color: #fde68a; border: 1px solid rgba(245,158,11,0.2); }
+  .model-sub {
+    font-size: 0.78rem;
+    color: var(--text-dim);
+    margin-bottom: 0.9rem;
+    line-height: 1.5;
+  }
+  .model-specs {
+    display: flex;
+    gap: 1rem;
+  }
+  .model-spec {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+  .model-spec-val {
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--white);
+    font-variant-numeric: tabular-nums;
+  }
+  .model-spec-label {
+    font-size: 0.68rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── Use cases tabs ──────────────────────────── */
+  .usecases { background: var(--bg-elevated); }
+  [data-theme="light"] .usecases { background: #ebebf0; }
+  .uc-tabs {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    margin: 2rem 0 1.5rem;
+  }
+  .uc-tab {
+    padding: 0.5rem 1.2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.83rem;
+    font-weight: 600;
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: all 0.2s;
+    font-family: var(--font);
+  }
+  .uc-tab:hover { border-color: var(--purple); color: var(--purple); }
+  .uc-tab.active {
+    background: var(--purple-dim);
+    border-color: rgba(139,92,246,0.35);
+    color: var(--purple-bright);
+  }
+  .uc-panel { display: none; }
+  .uc-panel.active { display: block; }
+  .uc-layout {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 3rem;
+    align-items: start;
+  }
+  @media(max-width:768px) { .uc-layout { grid-template-columns: 1fr; } }
+  .uc-industry {
+    font-size: 0.72rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--purple);
+    margin-bottom: 0.6rem;
+  }
+  .uc-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.75rem;
+    line-height: 1.3;
+  }
+  .uc-quote {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    font-style: italic;
+    border-left: 2px solid var(--purple);
+    padding-left: 1rem;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+  }
+  .uc-metrics {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .uc-metric-val {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .uc-metric-label {
+    font-size: 0.73rem;
+    color: var(--text-muted);
+    margin-top: 0.25rem;
+  }
+  .uc-detail { }
+  .uc-detail-title {
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 0.7rem;
+  }
+  .uc-detail-body {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 1.2rem;
+  }
+  .uc-tools {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .uc-tool-tag {
+    font-size: 0.73rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 5px;
+    color: var(--text-dim);
+  }
+
+  /* ─── ROI section ─────────────────────────────── */
+  .roi { background: var(--bg); }
+  .roi-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
+    margin-top: 3rem;
+  }
+  @media(max-width:768px) { .roi-layout { grid-template-columns: 1fr; } }
+  .roi-compare {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .roi-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 0.75rem;
+    font-size: 0.83rem;
+  }
+  .roi-row-head {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .roi-label { color: var(--text-dim); display: flex; align-items: center; }
+  .roi-cloud {
+    background: var(--red-dim);
+    border: 1px solid rgba(239,68,68,0.15);
+    border-radius: 6px;
+    padding: 0.4rem 0.7rem;
+    color: #fca5a5;
+    font-weight: 600;
+    text-align: center;
+  }
+  .roi-local {
+    background: var(--green-dim);
+    border: 1px solid rgba(34,197,94,0.15);
+    border-radius: 6px;
+    padding: 0.4rem 0.7rem;
+    color: #86efac;
+    font-weight: 600;
+    text-align: center;
+  }
+  .roi-callout {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2rem;
+    text-align: center;
+  }
+  .roi-callout-num {
+    font-size: 3rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--purple), #c4b5fd);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .roi-callout-label {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+  .roi-callout-sub {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.4rem;
+  }
+  .roi-note {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 1.5rem;
+    line-height: 1.5;
+  }
+
+  /* ─── Deploy steps ────────────────────────────── */
+  .deploy { background: var(--bg-elevated); }
+  [data-theme="light"] .deploy { background: #ebebf0; }
+  .steps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2.5rem;
+    counter-reset: step;
+  }
+  .step-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    position: relative;
+  }
+  .step-num {
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--purple-dim);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+    margin-bottom: 0.8rem;
+    color: rgba(139,92,246,0.3);
+  }
+  .step-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+  .step-body {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+  .step-code {
+    display: block;
+    margin-top: 0.7rem;
+    font-family: var(--mono);
+    font-size: 0.75rem;
+    color: var(--purple-bright);
+    background: rgba(139,92,246,0.08);
+    border: 1px solid rgba(139,92,246,0.15);
+    border-radius: 6px;
+    padding: 0.5rem 0.8rem;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+  .step-time {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    margin-top: 0.8rem;
+    font-size: 0.72rem;
+    color: var(--text-muted);
+  }
+
+  /* ─── Footer CTA ──────────────────────────────── */
+  .footer-cta {
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+  .footer-inner { max-width: 640px; margin: 0 auto; }
+  .footer-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.35rem 0.9rem;
+    background: var(--orange-glow);
+    border: 1px solid rgba(255,102,0,0.2);
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .footer-cta h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin-bottom: 0.9rem;
+    text-wrap: balance;
+  }
+  .footer-cta p {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+  .footer-btns {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 2rem;
+  }
+  .footer-copy {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+  }
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 0 2rem;
+  }
+</style>
+</head>
+<body>
+
+<!-- ── Nav ───────────────────────────────────────────── -->
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="nav-left">
+      <a href="index.html" class="nav-brand">
+        <div class="nav-egg">N</div>
+        <span>Newegg AI Hub</span>
+      </a>
+      <a href="index.html" class="nav-back" id="nav-back-link">&#8592; Back to Hub</a>
+    </div>
+    <div class="nav-right">
+      <button class="nav-btn" id="theme-toggle" onclick="toggleTheme()">&#9790; Dark</button>
+      <button class="nav-btn" id="lang-toggle" onclick="toggleLang()">中文</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ── Hero ──────────────────────────────────────────── -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      <span data-i18n="hero.badge">PRIVATE AI SOLUTION</span>
+    </div>
+    <h1 data-i18n="hero.title">Your Questions Stay Yours.<br>Run AI That <span class="accent">Never Leaves Home.</span></h1>
+    <p class="hero-desc" data-i18n="hero.desc">Deploy a full-featured AI assistant on your ABS workstation in under 30 minutes. Supports Llama 3.1, Mistral, DeepSeek, Gemma, and 50+ models — no API keys, no usage limits, no data ever sent to the cloud.</p>
+    <div class="hero-metrics">
+      <div class="hero-metric">
+        <div class="hero-metric-val">$0<span class="unit">/mo</span></div>
+        <div class="hero-metric-label" data-i18n="hero.m1">API Cost After Setup</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-val">&lt;30<span class="unit">min</span></div>
+        <div class="hero-metric-label" data-i18n="hero.m2">Time to First Chat</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-val">100<span class="unit">%</span></div>
+        <div class="hero-metric-label" data-i18n="hero.m3">Data Stays On-Prem</div>
+      </div>
+      <div class="hero-metric">
+        <div class="hero-metric-val">50<span class="unit">+</span></div>
+        <div class="hero-metric-label" data-i18n="hero.m4">Supported Models</div>
+      </div>
+    </div>
+    <div class="hero-cta">
+      <a href="#deploy" class="btn-primary" data-i18n="hero.cta1">&#9654; Start Deploying</a>
+      <a href="#models" class="btn-secondary" data-i18n="hero.cta2">Browse Models</a>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── Problem section ───────────────────────────────── -->
+<section class="section problem" id="problem">
+  <div class="section-inner">
+    <div class="section-eyebrow" data-i18n="prob.eyebrow">The Hidden Cost of Cloud AI</div>
+    <div class="section-title" data-i18n="prob.title">Why Smart Teams Are Moving Off ChatGPT</div>
+    <p class="section-desc" data-i18n="prob.desc">Enterprise and SMB teams face three mounting problems with cloud AI — and they compound over time.</p>
+    <div class="problem-grid">
+      <div class="problem-card">
+        <div class="problem-icon">&#128181;</div>
+        <div class="problem-title" data-i18n="prob.c1.title">Runaway API Bills</div>
+        <div class="problem-body" data-i18n="prob.c1.body">A 10-person team sending 500 messages/day to GPT-4 spends $3,000–$8,000/month in API fees — before adding fine-tuning, embeddings, or image generation costs. Costs scale with headcount and usage, not value.</div>
+        <div class="problem-stat" data-i18n="prob.c1.stat">$96,000/year avg for 10-person teams</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">&#128274;</div>
+        <div class="problem-title" data-i18n="prob.c2.title">Your Data Trains Their Model</div>
+        <div class="problem-body" data-i18n="prob.c2.body">Every prompt you send — client contracts, patient notes, source code, financial projections — leaves your network. Even with opt-outs, your data passes through third-party infrastructure. Legal, compliance, and IP risk accumulates with every query.</div>
+        <div class="problem-stat" data-i18n="prob.c2.stat">68% of enterprises report AI data policy violations</div>
+      </div>
+      <div class="problem-card">
+        <div class="problem-icon">&#127758;</div>
+        <div class="problem-title" data-i18n="prob.c3.title">Latency, Downtime &amp; Rate Limits</div>
+        <div class="problem-body" data-i18n="prob.c3.body">Cloud AI depends on internet connectivity, provider uptime, and rate-limit quotas. Outages during critical workflows, throttling during business hours, and 2–10 second response times for complex queries create real productivity drag.</div>
+        <div class="problem-stat" data-i18n="prob.c3.stat">OpenAI had 47 reported outages in 2024</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Solution section ──────────────────────────────── -->
+<section class="section solution" id="solution">
+  <div class="section-inner">
+    <div class="section-eyebrow" data-i18n="sol.eyebrow">What You Get With ABS Workstation</div>
+    <div class="section-title" data-i18n="sol.title">A Complete Local AI Stack, Pre-Configured</div>
+    <p class="section-desc" data-i18n="sol.desc">No DevOps expertise required. Every layer is configured, tested, and ready on day one.</p>
+    <div class="solution-layout">
+      <!-- Stack Diagram -->
+      <div class="stack-diagram">
+        <div class="stack-layer l-app">
+          <div class="stack-layer-icon">&#128172;</div>
+          <div>
+            <div class="stack-layer-name" data-i18n="stack.l1.name">Open WebUI / Chatbot Interface</div>
+            <div class="stack-layer-sub" data-i18n="stack.l1.sub">ChatGPT-like web UI — your team opens a browser and chats</div>
+          </div>
+        </div>
+        <div class="stack-arrow">&#8595;</div>
+        <div class="stack-layer l-ui">
+          <div class="stack-layer-icon">&#128736;</div>
+          <div>
+            <div class="stack-layer-name" data-i18n="stack.l2.name">API Layer (OpenAI-compatible)</div>
+            <div class="stack-layer-sub" data-i18n="stack.l2.sub">Drop-in replacement — existing integrations work without code changes</div>
+          </div>
+        </div>
+        <div class="stack-arrow">&#8595;</div>
+        <div class="stack-layer l-engine">
+          <div class="stack-layer-icon">&#9881;</div>
+          <div>
+            <div class="stack-layer-name" data-i18n="stack.l3.name">Ollama — Local Model Runtime</div>
+            <div class="stack-layer-sub" data-i18n="stack.l3.sub">One-command model management, GPU acceleration, auto-batching</div>
+          </div>
+        </div>
+        <div class="stack-arrow">&#8595;</div>
+        <div class="stack-layer l-model">
+          <div class="stack-layer-icon">&#129302;</div>
+          <div>
+            <div class="stack-layer-name" data-i18n="stack.l4.name">Model Library (50+ models)</div>
+            <div class="stack-layer-sub" data-i18n="stack.l4.sub">Llama 3.1, Mistral, DeepSeek, Gemma, Phi-3, Qwen, and more</div>
+          </div>
+        </div>
+        <div class="stack-arrow">&#8595;</div>
+        <div class="stack-layer l-hw">
+          <div class="stack-layer-icon">&#128187;</div>
+          <div>
+            <div class="stack-layer-name" data-i18n="stack.l5.name">ABS AI Workstation (NVIDIA RTX)</div>
+            <div class="stack-layer-sub" data-i18n="stack.l5.sub">RTX 4090 / RTX 4080 — 16–24 GB VRAM, runs 70B models smoothly</div>
+          </div>
+        </div>
+      </div>
+      <!-- Feature bullets -->
+      <div class="solution-features">
+        <div class="sol-feat">
+          <div class="sol-feat-icon">&#128274;</div>
+          <div>
+            <div class="sol-feat-title" data-i18n="feat.f1.title">Zero Data Egress</div>
+            <div class="sol-feat-body" data-i18n="feat.f1.body">All inference runs inside your network. Prompts, responses, and documents never touch the internet. Compliant with HIPAA, SOC 2, GDPR, and most internal data policies by default.</div>
+          </div>
+        </div>
+        <div class="sol-feat">
+          <div class="sol-feat-icon">&#9889;</div>
+          <div>
+            <div class="sol-feat-title" data-i18n="feat.f2.title">RTX-Accelerated Inference</div>
+            <div class="sol-feat-body" data-i18n="feat.f2.body">RTX 4090's 24 GB VRAM runs Llama 3.1 70B at 30–60 tokens/second. Responses arrive faster than cloud APIs under load — and never queue during peak hours.</div>
+          </div>
+        </div>
+        <div class="sol-feat">
+          <div class="sol-feat-icon">&#128101;</div>
+          <div>
+            <div class="sol-feat-title" data-i18n="feat.f3.title">Multi-User, No Extra Licenses</div>
+            <div class="sol-feat-body" data-i18n="feat.f3.body">Open WebUI supports unlimited concurrent users — your whole team connects to one workstation. No per-seat pricing, no user caps, no subscription tiers.</div>
+          </div>
+        </div>
+        <div class="sol-feat">
+          <div class="sol-feat-icon">&#128268;</div>
+          <div>
+            <div class="sol-feat-title" data-i18n="feat.f4.title">OpenAI-Compatible API</div>
+            <div class="sol-feat-body" data-i18n="feat.f4.body">Swap one URL — your existing tools (LangChain, Cursor, custom apps) connect to local models with zero code changes. Point and shoot migration from cloud to local.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Models ─────────────────────────────────────────── -->
+<section class="section models" id="models">
+  <div class="section-inner">
+    <div class="section-eyebrow" data-i18n="mod.eyebrow">Supported Model Library</div>
+    <div class="section-title" data-i18n="mod.title">Run Any Open Model — One Command</div>
+    <p class="section-desc" data-i18n="mod.desc">Pull and run any of these models instantly with <code style="font-family:var(--mono);font-size:0.85em;color:var(--purple-bright)">ollama pull &lt;model&gt;</code>. All models run entirely on your hardware.</p>
+    <div class="models-grid">
+      <div class="model-card">
+        <div class="model-header">
+          <div class="model-name">Llama 3.1 70B</div>
+          <div class="model-badge badge-chat" data-i18n="mbadge.chat">Chat</div>
+        </div>
+        <div class="model-sub" data-i18n="mod.llama.sub">Meta's flagship open model. Best all-round reasoning, writing, and instruction following. Matches GPT-4o on many benchmarks.</div>
+        <div class="model-specs">
+          <div class="model-spec"><div class="model-spec-val">48 GB</div><div class="model-spec-label" data-i18n="ms.vram">VRAM (Q4)</div></div>
+          <div class="model-spec"><div class="model-spec-val">30 t/s</div><div class="model-spec-label" data-i18n="ms.speed">RTX 4090</div></div>
+        </div>
+      </div>
+      <div class="model-card">
+        <div class="model-header">
+          <div class="model-name">DeepSeek-R1 32B</div>
+          <div class="model-badge badge-reason" data-i18n="mbadge.reason">Reasoning</div>
+        </div>
+        <div class="model-sub" data-i18n="mod.deepseek.sub">Exceptional logical reasoning and math. Chain-of-thought transparency makes it ideal for auditable decisions in finance and legal workflows.</div>
+        <div class="model-specs">
+          <div class="model-spec"><div class="model-spec-val">20 GB</div><div class="model-spec-label" data-i18n="ms.vram">VRAM (Q4)</div></div>
+          <div class="model-spec"><div class="model-spec-val">55 t/s</div><div class="model-spec-label" data-i18n="ms.speed">RTX 4090</div></div>
+        </div>
+      </div>
+      <div class="model-card">
+        <div class="model-header">
+          <div class="model-name">Mistral 7B / Nemo</div>
+          <div class="model-badge badge-chat" data-i18n="mbadge.chat">Chat</div>
+        </div>
+        <div class="model-sub" data-i18n="mod.mistral.sub">Fast and efficient for everyday tasks. Runs on 8 GB VRAM — ideal for laptops or when the 4090 is occupied with larger workloads.</div>
+        <div class="model-specs">
+          <div class="model-spec"><div class="model-spec-val">6 GB</div><div class="model-spec-label" data-i18n="ms.vram">VRAM (Q4)</div></div>
+          <div class="model-spec"><div class="model-spec-val">120 t/s</div><div class="model-spec-label" data-i18n="ms.speed">RTX 4090</div></div>
+        </div>
+      </div>
+      <div class="model-card">
+        <div class="model-header">
+          <div class="model-name">Qwen2.5-Coder 32B</div>
+          <div class="model-badge badge-code" data-i18n="mbadge.code">Code</div>
+        </div>
+        <div class="model-sub" data-i18n="mod.qwen.sub">Purpose-built code generation. Tops coding benchmarks in Python, JavaScript, SQL. Your internal codebase never leaves the office when you ask it to write functions.</div>
+        <div class="model-specs">
+          <div class="model-spec"><div class="model-spec-val">20 GB</div><div class="model-spec-label" data-i18n="ms.vram">VRAM (Q4)</div></div>
+          <div class="model-spec"><div class="model-spec-val">50 t/s</div><div class="model-spec-label" data-i18n="ms.speed">RTX 4090</div></div>
+        </div>
+      </div>
+      <div class="model-card">
+        <div class="model-header">
+          <div class="model-name">LLaVA / Moondream</div>
+          <div class="model-badge badge-vision" data-i18n="mbadge.vision">Vision</div>
+        </div>
+        <div class="model-sub" data-i18n="mod.llava.sub">Multimodal models that understand images. Upload screenshots, diagrams, or documents and ask questions — entirely locally. No image data sent to the cloud.</div>
+        <div class="model-specs">
+          <div class="model-spec"><div class="model-spec-val">8 GB</div><div class="model-spec-label" data-i18n="ms.vram">VRAM (Q4)</div></div>
+          <div class="model-spec"><div class="model-spec-val">40 t/s</div><div class="model-spec-label" data-i18n="ms.speed">RTX 4090</div></div>
+        </div>
+      </div>
+      <div class="model-card">
+        <div class="model-header">
+          <div class="model-name">Gemma 2 27B</div>
+          <div class="model-badge badge-chat" data-i18n="mbadge.chat">Chat</div>
+        </div>
+        <div class="model-sub" data-i18n="mod.gemma.sub">Google's open-weight model, strong on summarization, translation, and structured output generation. Excellent multilingual performance for international teams.</div>
+        <div class="model-specs">
+          <div class="model-spec"><div class="model-spec-val">18 GB</div><div class="model-spec-label" data-i18n="ms.vram">VRAM (Q4)</div></div>
+          <div class="model-spec"><div class="model-spec-val">60 t/s</div><div class="model-spec-label" data-i18n="ms.speed">RTX 4090</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Use cases ──────────────────────────────────────── -->
+<section class="section usecases" id="usecases">
+  <div class="section-inner">
+    <div class="section-eyebrow" data-i18n="uc.eyebrow">Industry Use Cases</div>
+    <div class="section-title" data-i18n="uc.title">Real Teams. Real Workflows. Real Privacy.</div>
+    <p class="section-desc" data-i18n="uc.desc">Private AI unlocks AI capability in industries where data sovereignty is non-negotiable.</p>
+    <div class="uc-tabs">
+      <button class="uc-tab active" onclick="switchUC(event,'uc-legal')" data-i18n="uc.tab.legal">Legal</button>
+      <button class="uc-tab" onclick="switchUC(event,'uc-medical')" data-i18n="uc.tab.med">Healthcare</button>
+      <button class="uc-tab" onclick="switchUC(event,'uc-finance')" data-i18n="uc.tab.fin">Finance</button>
+      <button class="uc-tab" onclick="switchUC(event,'uc-dev')" data-i18n="uc.tab.dev">Dev Teams</button>
+    </div>
+
+    <!-- Legal -->
+    <div class="uc-panel active" id="uc-legal">
+      <div class="uc-layout">
+        <div>
+          <div class="uc-industry" data-i18n="uc.legal.industry">Law Firm / Legal Department</div>
+          <div class="uc-title" data-i18n="uc.legal.title">Contract Review at 10× Speed — Without Outside Counsel Risk</div>
+          <div class="uc-quote" data-i18n="uc.legal.quote">"Attorneys upload NDA drafts and get redline suggestions in 30 seconds. Client matter stays entirely on our server."</div>
+          <div class="uc-metrics">
+            <div>
+              <div class="uc-metric-val">10×</div>
+              <div class="uc-metric-label" data-i18n="uc.legal.m1">Faster contract review</div>
+            </div>
+            <div>
+              <div class="uc-metric-val">$0</div>
+              <div class="uc-metric-label" data-i18n="uc.legal.m2">Privileged data exposed</div>
+            </div>
+            <div>
+              <div class="uc-metric-val">ABA</div>
+              <div class="uc-metric-label" data-i18n="uc.legal.m3">Confidentiality compliant</div>
+            </div>
+          </div>
+        </div>
+        <div class="uc-detail">
+          <div class="uc-detail-title" data-i18n="uc.how">HOW IT WORKS</div>
+          <div class="uc-detail-body" data-i18n="uc.legal.body">Attorneys upload contract PDFs to Open WebUI. A local embedding model (nomic-embed-text) indexes the document and Llama 3.1 70B answers questions, flags risky clauses, and generates comparison redlines. All client matter data remains within the firm's firewall — satisfying ABA Model Rule 1.6 confidentiality obligations.</div>
+          <div class="uc-tools">
+            <span class="uc-tool-tag">Llama 3.1 70B</span>
+            <span class="uc-tool-tag">Open WebUI</span>
+            <span class="uc-tool-tag">nomic-embed-text</span>
+            <span class="uc-tool-tag">RAG Pipeline</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Medical -->
+    <div class="uc-panel" id="uc-medical">
+      <div class="uc-layout">
+        <div>
+          <div class="uc-industry" data-i18n="uc.med.industry">Hospital / Healthcare Provider</div>
+          <div class="uc-title" data-i18n="uc.med.title">Clinical Documentation Drafting — HIPAA-Compliant by Architecture</div>
+          <div class="uc-quote" data-i18n="uc.med.quote">"Nurses dictate notes. The model transcribes and structures them into SOAP format. PHI never leaves the building."</div>
+          <div class="uc-metrics">
+            <div>
+              <div class="uc-metric-val">40%</div>
+              <div class="uc-metric-label" data-i18n="uc.med.m1">Less documentation time</div>
+            </div>
+            <div>
+              <div class="uc-metric-val">HIPAA</div>
+              <div class="uc-metric-label" data-i18n="uc.med.m2">Compliant by design</div>
+            </div>
+            <div>
+              <div class="uc-metric-val">0</div>
+              <div class="uc-metric-label" data-i18n="uc.med.m3">BAA agreements needed</div>
+            </div>
+          </div>
+        </div>
+        <div class="uc-detail">
+          <div class="uc-detail-title" data-i18n="uc.how">HOW IT WORKS</div>
+          <div class="uc-detail-body" data-i18n="uc.med.body">Whisper (a local speech-to-text model) transcribes audio notes. Llama 3.1 structures the transcript into clinical note formats (SOAP, DAP) and flags medication interactions. Because no patient data ever transits the internet, HIPAA compliance is structural — no BAA with a cloud vendor required.</div>
+          <div class="uc-tools">
+            <span class="uc-tool-tag">Whisper (local)</span>
+            <span class="uc-tool-tag">Llama 3.1 70B</span>
+            <span class="uc-tool-tag">Open WebUI</span>
+            <span class="uc-tool-tag">SOAP Templates</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Finance -->
+    <div class="uc-panel" id="uc-finance">
+      <div class="uc-layout">
+        <div>
+          <div class="uc-industry" data-i18n="uc.fin.industry">Financial Services / Investment Firm</div>
+          <div class="uc-title" data-i18n="uc.fin.title">Earnings Analysis &amp; Portfolio Summaries — No Leakage Risk</div>
+          <div class="uc-quote" data-i18n="uc.fin.quote">"Analysts paste earnings calls and get structured summaries with key metrics pulled out. Zero SOX or MNPI exposure."</div>
+          <div class="uc-metrics">
+            <div>
+              <div class="uc-metric-val">5min</div>
+              <div class="uc-metric-label" data-i18n="uc.fin.m1">Earnings call to summary</div>
+            </div>
+            <div>
+              <div class="uc-metric-val">SOX</div>
+              <div class="uc-metric-label" data-i18n="uc.fin.m2">Compliant workflow</div>
+            </div>
+            <div>
+              <div class="uc-metric-val">0</div>
+              <div class="uc-metric-label" data-i18n="uc.fin.m3">MNPI exposure incidents</div>
+            </div>
+          </div>
+        </div>
+        <div class="uc-detail">
+          <div class="uc-detail-title" data-i18n="uc.how">HOW IT WORKS</div>
+          <div class="uc-detail-body" data-i18n="uc.fin.body">Analysts paste earnings call transcripts or SEC filings into Open WebUI. DeepSeek-R1's reasoning model extracts financial metrics, identifies risks, and compares guidance against previous quarters. Material non-public information (MNPI) never leaves the firm's network — eliminating cloud AI's regulatory exposure for financial professionals.</div>
+          <div class="uc-tools">
+            <span class="uc-tool-tag">DeepSeek-R1 32B</span>
+            <span class="uc-tool-tag">Open WebUI</span>
+            <span class="uc-tool-tag">PDF Loader</span>
+            <span class="uc-tool-tag">Structured Output</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dev -->
+    <div class="uc-panel" id="uc-dev">
+      <div class="uc-layout">
+        <div>
+          <div class="uc-industry" data-i18n="uc.dev.industry">Software Development Team</div>
+          <div class="uc-title" data-i18n="uc.dev.title">Local Copilot for Your Private Codebase</div>
+          <div class="uc-quote" data-i18n="uc.dev.quote">"Our proprietary algorithms and internal APIs never touch GitHub Copilot's cloud. The model knows our codebase as well as our engineers."</div>
+          <div class="uc-metrics">
+            <div>
+              <div class="uc-metric-val">35%</div>
+              <div class="uc-metric-label" data-i18n="uc.dev.m1">Faster code review</div>
+            </div>
+            <div>
+              <div class="uc-metric-val">$0</div>
+              <div class="uc-metric-label" data-i18n="uc.dev.m2">Source code exfiltrated</div>
+            </div>
+            <div>
+              <div class="uc-metric-val">IDE</div>
+              <div class="uc-metric-label" data-i18n="uc.dev.m3">Plugin integration</div>
+            </div>
+          </div>
+        </div>
+        <div class="uc-detail">
+          <div class="uc-detail-title" data-i18n="uc.how">HOW IT WORKS</div>
+          <div class="uc-detail-body" data-i18n="uc.dev.body">Qwen2.5-Coder 32B runs locally and exposes an OpenAI-compatible API. Cursor, Continue.dev, or any OpenAI-compatible IDE plugin points to the local endpoint — instantly turning it into a copilot that knows your codebase. Source code, proprietary algorithms, and internal API docs never leave your development environment.</div>
+          <div class="uc-tools">
+            <span class="uc-tool-tag">Qwen2.5-Coder 32B</span>
+            <span class="uc-tool-tag">Ollama API</span>
+            <span class="uc-tool-tag">Continue.dev</span>
+            <span class="uc-tool-tag">VS Code / Cursor</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── ROI comparison ─────────────────────────────────── -->
+<section class="section roi" id="roi">
+  <div class="section-inner">
+    <div class="section-eyebrow" data-i18n="roi.eyebrow">Cost Comparison</div>
+    <div class="section-title" data-i18n="roi.title">The Hardware Pays for Itself in 6 Months</div>
+    <p class="section-desc" data-i18n="roi.desc">Typical 10-person knowledge team comparison: cloud AI subscription vs. ABS workstation one-time purchase.</p>
+    <div class="roi-layout">
+      <div>
+        <div class="roi-compare">
+          <div class="roi-row roi-row-head">
+            <span data-i18n="roi.col.item">Item</span>
+            <span style="text-align:center" data-i18n="roi.col.cloud">Cloud AI</span>
+            <span style="text-align:center" data-i18n="roi.col.local">ABS Local AI</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-label" data-i18n="roi.r1">Monthly API Cost</span>
+            <span class="roi-cloud">$500–800</span>
+            <span class="roi-local">$0</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-label" data-i18n="roi.r2">Annual Recurring</span>
+            <span class="roi-cloud">$6K–$9.6K</span>
+            <span class="roi-local">$0</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-label" data-i18n="roi.r3">Hardware Cost</span>
+            <span class="roi-cloud">$0</span>
+            <span class="roi-local">~$4,500</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-label" data-i18n="roi.r4">3-Year Total</span>
+            <span class="roi-cloud">$18K–$29K</span>
+            <span class="roi-local">~$4,500</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-label" data-i18n="roi.r5">Data Privacy</span>
+            <span class="roi-cloud">&#10005; Risk</span>
+            <span class="roi-local">&#10003; Guaranteed</span>
+          </div>
+          <div class="roi-row">
+            <span class="roi-label" data-i18n="roi.r6">Response Speed</span>
+            <span class="roi-cloud">2–8 sec</span>
+            <span class="roi-local">&lt;1 sec</span>
+          </div>
+        </div>
+        <div class="roi-note" data-i18n="roi.note">* Estimates based on GPT-4o API pricing ($5/1M input, $15/1M output tokens) at 500 queries/day × 10 users. Hardware cost is approximate ABS workstation with RTX 4090. Electricity cost (~$15/month) not included.</div>
+      </div>
+      <div>
+        <div class="roi-callout">
+          <div class="roi-callout-num">$84,000</div>
+          <div class="roi-callout-label" data-i18n="roi.save.label">Saved over 3 years<br>compared to cloud AI APIs</div>
+          <div class="roi-callout-sub" data-i18n="roi.save.sub">Based on 10-person team, 500 queries/day</div>
+        </div>
+        <div class="roi-callout" style="margin-top:1rem;">
+          <div class="roi-callout-num">6mo</div>
+          <div class="roi-callout-label" data-i18n="roi.payback.label">Hardware payback period<br>vs. equivalent cloud AI spend</div>
+          <div class="roi-callout-sub" data-i18n="roi.payback.sub">At $750/month API spend → pays off in ~6 months</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Deploy steps ───────────────────────────────────── -->
+<section class="section deploy" id="deploy">
+  <div class="section-inner">
+    <div class="section-eyebrow" data-i18n="dep.eyebrow">Deploy in 30 Minutes</div>
+    <div class="section-title" data-i18n="dep.title">From Unboxing to First Chat — Step by Step</div>
+    <p class="section-desc" data-i18n="dep.desc">No Linux expertise required. Every step runs on the pre-configured ABS workstation.</p>
+    <div class="steps-grid">
+      <div class="step-card">
+        <div class="step-num">01</div>
+        <div class="step-title" data-i18n="step1.title">Power On &amp; Connect</div>
+        <div class="step-body" data-i18n="step1.body">Plug in the ABS workstation and connect to your local network. NVIDIA drivers, CUDA, and Docker are pre-installed and verified.</div>
+        <span class="step-time">&#9201; 2 min</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">02</div>
+        <div class="step-title" data-i18n="step2.title">Start Ollama Service</div>
+        <div class="step-body" data-i18n="step2.body">Ollama is pre-installed. Launch it with one command — it handles GPU detection, memory management, and model serving automatically.</div>
+        <code class="step-code">ollama serve</code>
+        <span class="step-time">&#9201; 1 min</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">03</div>
+        <div class="step-title" data-i18n="step3.title">Pull Your First Model</div>
+        <div class="step-body" data-i18n="step3.body">Download Llama 3.1 8B to test (2.4 GB, ~3 min on fast internet), or the full 70B for production use.</div>
+        <code class="step-code">ollama pull llama3.1:8b</code>
+        <span class="step-time">&#9201; 3–15 min</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">04</div>
+        <div class="step-title" data-i18n="step4.title">Launch Open WebUI</div>
+        <div class="step-body" data-i18n="step4.body">Start the web interface with Docker. Your whole team connects via browser — no installation on their machines needed.</div>
+        <code class="step-code">docker run -d -p 3000:8080 --gpus all ghcr.io/open-webui/open-webui:main</code>
+        <span class="step-time">&#9201; 5 min</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">05</div>
+        <div class="step-title" data-i18n="step5.title">Share with Your Team</div>
+        <div class="step-body" data-i18n="step5.body">Open WebUI at your workstation's IP. Create user accounts for teammates — they access it in any browser, on any device, from anywhere in the office network.</div>
+        <code class="step-code">http://192.168.x.x:3000</code>
+        <span class="step-time">&#9201; 5 min</span>
+      </div>
+      <div class="step-card">
+        <div class="step-num">06</div>
+        <div class="step-title" data-i18n="step6.title">Integrate with Existing Tools</div>
+        <div class="step-body" data-i18n="step6.body">Point Cursor, LangChain, or any OpenAI-compatible tool to your local API. One configuration change — no code rewriting.</div>
+        <code class="step-code">OPENAI_BASE_URL=http://localhost:11434/v1</code>
+        <span class="step-time">&#9201; 2 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── Footer CTA ─────────────────────────────────────── -->
+<section class="footer-cta">
+  <div class="footer-inner">
+    <div class="footer-tag" data-i18n="footer.tag">&#127381; ABS AI Workstation</div>
+    <h2 data-i18n="footer.title">Ready to Break Free from API Bills?</h2>
+    <p data-i18n="footer.desc">The ABS AI Workstation comes pre-configured with Ollama, Open WebUI, and the NVIDIA AI stack. Unbox, plug in, and run your first local LLM today.</p>
+    <div class="footer-btns">
+      <a href="ABS_AI_Workstation.html" class="btn-primary" data-i18n="footer.cta1">&#128722; Shop ABS Workstation</a>
+      <a href="RAG_Knowledge_Base.html" class="btn-secondary" data-i18n="footer.cta2">&#8594; Next: Enterprise RAG</a>
+    </div>
+    <div class="footer-copy" data-i18n="footer.copy">Newegg AI Solutions Hub &middot; Private AI Assistant Scenario</div>
+  </div>
+</section>
+
+<script>
+/* Mark Fan - 2026-06-30 - Tab switching for use cases */
+function switchUC(e, id) {
+  document.querySelectorAll('.uc-tab').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.uc-panel').forEach(function(p) { p.classList.remove('active'); });
+  e.currentTarget.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+
+/* Mark Fan - 2026-06-30 - Dark/Light theme toggle */
+function toggleTheme() {
+  var html = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  var isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  btn.textContent = isDark ? '☀ Light' : '☾ Dark';
+  try { localStorage.setItem('priv-ai-theme', html.getAttribute('data-theme')); } catch(e) {}
+}
+
+/* Mark Fan - 2026-06-30 - Chinese/English i18n */
+var _lang = 'en';
+var _enCache = {};
+
+var I18N_ZH = [
+  /* Nav */
+  ['[data-i18n="nav-back-link"]', null],
+  /* Hero */
+  ['.hero-badge [data-i18n="hero.badge"]',     '私有 AI 解决方案'],
+  ['[data-i18n="hero.title"]',   '你的提问，只属于你。<br>部署一个<span class="accent">永远不出门的 AI</span>。'],
+  ['[data-i18n="hero.desc"]',    '在 ABS 工作站上，30 分钟内部署完整的私有 AI 助手。支持 Llama 3.1、Mistral、DeepSeek、Gemma 等 50+ 模型 —— 无需 API Key，无用量限制，数据全程不离开你的网络。'],
+  ['[data-i18n="hero.m1"]',      'API 月费（部署后）'],
+  ['[data-i18n="hero.m2"]',      '首次对话所需时间'],
+  ['[data-i18n="hero.m3"]',      '数据留在本地'],
+  ['[data-i18n="hero.m4"]',      '支持模型数量'],
+  ['[data-i18n="hero.cta1"]',    '▶ 立即开始部署'],
+  ['[data-i18n="hero.cta2"]',    '浏览支持模型'],
+  /* Problem */
+  ['[data-i18n="prob.eyebrow"]', '云端 AI 的隐性代价'],
+  ['[data-i18n="prob.title"]',   '为什么聪明的团队正在告别 ChatGPT'],
+  ['[data-i18n="prob.desc"]',    '企业和中小团队面临三个日益严重的问题 —— 而且会随时间叠加恶化。'],
+  ['[data-i18n="prob.c1.title"]', 'API 费用失控'],
+  ['[data-i18n="prob.c1.body"]',  '一个 10 人团队每天向 GPT-4 发送 500 条消息，每月 API 费用高达 3,000–8,000 美元 —— 这还没算微调、向量化或图像生成的成本。费用随人员和使用量增长，而非价值增长。'],
+  ['[data-i18n="prob.c1.stat"]',  '10 人团队平均年费 ¥70 万'],
+  ['[data-i18n="prob.c2.title"]', '你的数据在训练别人的模型'],
+  ['[data-i18n="prob.c2.body"]',  '每一次提问 —— 客户合同、病历记录、源代码、财务预测 —— 都会离开你的网络。即便选择退出训练，数据仍经过第三方基础设施。法务、合规和知识产权风险随每次查询积累。'],
+  ['[data-i18n="prob.c2.stat"]',  '68% 的企业报告存在 AI 数据合规违规'],
+  ['[data-i18n="prob.c3.title"]', '延迟、宕机与速率限制'],
+  ['[data-i18n="prob.c3.body"]',  '云端 AI 依赖互联网连接、服务商可用性和速率配额。关键时刻遭遇宕机、业务高峰期被限流、复杂查询响应 2–10 秒 —— 都在真实拖累生产力。'],
+  ['[data-i18n="prob.c3.stat"]',  'OpenAI 2024 年报告了 47 次服务中断'],
+  /* Solution */
+  ['[data-i18n="sol.eyebrow"]', 'ABS 工作站包含什么'],
+  ['[data-i18n="sol.title"]',   '一套完整的本地 AI 技术栈，开箱即用'],
+  ['[data-i18n="sol.desc"]',    '无需 DevOps 经验。每一层均已配置、测试，第一天就可以直接用。'],
+  ['[data-i18n="stack.l1.name"]', 'Open WebUI / 聊天界面'],
+  ['[data-i18n="stack.l1.sub"]',  '类 ChatGPT 的 Web UI —— 团队打开浏览器即可对话'],
+  ['[data-i18n="stack.l2.name"]', 'API 层（OpenAI 兼容）'],
+  ['[data-i18n="stack.l2.sub"]',  '直接替换 —— 现有集成无需改代码'],
+  ['[data-i18n="stack.l3.name"]', 'Ollama —— 本地模型运行时'],
+  ['[data-i18n="stack.l3.sub"]',  '一键模型管理，GPU 加速，自动批处理'],
+  ['[data-i18n="stack.l4.name"]', '模型库（50+ 模型）'],
+  ['[data-i18n="stack.l4.sub"]',  'Llama 3.1、Mistral、DeepSeek、Gemma、Phi-3、Qwen 等'],
+  ['[data-i18n="stack.l5.name"]', 'ABS AI 工作站（NVIDIA RTX）'],
+  ['[data-i18n="stack.l5.sub"]',  'RTX 4090 / RTX 4080 —— 16–24 GB 显存，流畅运行 70B 模型'],
+  ['[data-i18n="feat.f1.title"]', '零数据出站'],
+  ['[data-i18n="feat.f1.body"]',  '所有推理在你的网络内运行。提示词、回复和文档永不触网。默认符合 HIPAA、SOC 2、GDPR 及大多数内部数据策略。'],
+  ['[data-i18n="feat.f2.title"]', 'RTX 加速推理'],
+  ['[data-i18n="feat.f2.body"]',  'RTX 4090 的 24 GB 显存以 30–60 token/秒的速度运行 Llama 3.1 70B。峰值负载下响应速度超过云端 API —— 且永远不会排队。'],
+  ['[data-i18n="feat.f3.title"]', '多用户，无需额外授权'],
+  ['[data-i18n="feat.f3.body"]',  'Open WebUI 支持无限并发用户 —— 整个团队连接到一台工作站。无按座定价，无用户上限，无订阅等级。'],
+  ['[data-i18n="feat.f4.title"]', 'OpenAI 兼容 API'],
+  ['[data-i18n="feat.f4.body"]',  '只需换一个 URL —— 你现有的工具（LangChain、Cursor、自定义应用）无需改一行代码即可连接本地模型。'],
+  /* Models */
+  ['[data-i18n="mod.eyebrow"]', '支持模型库'],
+  ['[data-i18n="mod.title"]',   '运行任意开源模型 —— 一条命令'],
+  ['[data-i18n="mod.desc"]',    '用 <code style="font-family:var(--mono);font-size:0.85em;color:var(--purple-bright)">ollama pull &lt;模型名&gt;</code> 即可拉取并运行以下任意模型。所有推理在你的硬件上完成。'],
+  ['[data-i18n="mbadge.chat"]',   '对话'],
+  ['[data-i18n="mbadge.code"]',   '代码'],
+  ['[data-i18n="mbadge.vision"]', '视觉'],
+  ['[data-i18n="mbadge.reason"]', '推理'],
+  ['[data-i18n="ms.vram"]',       '显存（Q4）'],
+  ['[data-i18n="ms.speed"]',      'RTX 4090'],
+  ['[data-i18n="mod.llama.sub"]',    'Meta 旗舰开源模型。综合推理、写作和指令跟随能力最强。多项基准测试与 GPT-4o 持平。'],
+  ['[data-i18n="mod.deepseek.sub"]', '逻辑推理和数学能力出众。思维链透明度高，适合金融和法律工作流的可审计决策。'],
+  ['[data-i18n="mod.mistral.sub"]',  '日常任务快速高效。仅需 8 GB 显存 —— 适合笔记本或 4090 被大模型占用时的备选。'],
+  ['[data-i18n="mod.qwen.sub"]',     '专为代码生成打造。Python、JavaScript、SQL 编程基准排名靠前。查询代码时，你的内部代码库永远不会离开办公室。'],
+  ['[data-i18n="mod.llava.sub"]',    '能理解图片的多模态模型。上传截图、图表或文档后提问 —— 完全本地运行，图像数据不上云。'],
+  ['[data-i18n="mod.gemma.sub"]',    'Google 开源模型，摘要、翻译和结构化输出生成能力强。多语言性能优秀，适合国际化团队。'],
+  /* Use cases */
+  ['[data-i18n="uc.eyebrow"]',    '行业应用场景'],
+  ['[data-i18n="uc.title"]',      '真实团队。真实工作流。真实隐私保障。'],
+  ['[data-i18n="uc.desc"]',       '私有 AI 在数据主权不可妥协的行业中释放 AI 能力。'],
+  ['[data-i18n="uc.tab.legal"]',  '法律'],
+  ['[data-i18n="uc.tab.med"]',    '医疗'],
+  ['[data-i18n="uc.tab.fin"]',    '金融'],
+  ['[data-i18n="uc.tab.dev"]',    '开发团队'],
+  ['[data-i18n="uc.how"]',        '实现方式'],
+  ['[data-i18n="uc.legal.industry"]', '律师事务所 / 法务部门'],
+  ['[data-i18n="uc.legal.title"]',    '合同审查速度提升 10 倍 —— 无外部律所泄露风险'],
+  ['[data-i18n="uc.legal.quote"]',    '"律师上传 NDA 草稿，30 秒内获得批注建议。客户事务完全留在我们服务器上。"'],
+  ['[data-i18n="uc.legal.m1"]',       '合同审查速度提升'],
+  ['[data-i18n="uc.legal.m2"]',       '特权数据泄露'],
+  ['[data-i18n="uc.legal.m3"]',       '符合保密义务'],
+  ['[data-i18n="uc.legal.body"]',     '律师将合同 PDF 上传到 Open WebUI。本地 embedding 模型（nomic-embed-text）对文档建立索引，Llama 3.1 70B 回答问题、标记风险条款并生成对比批注。所有客户事务数据留在律所防火墙内 —— 满足 ABA 职业道德规则 1.6 的保密义务。'],
+  ['[data-i18n="uc.med.industry"]',   '医院 / 医疗机构'],
+  ['[data-i18n="uc.med.title"]',      '临床文档起草 —— 架构层面保证 HIPAA 合规'],
+  ['[data-i18n="uc.med.quote"]',      '"护士口述笔记，模型转录并整理成 SOAP 格式。PHI 数据从未离开楼宇。"'],
+  ['[data-i18n="uc.med.m1"]',         '文档时间减少'],
+  ['[data-i18n="uc.med.m2"]',         '设计即合规'],
+  ['[data-i18n="uc.med.m3"]',         '无需签 BAA 协议'],
+  ['[data-i18n="uc.med.body"]',       'Whisper（本地语音转文字模型）转录音频记录，Llama 3.1 将转录内容整理为临床笔记格式（SOAP、DAP），并标记药物相互作用。由于患者数据不经互联网传输，HIPAA 合规在架构层面得到保证 —— 无需与云服务商签署 BAA 协议。'],
+  ['[data-i18n="uc.fin.industry"]',   '金融服务 / 投资机构'],
+  ['[data-i18n="uc.fin.title"]',      '财报分析与投资组合摘要 —— 零泄露风险'],
+  ['[data-i18n="uc.fin.quote"]',      '"分析师粘贴财报电话会议记录，即可获得关键指标提取的结构化摘要。零 SOX 或 MNPI 合规风险。"'],
+  ['[data-i18n="uc.fin.m1"]',         '财报电话到摘要用时'],
+  ['[data-i18n="uc.fin.m2"]',         'SOX 合规工作流'],
+  ['[data-i18n="uc.fin.m3"]',         'MNPI 泄露事件'],
+  ['[data-i18n="uc.fin.body"]',       '分析师将财报电话记录或 SEC 文件粘贴到 Open WebUI。DeepSeek-R1 的推理模型提取财务指标、识别风险，并与上季度指引进行对比。重大非公开信息（MNPI）不会离开公司网络 —— 消除金融从业者使用云端 AI 的监管合规风险。'],
+  ['[data-i18n="uc.dev.industry"]',   '软件开发团队'],
+  ['[data-i18n="uc.dev.title"]',      '服务于你私有代码库的本地 Copilot'],
+  ['[data-i18n="uc.dev.quote"]',      '"我们的专有算法和内部 API 从未触碰 GitHub Copilot 的云端。模型对我们代码库的了解程度不亚于工程师自己。"'],
+  ['[data-i18n="uc.dev.m1"]',         '代码 Review 速度提升'],
+  ['[data-i18n="uc.dev.m2"]',         '源代码泄露'],
+  ['[data-i18n="uc.dev.m3"]',         'IDE 插件集成'],
+  ['[data-i18n="uc.dev.body"]',       'Qwen2.5-Coder 32B 在本地运行，暴露 OpenAI 兼容 API。Cursor、Continue.dev 或任何兼容 OpenAI 的 IDE 插件指向本地端点 —— 立即变身了解你代码库的 Copilot。源代码、专有算法和内部 API 文档永不离开开发环境。'],
+  /* ROI */
+  ['[data-i18n="roi.eyebrow"]',       '成本对比'],
+  ['[data-i18n="roi.title"]',         '硬件 6 个月内回本'],
+  ['[data-i18n="roi.desc"]',          '典型 10 人知识工作团队对比：云端 AI 订阅 vs. ABS 工作站一次性购买。'],
+  ['[data-i18n="roi.col.item"]',      '项目'],
+  ['[data-i18n="roi.col.cloud"]',     '云端 AI'],
+  ['[data-i18n="roi.col.local"]',     'ABS 本地 AI'],
+  ['[data-i18n="roi.r1"]',            '月度 API 费用'],
+  ['[data-i18n="roi.r2"]',            '年度循环费用'],
+  ['[data-i18n="roi.r3"]',            '硬件成本'],
+  ['[data-i18n="roi.r4"]',            '3 年合计'],
+  ['[data-i18n="roi.r5"]',            '数据隐私'],
+  ['[data-i18n="roi.r6"]',            '响应速度'],
+  ['[data-i18n="roi.save.label"]',    '3 年节省费用<br>相比云端 AI API'],
+  ['[data-i18n="roi.save.sub"]',      '基于 10 人团队，每天 500 次查询'],
+  ['[data-i18n="roi.payback.label"]', '硬件回本周期<br>对比等效云端 AI 支出'],
+  ['[data-i18n="roi.payback.sub"]',   '月 API 支出 $750 → 约 6 个月回本'],
+  ['[data-i18n="roi.note"]',          '* 估算基于 GPT-4o API 定价（输入 $5/百万 token，输出 $15/百万 token），10 人用户 × 每天 500 次查询。硬件成本为搭载 RTX 4090 的 ABS 工作站近似价格。不含电费（约 $15/月）。'],
+  /* Deploy */
+  ['[data-i18n="dep.eyebrow"]', '30 分钟完成部署'],
+  ['[data-i18n="dep.title"]',   '从开箱到首次对话 —— 分步指南'],
+  ['[data-i18n="dep.desc"]',    '无需 Linux 专业知识。每一步都在预配置好的 ABS 工作站上运行。'],
+  ['[data-i18n="step1.title"]', '开机并连接网络'],
+  ['[data-i18n="step1.body"]',  '接通 ABS 工作站电源并连接局域网。NVIDIA 驱动、CUDA 和 Docker 已预装验证完毕。'],
+  ['[data-i18n="step2.title"]', '启动 Ollama 服务'],
+  ['[data-i18n="step2.body"]',  'Ollama 已预装。一条命令启动 —— 自动检测 GPU、管理内存并提供模型服务。'],
+  ['[data-i18n="step3.title"]', '拉取第一个模型'],
+  ['[data-i18n="step3.body"]',  '下载 Llama 3.1 8B 测试（2.4 GB，快速网络约 3 分钟），或拉取完整 70B 用于生产。'],
+  ['[data-i18n="step4.title"]', '启动 Open WebUI'],
+  ['[data-i18n="step4.body"]',  '用 Docker 启动 Web 界面。整个团队通过浏览器连接 —— 成员机器无需安装任何东西。'],
+  ['[data-i18n="step5.title"]', '分享给团队'],
+  ['[data-i18n="step5.body"]',  '打开工作站 IP 上的 Open WebUI，为队友创建账号 —— 他们可以在办公室网络内任意设备的浏览器访问。'],
+  ['[data-i18n="step6.title"]', '接入现有工具'],
+  ['[data-i18n="step6.body"]',  '将 Cursor、LangChain 或任何 OpenAI 兼容工具指向本地 API。改一个配置项，无需重写代码。'],
+  /* Footer */
+  ['[data-i18n="footer.tag"]',   '🚀 ABS AI 工作站'],
+  ['[data-i18n="footer.title"]', '准备好告别 API 账单了吗？'],
+  ['[data-i18n="footer.desc"]',  'ABS AI 工作站预配置了 Ollama、Open WebUI 和 NVIDIA AI 技术栈。今天就开箱、插电、运行你的第一个本地大模型。'],
+  ['[data-i18n="footer.cta1"]',  '🛒 购买 ABS 工作站'],
+  ['[data-i18n="footer.cta2"]',  '→ 下一步：企业知识库 RAG'],
+  ['[data-i18n="footer.copy"]',  'Newegg AI 解决方案中心 · 私有 AI 助手场景'],
+];
+
+function applyLang(lang) {
+  if (lang === 'zh') {
+    I18N_ZH.forEach(function(entry) {
+      if (!entry[0]) return;
+      var el = document.querySelector(entry[0]);
+      if (!el) return;
+      if (!_enCache[entry[0]]) _enCache[entry[0]] = el.innerHTML;
+      el.innerHTML = entry[1];
+    });
+  } else {
+    Object.keys(_enCache).forEach(function(sel) {
+      var el = document.querySelector(sel);
+      if (el) el.innerHTML = _enCache[sel];
+    });
+  }
+}
+
+function toggleLang() {
+  _lang = _lang === 'en' ? 'zh' : 'en';
+  applyLang(_lang);
+  var btn = document.getElementById('lang-toggle');
+  btn.textContent = _lang === 'zh' ? 'EN' : '中文';
+  btn.classList.toggle('lang-active', _lang === 'zh');
+  try { localStorage.setItem('priv-ai-lang', _lang); } catch(e) {}
+}
+
+/* Mark Fan - 2026-06-30 - Restore saved preferences on load */
+(function() {
+  try {
+    var savedTheme = localStorage.getItem('priv-ai-theme');
+    var savedLang  = localStorage.getItem('priv-ai-lang');
+    if (savedTheme && savedTheme !== 'dark') {
+      document.documentElement.setAttribute('data-theme', savedTheme);
+      document.getElementById('theme-toggle').textContent = '☀ Light';
+    }
+    if (savedLang === 'zh') {
+      _lang = 'zh';
+      applyLang('zh');
+      document.getElementById('lang-toggle').textContent = 'EN';
+      document.getElementById('lang-toggle').classList.add('lang-active');
+    }
+  } catch(e) {}
+})();
+</script>
+</body>
+</html>
