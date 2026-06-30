@@ -645,6 +645,275 @@
     color: var(--text-muted);
   }
 
+  /* Mark Fan - 2026-06-30 - Orin Nano Super spotlight banner */
+  .spotlight {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding: 2.2rem;
+    background: linear-gradient(135deg, #111627 0%, #1a1208 100%);
+    border: 1px solid rgba(255,102,0,0.2);
+    border-radius: 16px;
+    align-items: center;
+  }
+
+  .spotlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    background: rgba(255,102,0,0.12);
+    border: 1px solid rgba(255,102,0,0.25);
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .spotlight-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .spotlight-desc {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .spotlight-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .spotlight-stat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  .spotlight-stat-val {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--orange);
+  }
+
+  .spotlight-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  /* Mark Fan - 2026-06-30 - Dev Kit pricing cards */
+  .devkit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .devkit-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .devkit-card:hover { border-color: rgba(255,255,255,0.12); }
+
+  .devkit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--nv-green), var(--orange));
+  }
+
+  .devkit-name {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--nv-green);
+    margin-bottom: 0.3rem;
+  }
+
+  .devkit-sub {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 1.2rem;
+    line-height: 1.55;
+  }
+
+  .devkit-price {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .devkit-price .currency {
+    font-size: 1rem;
+    color: var(--orange);
+    margin-right: 2px;
+  }
+
+  .devkit-price .msrp {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-left: 0.5rem;
+  }
+
+  .devkit-includes {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .devkit-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
+  }
+
+  /* Mark Fan - 2026-06-30 - Selection guide table */
+  .guide-table-wrap {
+    overflow-x: auto;
+    margin-top: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    min-width: 700px;
+  }
+
+  .guide-table thead {
+    background: var(--bg-elevated);
+  }
+
+  .guide-table th {
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .guide-table td {
+    padding: 0.85rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .guide-table tr:last-child td { border-bottom: none; }
+
+  .guide-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .guide-table .module-col {
+    font-family: var(--mono);
+    font-weight: 600;
+    color: var(--nv-green);
+    white-space: nowrap;
+  }
+
+  .guide-table .rec-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background: var(--orange-glow);
+    color: var(--orange);
+    font-weight: 600;
+    border: 1px solid rgba(255,102,0,0.15);
+  }
+
+  /* Mark Fan - 2026-06-30 - Next-gen Jetson Thor teaser */
+  .nextgen {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #0f1225 0%, #130d1e 100%);
+    border: 1px solid rgba(128,0,255,0.15);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .nextgen-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #b07aff;
+    background: rgba(128,0,255,0.1);
+    border: 1px solid rgba(128,0,255,0.2);
+    margin-bottom: 0.6rem;
+  }
+
+  .nextgen-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .nextgen-desc {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .nextgen-stat {
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .nextgen-stat-val {
+    font-family: var(--mono);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #b07aff;
+  }
+
+  .nextgen-stat-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+
   @media (max-width: 900px) {
     .bento { grid-template-columns: 1fr; }
     .bento-cell.featured { grid-column: span 1; grid-row: span 1; }
@@ -652,6 +921,9 @@
     .case-metrics { grid-template-columns: repeat(3, 1fr); }
     .hero-stats { gap: 1.5rem; }
     .nav-links { display: none; }
+    .spotlight { grid-template-columns: 1fr; }
+    .devkit-grid { grid-template-columns: 1fr; }
+    .nextgen { flex-direction: column; text-align: center; }
   }
 
   @media (max-width: 600px) {
@@ -659,6 +931,7 @@
     .section { padding: 3rem 1.2rem; }
     .case-metrics { grid-template-columns: 1fr; }
     .hero-stats { gap: 1.2rem; }
+    .spotlight-stats { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -672,6 +945,7 @@
     </a>
     <ul class="nav-links">
       <li><a href="#lineup">Platform</a></li>
+      <li><a href="#guide">Selection Guide</a></li>
       <li><a href="#stack">Software</a></li>
       <li><a href="#cases">Use Cases</a></li>
       <li><a href="#start">Get Started</a></li>
@@ -699,7 +973,7 @@
         <div class="hero-stat-label">Configurable Power</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-value">6<span class="unit">modules</span></div>
+        <div class="hero-stat-value">7<span class="unit">modules</span></div>
         <div class="hero-stat-label">Scalable Lineup</div>
       </div>
       <div class="hero-stat">
@@ -779,6 +1053,145 @@
         <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">15&ndash;40 W</span></div>
       </div>
       <div class="bento-use">Autonomous vehicles, surgery</div>
+    </div>
+  </div>
+
+  <!-- Mark Fan - 2026-06-30 - Orin Nano Super spotlight -->
+  <div class="spotlight">
+    <div>
+      <div class="spotlight-badge">&#9889; New Release</div>
+      <div class="spotlight-title">Orin Nano Super &mdash; The $249 GenAI Computer</div>
+      <div class="spotlight-desc">Same Orin Nano 8GB hardware, supercharged via software optimization. 67 TOPS of AI performance at just $249 &mdash; the most affordable way to run generative AI, LLMs, and vision transformers at the edge. Drop-in replacement for existing Orin Nano designs.</div>
+    </div>
+    <div class="spotlight-stats">
+      <div class="spotlight-stat"><div class="spotlight-stat-val">67</div><div class="spotlight-stat-label">TOPS (INT8)</div></div>
+      <div class="spotlight-stat"><div class="spotlight-stat-val">1.7&times;</div><div class="spotlight-stat-label">vs Orin Nano 8GB</div></div>
+      <div class="spotlight-stat"><div class="spotlight-stat-val">$249</div><div class="spotlight-stat-label">MSRP Dev Kit</div></div>
+      <div class="spotlight-stat"><div class="spotlight-stat-val">8 GB</div><div class="spotlight-stat-label">LPDDR5 Memory</div></div>
+    </div>
+  </div>
+
+  <!-- Mark Fan - 2026-06-30 - Dev Kit pricing -->
+  <div style="margin-top:3rem;">
+    <div class="section-eyebrow">Developer Kits</div>
+    <h3 class="section-title" style="font-size:1.4rem;">Start Building Today</h3>
+    <p class="section-desc">Complete development boards with carrier board, heatsink, and power supply &mdash; everything you need to prototype.</p>
+  </div>
+  <div class="devkit-grid">
+    <div class="devkit-card">
+      <div class="devkit-name">Jetson Orin Nano Developer Kit</div>
+      <div class="devkit-sub">Entry-level GenAI dev board. Runs LLaMA, Whisper, and Stable Diffusion out of the box. Perfect for makers, students, and edge AI prototyping.</div>
+      <div class="devkit-price"><span class="currency">$</span>249<span class="msrp">MSRP</span></div>
+      <div class="devkit-includes">
+        <span class="devkit-tag">Orin Nano 8GB module</span>
+        <span class="devkit-tag">Reference carrier board</span>
+        <span class="devkit-tag">802.11ac Wi-Fi</span>
+        <span class="devkit-tag">40-pin GPIO</span>
+        <span class="devkit-tag">USB 3.2 &times; 4</span>
+        <span class="devkit-tag">DisplayPort</span>
+      </div>
+    </div>
+    <div class="devkit-card">
+      <div class="devkit-name">Jetson AGX Orin Developer Kit</div>
+      <div class="devkit-sub">Flagship AI workstation for robotics, autonomous machines, and multi-model GenAI. The most powerful Jetson dev board ever built.</div>
+      <div class="devkit-price"><span class="currency">$</span>1,999<span class="msrp">MSRP</span></div>
+      <div class="devkit-includes">
+        <span class="devkit-tag">AGX Orin 64GB module</span>
+        <span class="devkit-tag">275 TOPS</span>
+        <span class="devkit-tag">PCIe Gen4</span>
+        <span class="devkit-tag">10GbE</span>
+        <span class="devkit-tag">USB-C &times; 3</span>
+        <span class="devkit-tag">16-lane CSI</span>
+        <span class="devkit-tag">CAN bus</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- Mark Fan - 2026-06-30 - Selection guide section -->
+<section class="section" id="guide">
+  <div class="section-header">
+    <div class="section-eyebrow">Selection Guide</div>
+    <h2 class="section-title">Which Jetson Orin Is Right for You?</h2>
+    <p class="section-desc">Match your workload to the right module &mdash; all share one SDK, so you can scale up without rewriting code.</p>
+  </div>
+  <div class="guide-table-wrap">
+    <table class="guide-table">
+      <thead>
+        <tr>
+          <th>Use Case</th>
+          <th>Recommended Module</th>
+          <th>AI Performance</th>
+          <th>Power Budget</th>
+          <th>Why This One</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Student / Maker / Prototype</td>
+          <td class="module-col">Orin Nano 4GB</td>
+          <td>20 TOPS</td>
+          <td>7&ndash;15 W</td>
+          <td>Lowest cost entry point for learning edge AI</td>
+        </tr>
+        <tr>
+          <td>GenAI on a Budget</td>
+          <td class="module-col">Orin Nano Super <span class="rec-tag">Best Value</span></td>
+          <td>67 TOPS</td>
+          <td>7&ndash;15 W</td>
+          <td>$249 runs LLMs and diffusion models locally</td>
+        </tr>
+        <tr>
+          <td>Single Smart Camera</td>
+          <td class="module-col">Orin Nano 8GB</td>
+          <td>40 TOPS</td>
+          <td>7&ndash;15 W</td>
+          <td>Compact, low-power, single-stream inference</td>
+        </tr>
+        <tr>
+          <td>AMR / Drone / Mobile Robot</td>
+          <td class="module-col">Orin NX 8GB</td>
+          <td>70 TOPS</td>
+          <td>10&ndash;25 W</td>
+          <td>SLAM + perception + planning on battery</td>
+        </tr>
+        <tr>
+          <td>Multi-Camera Video Analytics</td>
+          <td class="module-col">Orin NX 16GB <span class="rec-tag">Popular</span></td>
+          <td>100 TOPS</td>
+          <td>10&ndash;25 W</td>
+          <td>8&ndash;16 streams with room for complex models</td>
+        </tr>
+        <tr>
+          <td>Autonomous Vehicle / Surgery</td>
+          <td class="module-col">AGX Orin 32GB</td>
+          <td>200 TOPS</td>
+          <td>15&ndash;40 W</td>
+          <td>Multi-sensor fusion, safety-critical workloads</td>
+        </tr>
+        <tr>
+          <td>Edge LLM / Multi-Model GenAI</td>
+          <td class="module-col">AGX Orin 64GB <span class="rec-tag">Flagship</span></td>
+          <td>275 TOPS</td>
+          <td>15&ndash;60 W</td>
+          <td>Run multiple large models simultaneously</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mark Fan - 2026-06-30 - Jetson Thor next-gen teaser -->
+  <div class="nextgen">
+    <div>
+      <div class="nextgen-badge">Coming 2025</div>
+      <div class="nextgen-title">Jetson Thor &mdash; Next-Generation Robotics Superchip</div>
+      <div class="nextgen-desc">Built on NVIDIA Blackwell GPU architecture for humanoid robots and autonomous machines. Transformer engine with FP8 support, integrated functional safety processor, and a 100-TOPS DLA. A generational leap for embodied AI.</div>
+    </div>
+    <div class="nextgen-stat">
+      <div class="nextgen-stat-val">800</div>
+      <div class="nextgen-stat-label">TOPS (INT8)</div>
     </div>
   </div>
 </section>
