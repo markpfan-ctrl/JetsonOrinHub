@@ -3,15 +3,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>NVIDIA Jetson Orin — Edge Robotics AI Hub | Newegg</title>
-  <meta name="description" content="Build and deploy edge AI with NVIDIA Jetson Orin modules. From smart cameras to autonomous robots — powered by the full NVIDIA software stack.">
+  <title>Newegg AI Solutions Hub</title>
+  <meta name="description" content="Enterprise AI solutions powered by Newegg hardware. From edge devices to AI workstations — find the right solution for your business.">
 <style>
+  /* Mark Fan - 2026-06-30 - Newegg AI Solutions Hub landing page */
   :root {
     --orange: #FF6600;
     --orange-dim: #e55b00;
     --orange-glow: rgba(255, 102, 0, 0.08);
     --nv-green: #76B900;
     --nv-green-dim: rgba(118, 185, 0, 0.12);
+    --blue: #3b82f6;
+    --blue-dim: rgba(59, 130, 246, 0.12);
+    --purple: #8b5cf6;
+    --purple-dim: rgba(139, 92, 246, 0.12);
+    --teal: #14b8a6;
+    --teal-dim: rgba(20, 184, 166, 0.12);
+    --rose: #f43f5e;
+    --rose-dim: rgba(244, 63, 94, 0.12);
     --bg: #0a0e1a;
     --bg-card: #111627;
     --bg-card-hover: #161c33;
@@ -22,10 +31,8 @@
     --text-muted: #5a6178;
     --white: #ffffff;
     --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
-    --mono: 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
   }
 
-  /* Mark Fan - 2026-06-30 - Light theme variables */
   [data-theme="light"] {
     --bg: #f4f5f7;
     --bg-card: #ffffff;
@@ -38,6 +45,10 @@
     --white: #111320;
     --orange-glow: rgba(255, 102, 0, 0.1);
     --nv-green-dim: rgba(118, 185, 0, 0.1);
+    --blue-dim: rgba(59, 130, 246, 0.08);
+    --purple-dim: rgba(139, 92, 246, 0.08);
+    --teal-dim: rgba(20, 184, 166, 0.08);
+    --rose-dim: rgba(244, 63, 94, 0.08);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -51,1708 +62,378 @@
     overflow-x: hidden;
   }
 
+  /* ── Nav ── */
   .topnav {
-    position: sticky;
-    top: 0;
-    z-index: 100;
+    position: sticky; top: 0; z-index: 100;
     background: rgba(10, 14, 26, 0.85);
     backdrop-filter: blur(16px);
     border-bottom: 1px solid var(--border);
     padding: 0 2rem;
   }
-
-  .topnav-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: 56px;
-  }
-
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 0.6rem;
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--white);
-    text-decoration: none;
-  }
-
-  .nav-egg {
-    width: 28px;
-    height: 28px;
-    background: var(--orange);
-    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 0.7rem;
-    color: white;
-    font-weight: 800;
-  }
-
-  .nav-links {
-    display: flex;
-    gap: 1.8rem;
-    list-style: none;
-  }
-
-  .nav-links a {
-    color: var(--text-dim);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 500;
-    transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--orange); }
-
-  .hero {
-    position: relative;
-    padding: 5rem 2rem 4rem;
-    overflow: hidden;
-  }
-
-  .hero::before {
-    content: '';
-    position: absolute;
-    top: -100px;
-    right: -200px;
-    width: 600px;
-    height: 600px;
-    background: radial-gradient(circle, rgba(118,185,0,0.08) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero::after {
-    content: '';
-    position: absolute;
-    bottom: -100px;
-    left: -100px;
-    width: 400px;
-    height: 400px;
-    background: radial-gradient(circle, rgba(255,102,0,0.06) 0%, transparent 70%);
-    pointer-events: none;
-  }
-
-  .hero-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 1;
-  }
-
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.4rem 1rem;
-    background: var(--nv-green-dim);
-    border: 1px solid rgba(118,185,0,0.2);
-    border-radius: 999px;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: var(--nv-green);
-    letter-spacing: 0.03em;
-    margin-bottom: 1.5rem;
-  }
-
-  .hero-badge-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--nv-green);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0.3; }
-  }
-
-  .hero h1 {
-    font-size: clamp(2.2rem, 5vw, 3.5rem);
-    font-weight: 700;
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    margin-bottom: 1.2rem;
-    max-width: 700px;
-  }
-
-  .hero h1 span {
-    background: linear-gradient(135deg, var(--nv-green), #a0e040);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .hero-desc {
-    font-size: 1.1rem;
-    color: var(--text-dim);
-    max-width: 560px;
-    line-height: 1.7;
-    margin-bottom: 2rem;
-  }
-
-  .hero-stats {
-    display: flex;
-    gap: 2.5rem;
-    flex-wrap: wrap;
-  }
-
-  .hero-stat {
-    display: flex;
-    flex-direction: column;
-  }
-
-  .hero-stat-value {
-    font-family: var(--mono);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .hero-stat-value .unit {
-    font-size: 0.9rem;
-    color: var(--orange);
-    margin-left: 2px;
-  }
-
-  .hero-stat-label {
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    margin-top: 0.15rem;
-  }
-
-  .section {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 4rem 2rem;
-  }
-
-  .section-header {
-    margin-bottom: 2.5rem;
-  }
-
-  .section-eyebrow {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--orange);
-    margin-bottom: 0.5rem;
-  }
-
-  .section-title {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-weight: 700;
-    color: var(--white);
-    letter-spacing: -0.01em;
-  }
-
-  .section-desc {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin-top: 0.5rem;
-    max-width: 600px;
-    line-height: 1.6;
-  }
-
-  .bento {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 1px;
-    background: var(--border);
-    border-radius: 16px;
-    overflow: hidden;
-    margin-top: 2rem;
-  }
-
-  .bento-cell {
-    background: var(--bg-card);
-    padding: 2rem;
-    transition: background 0.2s;
-    cursor: default;
-  }
-  .bento-cell:hover { background: var(--bg-card-hover); }
-
-  .bento-cell.featured {
-    grid-column: span 2;
-    grid-row: span 2;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    background: linear-gradient(135deg, #111627 0%, #0f1a12 100%);
-  }
-
-  .bento-module-name {
-    font-family: var(--mono);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--nv-green);
-    margin-bottom: 0.3rem;
-  }
-
-  .bento-module-sub {
-    font-size: 0.82rem;
-    color: var(--text-dim);
-    margin-bottom: 1rem;
-  }
-
-  .bento-specs {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-
-  .bento-spec-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.3rem 0;
-    border-bottom: 1px solid var(--border);
-    font-size: 0.82rem;
-  }
-
-  .bento-spec-row:last-child { border-bottom: none; }
-
-  .bento-spec-key { color: var(--text-muted); }
-
-  .bento-spec-val {
-    font-family: var(--mono);
-    font-weight: 600;
-    color: var(--text);
-    font-variant-numeric: tabular-nums;
-  }
-
-  .bento-featured-title {
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-  }
-
-  .bento-featured-desc {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    max-width: 440px;
-  }
-
-  .bento-featured-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.5rem 1rem;
-    border-radius: 999px;
-    font-family: var(--mono);
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--nv-green);
-    background: var(--nv-green-dim);
-    margin-top: 1.5rem;
-    align-self: flex-start;
-  }
-
-  .bento-featured-badge small {
-    font-size: 0.7rem;
-    font-weight: 500;
-    color: var(--text-dim);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .bento-use {
-    display: inline-block;
-    font-size: 0.7rem;
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.04);
-    color: var(--text-dim);
-    margin-top: 0.5rem;
-  }
-
-  .stack-strip {
-    display: flex;
-    gap: 1rem;
-    overflow-x: auto;
-    padding-bottom: 1rem;
-    scroll-snap-type: x mandatory;
-    scrollbar-width: thin;
-    scrollbar-color: var(--text-muted) transparent;
-    margin-top: 2rem;
-  }
-
-  .stack-strip::-webkit-scrollbar { height: 4px; }
-  .stack-strip::-webkit-scrollbar-track { background: transparent; }
-  .stack-strip::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
-
-  .stack-card {
-    flex: 0 0 300px;
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.6rem;
-    scroll-snap-align: start;
-    transition: border-color 0.2s, transform 0.2s;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .stack-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 2px;
-  }
-
-  .stack-card:nth-child(odd)::before { background: var(--nv-green); }
-  .stack-card:nth-child(even)::before { background: var(--orange); }
-
-  .stack-card:hover {
-    border-color: rgba(255,255,255,0.12);
-    transform: translateY(-2px);
-  }
-
-  .stack-icon {
-    width: 36px;
-    height: 36px;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.1rem;
-    margin-bottom: 0.8rem;
-    background: rgba(255,255,255,0.04);
-  }
-
-  .stack-name {
-    font-weight: 700;
-    font-size: 1rem;
-    color: var(--white);
-    margin-bottom: 0.15rem;
-  }
-
-  .stack-sub {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-bottom: 0.6rem;
-  }
-
-  .stack-body {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    line-height: 1.55;
-  }
-
-  .divider {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 2rem;
-  }
-
-  .divider hr {
-    border: none;
-    border-top: 1px solid var(--border);
-  }
-
-  .tabs-bar {
-    display: flex;
-    gap: 0;
-    border-bottom: 1px solid var(--border);
-    margin-bottom: 2rem;
-    overflow-x: auto;
-  }
-
-  .tab-btn {
-    font-family: var(--font);
-    font-size: 0.85rem;
-    font-weight: 500;
-    padding: 0.8rem 1.4rem;
-    background: none;
-    border: none;
-    color: var(--text-muted);
-    cursor: pointer;
-    white-space: nowrap;
-    border-bottom: 2px solid transparent;
-    transition: color 0.2s, border-color 0.2s;
-  }
-
-  .tab-btn:hover { color: var(--text-dim); }
-
-  .tab-btn.active {
-    color: var(--orange);
-    border-bottom-color: var(--orange);
-  }
-
-  .tab-panel {
-    display: none;
-    animation: fadeIn 0.3s ease;
-  }
-
-  .tab-panel.active { display: block; }
-
-  @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(8px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  .case-layout {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    align-items: start;
-  }
-
-  .case-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 1.2rem;
-  }
-
-  .case-industry {
-    font-size: 0.72rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-
-  .case-title {
-    font-size: 1.4rem;
-    font-weight: 700;
-    color: var(--white);
-    line-height: 1.3;
-  }
-
-  .case-quote {
-    font-style: italic;
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    padding-left: 1rem;
-    border-left: 2px solid var(--orange);
-    line-height: 1.6;
-  }
-
-  .case-metrics {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 0.8rem;
-  }
-
-  .case-metric {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 1rem;
-    text-align: center;
-  }
-
-  .case-metric-val {
-    font-family: var(--mono);
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--nv-green);
-  }
-
-  .case-metric-label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 0.2rem;
-  }
-
-  .case-detail {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.8rem;
-  }
-
-  .case-detail-title {
-    font-weight: 700;
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    margin-bottom: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .case-detail-body {
-    font-size: 0.9rem;
-    color: var(--text-dim);
-    line-height: 1.7;
-  }
-
-  .case-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-    margin-top: 1.2rem;
-  }
-
-  .case-tool-tag {
-    font-family: var(--mono);
-    font-size: 0.72rem;
-    padding: 0.3rem 0.7rem;
-    border-radius: 6px;
-    background: var(--nv-green-dim);
-    color: var(--nv-green);
-    font-weight: 600;
-    border: 1px solid rgba(118,185,0,0.15);
-  }
-
-  .footer-cta {
-    border-top: 1px solid var(--border);
-    padding: 4rem 2rem;
-    text-align: center;
-  }
-
-  .footer-inner {
-    max-width: 600px;
-    margin: 0 auto;
-  }
-
-  .footer-cta h2 {
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.6rem;
-  }
-
-  .footer-cta p {
-    color: var(--text-dim);
-    font-size: 0.95rem;
-    margin-bottom: 2rem;
-    line-height: 1.6;
-  }
-
-  .footer-links {
-    display: flex;
-    justify-content: center;
-    gap: 2rem;
-    flex-wrap: wrap;
-  }
-
-  .footer-link-item { text-align: center; }
-
-  .footer-link-label {
-    font-size: 0.7rem;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-muted);
-    margin-bottom: 0.2rem;
-  }
-
-  .footer-link-text {
-    font-weight: 600;
-    font-size: 0.9rem;
-    color: var(--orange);
-  }
-
-  .footer-copy {
-    margin-top: 3rem;
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--border);
-    font-size: 0.78rem;
-    color: var(--text-muted);
-  }
-
-  /* Mark Fan - 2026-06-30 - Orin Nano Super spotlight banner */
-  .spotlight {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2rem;
-    margin-top: 2.5rem;
-    padding: 2.2rem;
-    background: linear-gradient(135deg, #111627 0%, #1a1208 100%);
-    border: 1px solid rgba(255,102,0,0.2);
-    border-radius: 16px;
-    align-items: center;
-  }
-
-  .spotlight-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.3rem 0.8rem;
-    background: rgba(255,102,0,0.12);
-    border: 1px solid rgba(255,102,0,0.25);
-    border-radius: 999px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--orange);
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    margin-bottom: 0.8rem;
-  }
-
-  .spotlight-title {
-    font-size: 1.5rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.5rem;
-    line-height: 1.3;
-  }
-
-  .spotlight-desc {
-    font-size: 0.92rem;
-    color: var(--text-dim);
-    line-height: 1.65;
-  }
-
-  .spotlight-stats {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1rem;
-  }
-
-  .spotlight-stat {
-    background: rgba(255,255,255,0.03);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 1.2rem;
-    text-align: center;
-  }
-
-  .spotlight-stat-val {
-    font-family: var(--mono);
-    font-size: 1.6rem;
-    font-weight: 700;
-    color: var(--orange);
-  }
-
-  .spotlight-stat-label {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    margin-top: 0.15rem;
-  }
-
-  /* Mark Fan - 2026-06-30 - Dev Kit pricing cards */
-  .devkit-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 1.5rem;
-    margin-top: 2rem;
-  }
-
-  .devkit-card {
-    background: var(--bg-card);
-    border: 1px solid var(--border);
-    border-radius: 14px;
-    padding: 2rem;
-    position: relative;
-    overflow: hidden;
-    transition: border-color 0.2s;
-  }
-
-  .devkit-card:hover { border-color: rgba(255,255,255,0.12); }
-
-  .devkit-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3px;
-    background: linear-gradient(90deg, var(--nv-green), var(--orange));
-  }
-
-  .devkit-name {
-    font-family: var(--mono);
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--nv-green);
-    margin-bottom: 0.3rem;
-  }
-
-  .devkit-sub {
-    font-size: 0.85rem;
-    color: var(--text-dim);
-    margin-bottom: 1.2rem;
-    line-height: 1.55;
-  }
-
-  .devkit-price {
-    font-family: var(--mono);
-    font-size: 1.8rem;
-    font-weight: 700;
-    color: var(--white);
-  }
-
-  .devkit-price .currency {
-    font-size: 1rem;
-    color: var(--orange);
-    margin-right: 2px;
-  }
-
-  .devkit-price .msrp {
-    font-size: 0.75rem;
-    color: var(--text-muted);
-    font-weight: 500;
-    margin-left: 0.5rem;
-  }
-
-  .devkit-includes {
-    margin-top: 1rem;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.4rem;
-  }
-
-  .devkit-tag {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
-    border-radius: 4px;
-    background: rgba(255,255,255,0.04);
-    color: var(--text-dim);
-  }
-
-  /* Mark Fan - 2026-06-30 - Selection guide table */
-  .guide-table-wrap {
-    overflow-x: auto;
-    margin-top: 2rem;
-    border-radius: 12px;
-    border: 1px solid var(--border);
-  }
-
-  .guide-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 0.85rem;
-    min-width: 700px;
-  }
-
-  .guide-table thead {
-    background: var(--bg-elevated);
-  }
-
-  .guide-table th {
-    padding: 0.9rem 1.2rem;
-    text-align: left;
-    font-weight: 700;
-    font-size: 0.75rem;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-    border-bottom: 1px solid var(--border);
-  }
-
-  .guide-table td {
-    padding: 0.85rem 1.2rem;
-    border-bottom: 1px solid var(--border);
-    color: var(--text);
-  }
-
-  .guide-table tr:last-child td { border-bottom: none; }
-
-  .guide-table tr:hover td { background: rgba(255,255,255,0.02); }
-
-  .guide-table .module-col {
-    font-family: var(--mono);
-    font-weight: 600;
-    color: var(--nv-green);
-    white-space: nowrap;
-  }
-
-  .guide-table .rec-tag {
-    display: inline-block;
-    font-size: 0.68rem;
-    padding: 0.15rem 0.5rem;
-    border-radius: 4px;
-    background: var(--orange-glow);
-    color: var(--orange);
-    font-weight: 600;
-    border: 1px solid rgba(255,102,0,0.15);
-  }
-
-  /* Mark Fan - 2026-06-30 - Next-gen Jetson Thor teaser */
-  .nextgen {
-    margin-top: 2.5rem;
-    padding: 2rem;
-    background: linear-gradient(135deg, #0f1225 0%, #130d1e 100%);
-    border: 1px solid rgba(128,0,255,0.15);
-    border-radius: 14px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 2rem;
-  }
-
-  .nextgen-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.4rem;
-    padding: 0.3rem 0.8rem;
-    border-radius: 999px;
-    font-size: 0.7rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: #b07aff;
-    background: rgba(128,0,255,0.1);
-    border: 1px solid rgba(128,0,255,0.2);
-    margin-bottom: 0.6rem;
-  }
-
-  .nextgen-title {
-    font-size: 1.2rem;
-    font-weight: 700;
-    color: var(--white);
-    margin-bottom: 0.4rem;
-  }
-
-  .nextgen-desc {
-    font-size: 0.88rem;
-    color: var(--text-dim);
-    line-height: 1.6;
-    max-width: 600px;
-  }
-
-  .nextgen-stat {
-    text-align: center;
-    flex-shrink: 0;
-  }
-
-  .nextgen-stat-val {
-    font-family: var(--mono);
-    font-size: 2.2rem;
-    font-weight: 700;
-    color: #b07aff;
-  }
-
-  .nextgen-stat-label {
-    font-size: 0.72rem;
-    color: var(--text-muted);
-    margin-top: 0.1rem;
-  }
-
-  /* Mark Fan - 2026-06-30 - Light theme hardcoded color overrides */
-  [data-theme="light"] .topnav {
-    background: rgba(244, 245, 247, 0.9);
-  }
-  [data-theme="light"] .hero::before {
-    background: radial-gradient(circle, rgba(118,185,0,0.12) 0%, transparent 70%);
-  }
-  [data-theme="light"] .hero::after {
-    background: radial-gradient(circle, rgba(255,102,0,0.08) 0%, transparent 70%);
-  }
-  [data-theme="light"] .hero h1 span {
-    background: linear-gradient(135deg, #5a9400, #76B900);
-    -webkit-background-clip: text;
-    background-clip: text;
-  }
-  [data-theme="light"] .bento-cell.featured {
-    background: linear-gradient(135deg, #f0f4e8 0%, #e8f0dc 100%);
-  }
-  [data-theme="light"] .bento-cell { background: var(--bg-card); }
-  [data-theme="light"] .bento { background: var(--border); }
-  [data-theme="light"] .spotlight {
-    background: linear-gradient(135deg, #fff7f0 0%, #fef3e6 100%);
-    border-color: rgba(255,102,0,0.18);
-  }
-  [data-theme="light"] .spotlight-stat {
-    background: rgba(0,0,0,0.03);
-    border-color: rgba(0,0,0,0.06);
-  }
-  [data-theme="light"] .devkit-card { background: var(--bg-card); }
-  [data-theme="light"] .guide-table tr:hover td { background: rgba(0,0,0,0.02); }
-  [data-theme="light"] .nextgen {
-    background: linear-gradient(135deg, #f3f0fa 0%, #ede6f7 100%);
-    border-color: rgba(128,0,255,0.12);
-  }
-  [data-theme="light"] .stack-card { background: var(--bg-card); }
-  [data-theme="light"] .stack-icon { background: rgba(0,0,0,0.04); }
-  [data-theme="light"] .case-metric { background: var(--bg-card); }
-  [data-theme="light"] .case-detail { background: var(--bg-card); }
-  [data-theme="light"] .case-tool-tag {
-    background: rgba(118,185,0,0.08);
-    border-color: rgba(118,185,0,0.18);
-  }
-  [data-theme="light"] .devkit-tag { background: rgba(0,0,0,0.05); }
-  [data-theme="light"] .bento-use { background: rgba(0,0,0,0.05); }
-  [data-theme="light"] .footer-cta { border-top-color: var(--border); }
-
-  /* Mark Fan - 2026-06-30 - Theme & language toggle buttons */
-  .nav-controls {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  .toggle-btn {
-    font-family: var(--font);
-    font-size: 0.75rem;
-    font-weight: 600;
-    padding: 0.3rem 0.7rem;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: rgba(255,255,255,0.05);
-    color: var(--text-dim);
-    cursor: pointer;
-    transition: background 0.2s, color 0.2s, border-color 0.2s;
-    white-space: nowrap;
-    line-height: 1.4;
-  }
-  .toggle-btn:hover {
-    background: rgba(255,255,255,0.1);
-    color: var(--text);
-    border-color: rgba(255,255,255,0.15);
-  }
-  [data-theme="light"] .toggle-btn {
-    background: rgba(0,0,0,0.04);
-    border-color: rgba(0,0,0,0.1);
-  }
-  [data-theme="light"] .toggle-btn:hover {
-    background: rgba(0,0,0,0.08);
-    border-color: rgba(0,0,0,0.18);
-  }
-
-  @media (max-width: 900px) {
-    .bento { grid-template-columns: 1fr; }
-    .bento-cell.featured { grid-column: span 1; grid-row: span 1; }
-    .case-layout { grid-template-columns: 1fr; }
-    .case-metrics { grid-template-columns: repeat(3, 1fr); }
-    .hero-stats { gap: 1.5rem; }
-    .nav-links { display: none; }
-    .nav-controls { gap: 0.3rem; }
-    .spotlight { grid-template-columns: 1fr; }
-    .devkit-grid { grid-template-columns: 1fr; }
-    .nextgen { flex-direction: column; text-align: center; }
-  }
-
-  @media (max-width: 600px) {
-    .hero { padding: 3rem 1.2rem 2.5rem; }
-    .section { padding: 3rem 1.2rem; }
-    .case-metrics { grid-template-columns: 1fr; }
-    .hero-stats { gap: 1.2rem; }
-    .spotlight-stats { grid-template-columns: 1fr; }
+  [data-theme="light"] .topnav { background: rgba(244, 245, 247, 0.88); }
+  .topnav-inner { max-width: 1280px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; height: 56px; }
+  .nav-brand { display: flex; align-items: center; gap: 0.6rem; font-weight: 700; font-size: 1rem; color: var(--white); text-decoration: none; }
+  .nav-egg { width: 28px; height: 28px; background: var(--orange); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; display: flex; align-items: center; justify-content: center; font-size: 0.7rem; color: white; font-weight: 800; }
+  .nav-controls { display: flex; gap: 0.5rem; }
+  .toggle-btn { background: var(--bg-elevated); color: var(--text-dim); border: 1px solid var(--border); padding: 0.3rem 0.8rem; border-radius: 6px; font-size: 0.78rem; cursor: pointer; transition: all 0.2s; font-family: var(--font); }
+  .toggle-btn:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* ── Hero ── */
+  .hero { position: relative; padding: 6rem 2rem 4rem; text-align: center; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; top: -120px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: radial-gradient(circle, rgba(255,102,0,0.06) 0%, transparent 65%); pointer-events: none; }
+  .hero-badge { display: inline-block; background: var(--orange-glow); color: var(--orange); font-size: 0.78rem; font-weight: 600; padding: 0.35rem 1rem; border-radius: 20px; border: 1px solid rgba(255,102,0,0.15); margin-bottom: 1.5rem; letter-spacing: 0.03em; }
+  .hero h1 { font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 800; line-height: 1.15; margin-bottom: 1rem; color: var(--white); }
+  .hero h1 .accent { color: var(--orange); }
+  .hero-sub { font-size: 1.1rem; color: var(--text-dim); max-width: 600px; margin: 0 auto 2.5rem; line-height: 1.7; }
+  .hero-cta { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.75rem 1.8rem; border-radius: 8px; font-size: 0.9rem; font-weight: 600; text-decoration: none; transition: all 0.2s; cursor: pointer; border: none; font-family: var(--font); }
+  .btn-primary { background: var(--orange); color: #fff; }
+  .btn-primary:hover { background: var(--orange-dim); transform: translateY(-1px); }
+  .btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+  .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+
+  /* ── Section ── */
+  .section { padding: 4rem 2rem; max-width: 1280px; margin: 0 auto; }
+  .section-label { font-size: 0.75rem; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--orange); margin-bottom: 0.5rem; }
+  .section-title { font-size: 1.8rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .section-desc { font-size: 0.95rem; color: var(--text-dim); max-width: 560px; margin-bottom: 2.5rem; line-height: 1.6; }
+
+  /* ── Hub Cards ── */
+  .hub-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr)); gap: 1.5rem; }
+  .hub-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px; padding: 2rem; transition: all 0.3s; text-decoration: none; color: inherit; display: flex; flex-direction: column; position: relative; overflow: hidden; }
+  .hub-card:hover { border-color: rgba(255,102,0,0.3); background: var(--bg-card-hover); transform: translateY(-3px); }
+  .hub-card-icon { width: 56px; height: 56px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.6rem; margin-bottom: 1.2rem; }
+  .hub-card-title { font-size: 1.25rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .hub-card-desc { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; flex: 1; margin-bottom: 1.2rem; }
+  .hub-card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.2rem; }
+  .tag { font-size: 0.72rem; padding: 0.2rem 0.6rem; border-radius: 4px; background: var(--bg-elevated); color: var(--text-dim); border: 1px solid var(--border); }
+  .hub-card-link { font-size: 0.85rem; font-weight: 600; color: var(--orange); display: flex; align-items: center; gap: 0.3rem; }
+  .hub-card-status { position: absolute; top: 1.2rem; right: 1.2rem; font-size: 0.68rem; font-weight: 600; padding: 0.2rem 0.6rem; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.05em; }
+  .status-live { background: rgba(118,185,0,0.15); color: var(--nv-green); }
+  .status-soon { background: var(--blue-dim); color: var(--blue); }
+
+  /* ── Solution Cards ── */
+  .solution-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; }
+  .solution-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; transition: all 0.3s; text-decoration: none; color: inherit; display: flex; flex-direction: column; }
+  .solution-card:hover { border-color: rgba(255,102,0,0.25); background: var(--bg-card-hover); transform: translateY(-2px); }
+  .solution-icon { width: 44px; height: 44px; border-radius: 11px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; margin-bottom: 1rem; }
+  .solution-title { font-size: 1.05rem; font-weight: 700; color: var(--white); margin-bottom: 0.4rem; }
+  .solution-desc { font-size: 0.82rem; color: var(--text-dim); line-height: 1.55; flex: 1; margin-bottom: 1rem; }
+  .solution-meta { display: flex; gap: 1rem; font-size: 0.75rem; color: var(--text-muted); }
+  .solution-meta span { display: flex; align-items: center; gap: 0.3rem; }
+
+  /* ── Why On-Prem ── */
+  .value-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.2rem; }
+  .value-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 14px; padding: 1.5rem; }
+  .value-num { font-size: 2rem; font-weight: 800; color: var(--orange); line-height: 1; margin-bottom: 0.3rem; }
+  .value-label { font-size: 0.85rem; font-weight: 600; color: var(--white); margin-bottom: 0.4rem; }
+  .value-detail { font-size: 0.8rem; color: var(--text-dim); line-height: 1.5; }
+
+  /* ── Footer ── */
+  .footer { border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; }
+  .footer-inner { max-width: 1280px; margin: 0 auto; }
+  .footer-brand { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap; margin-bottom: 1rem; }
+  .footer-links a { color: var(--text-dim); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--orange); }
+  .footer-copy { font-size: 0.75rem; color: var(--text-muted); }
+
+  @media (max-width: 768px) {
+    .hero { padding: 4rem 1.5rem 3rem; }
+    .section { padding: 3rem 1.5rem; }
+    .hub-grid { grid-template-columns: 1fr; }
+    .solution-grid { grid-template-columns: 1fr; }
+    .value-grid { grid-template-columns: 1fr 1fr; }
+    .topnav { padding: 0 1rem; }
+  }
+  @media (max-width: 480px) {
+    .value-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
 <body>
 
+<!-- ── Navigation ── -->
 <nav class="topnav">
   <div class="topnav-inner">
-    <a class="nav-brand" href="#">
+    <a class="nav-brand" href="index.html">
       <div class="nav-egg">N</div>
-      Newegg AI Workstation Hub
+      <span data-i18n="brand">Newegg AI Solutions</span>
     </a>
-    <ul class="nav-links">
-      <li><a href="#lineup" data-i18n="nav.platform">Platform</a></li>
-      <li><a href="#guide" data-i18n="nav.guide">Selection Guide</a></li>
-      <li><a href="#stack" data-i18n="nav.software">Software</a></li>
-      <li><a href="#cases" data-i18n="nav.cases">Use Cases</a></li>
-      <li><a href="#start" data-i18n="nav.start">Get Started</a></li>
-    </ul>
     <div class="nav-controls">
-      <button class="toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">&#9790; Dark</button>
-      <button class="toggle-btn" id="lang-toggle" onclick="toggleLang()" title="Switch language">EN / &#20013;</button>
+      <button class="toggle-btn" id="theme-toggle" onclick="toggleTheme()">☾ Dark</button>
+      <button class="toggle-btn" id="lang-toggle" onclick="toggleLang()">EN / 中</button>
     </div>
   </div>
 </nav>
 
+<!-- ── Hero ── -->
 <section class="hero">
-  <div class="hero-inner">
-    <div class="hero-badge">
-      <div class="hero-badge-dot"></div>
-      <span data-i18n="hero.badge">NVIDIA JETSON ORIN PLATFORM</span>
+  <div class="hero-badge" data-i18n="hero-badge">AI-Powered Business Solutions</div>
+  <h1 data-i18n="hero-title">Your AI. <span class="accent">Your Hardware.</span><br>Your Competitive Edge.</h1>
+  <p class="hero-sub" data-i18n="hero-sub">From edge devices to AI workstations — Newegg delivers complete hardware + software solutions so your business can deploy AI in minutes, not months.</p>
+  <div class="hero-cta">
+    <a href="#solutions" class="btn btn-primary" data-i18n="hero-cta1">Find Your Solution ↓</a>
+    <a href="#hardware" class="btn btn-outline" data-i18n="hero-cta2">Explore Hardware ↓</a>
+  </div>
+</section>
+
+<!-- ── Hardware Hubs ── -->
+<section class="section" id="hardware">
+  <div class="section-label" data-i18n="hw-label">Hardware Platforms</div>
+  <div class="section-title" data-i18n="hw-title">Purpose-Built AI Hardware</div>
+  <p class="section-desc" data-i18n="hw-desc">Each platform is optimized for specific AI workloads. Click to explore the full product lineup, specs, and software ecosystem.</p>
+  <div class="hub-grid">
+    <a class="hub-card" href="Jetson_Orin.html">
+      <span class="hub-card-status status-live">Live</span>
+      <div class="hub-card-icon" style="background: var(--nv-green-dim);">🤖</div>
+      <div class="hub-card-title" data-i18n="hub-jetson-title">NVIDIA Jetson Orin — Edge AI</div>
+      <p class="hub-card-desc" data-i18n="hub-jetson-desc">Deploy AI at the edge for robotics, smart cameras, and autonomous systems. Compact modules from 4GB to 64GB with full NVIDIA software stack support.</p>
+      <div class="hub-card-tags">
+        <span class="tag">Jetson Orin Nano</span>
+        <span class="tag">Orin NX</span>
+        <span class="tag">AGX Orin</span>
+        <span class="tag">JetPack 6</span>
+      </div>
+      <div class="hub-card-link" data-i18n="hub-jetson-link">Explore Edge AI Hub →</div>
+    </a>
+    <a class="hub-card" href="ABS_AI_Workstation.html">
+      <span class="hub-card-status status-soon">Coming Soon</span>
+      <div class="hub-card-icon" style="background: var(--blue-dim);">🖥️</div>
+      <div class="hub-card-title" data-i18n="hub-abs-title">ABS AI Workstation — Desktop AI</div>
+      <p class="hub-card-desc" data-i18n="hub-abs-desc">Enterprise-grade AI workstations with NVIDIA RTX PRO GPUs. Pre-configured for LLM inference, image generation, RAG, and model fine-tuning — out of the box.</p>
+      <div class="hub-card-tags">
+        <span class="tag">RTX PRO 4500</span>
+        <span class="tag">Multi-GPU</span>
+        <span class="tag">On-Premise</span>
+        <span class="tag">Pre-Installed AI</span>
+      </div>
+      <div class="hub-card-link" data-i18n="hub-abs-link">Explore AI Workstation Hub →</div>
+    </a>
+  </div>
+</section>
+
+<!-- ── Solution Scenarios ── -->
+<section class="section" id="solutions">
+  <div class="section-label" data-i18n="sol-label">AI Solutions</div>
+  <div class="section-title" data-i18n="sol-title">What Can You Do with an AI Workstation?</div>
+  <p class="section-desc" data-i18n="sol-desc">Buy the hardware, get the solution pre-installed. Each scenario is a complete, ready-to-run AI application — no cloud APIs, no DevOps, no monthly fees.</p>
+  <div class="solution-grid">
+    <a class="solution-card" href="Private_AI_Assistant.html">
+      <div class="solution-icon" style="background: var(--purple-dim);">💬</div>
+      <div class="solution-title" data-i18n="sol1-title">Private AI Assistant</div>
+      <p class="solution-desc" data-i18n="sol1-desc">Deploy a ChatGPT-class AI assistant that runs 100% on your local hardware. Your conversations, your documents, your data — never leave your network.</p>
+      <div class="solution-meta">
+        <span data-i18n="sol1-hw">🖥️ ABS Workstation</span>
+        <span data-i18n="sol1-use">🏢 All Industries</span>
+      </div>
+    </a>
+    <a class="solution-card" href="Creative_AI_Studio.html">
+      <div class="solution-icon" style="background: var(--rose-dim);">🎨</div>
+      <div class="solution-title" data-i18n="sol2-title">AI Creative Studio</div>
+      <p class="solution-desc" data-i18n="sol2-desc">Generate product images, marketing visuals, and video content with local AI models. No per-image fees, no IP exposure to third-party APIs.</p>
+      <div class="solution-meta">
+        <span data-i18n="sol2-hw">🖥️ ABS Workstation</span>
+        <span data-i18n="sol2-use">🎨 Marketing / Design</span>
+      </div>
+    </a>
+    <a class="solution-card" href="RAG_Knowledge_Base.html">
+      <div class="solution-icon" style="background: var(--teal-dim);">📚</div>
+      <div class="solution-title" data-i18n="sol3-title">Enterprise Knowledge Base</div>
+      <p class="solution-desc" data-i18n="sol3-desc">Turn your company documents into an AI-powered knowledge base. Employees ask questions in natural language, get answers grounded in your internal data.</p>
+      <div class="solution-meta">
+        <span data-i18n="sol3-hw">🖥️ ABS Workstation</span>
+        <span data-i18n="sol3-use">📋 Legal / HR / Support</span>
+      </div>
+    </a>
+    <a class="solution-card" href="Local_Code_Assistant.html">
+      <div class="solution-icon" style="background: var(--blue-dim);">⌨️</div>
+      <div class="solution-title" data-i18n="sol4-title">Local Code Assistant</div>
+      <p class="solution-desc" data-i18n="sol4-desc">Run a code completion and review AI locally. Your proprietary codebase stays on your machine — with the same quality as cloud-based coding assistants.</p>
+      <div class="solution-meta">
+        <span data-i18n="sol4-hw">🖥️ ABS Workstation</span>
+        <span data-i18n="sol4-use">💻 Engineering</span>
+      </div>
+    </a>
+    <a class="solution-card" href="Video_Analytics.html">
+      <div class="solution-icon" style="background: var(--orange-glow); border: 1px solid rgba(255,102,0,0.15);">📹</div>
+      <div class="solution-title" data-i18n="sol5-title">Video & Vision Analytics</div>
+      <p class="solution-desc" data-i18n="sol5-desc">Analyze security footage, retail traffic, or manufacturing quality with on-premise AI. Real-time object detection, people counting, anomaly alerts.</p>
+      <div class="solution-meta">
+        <span data-i18n="sol5-hw">🤖 Jetson / ABS</span>
+        <span data-i18n="sol5-use">🏭 Retail / Security</span>
+      </div>
+    </a>
+    <a class="solution-card" href="Model_Fine_Tuning.html">
+      <div class="solution-icon" style="background: var(--nv-green-dim);">🧠</div>
+      <div class="solution-title" data-i18n="sol6-title">Model Fine-Tuning Lab</div>
+      <p class="solution-desc" data-i18n="sol6-desc">Fine-tune open-source LLMs on your own data. Build domain-specific AI models for healthcare, finance, or legal — without sending data to the cloud.</p>
+      <div class="solution-meta">
+        <span data-i18n="sol6-hw">🖥️ ABS Multi-GPU</span>
+        <span data-i18n="sol6-use">🔬 Data Science</span>
+      </div>
+    </a>
+  </div>
+</section>
+
+<!-- ── Why On-Prem ── -->
+<section class="section" id="why">
+  <div class="section-label" data-i18n="why-label">Why On-Premise AI</div>
+  <div class="section-title" data-i18n="why-title">Own Your AI, Own Your Data</div>
+  <p class="section-desc" data-i18n="why-desc">Every AI solution from Newegg runs on hardware you own. No cloud subscriptions, no API rate limits, no data leaving your network.</p>
+  <div class="value-grid">
+    <div class="value-card">
+      <div class="value-num">$0</div>
+      <div class="value-label" data-i18n="val1-label">Monthly API Fees</div>
+      <div class="value-detail" data-i18n="val1-detail">Run unlimited AI inferences after the hardware purchase. No per-token, per-image, or per-request charges ever again.</div>
     </div>
-    <h1 data-i18n="hero.title">Edge AI That Runs<br><span>Where It Matters</span></h1>
-    <p class="hero-desc" data-i18n="hero.desc">
-      Build and deploy autonomous machines, smart cameras, and industrial AI &mdash; powered by Jetson Orin modules. From 20 TOPS to 275 TOPS, prototype to production, all on the same NVIDIA stack.
-    </p>
-    <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-value">275<span class="unit">TOPS</span></div>
-        <div class="hero-stat-label" data-i18n="hero.stat1">Peak AI Performance</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">7&ndash;60<span class="unit">W</span></div>
-        <div class="hero-stat-label" data-i18n="hero.stat2">Configurable Power</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">7<span class="unit" data-i18n="hero.stat3unit">modules</span></div>
-        <div class="hero-stat-label" data-i18n="hero.stat3">Scalable Lineup</div>
-      </div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">200+<span class="unit" data-i18n="hero.stat4unit">containers</span></div>
-        <div class="hero-stat-label" data-i18n="hero.stat4">Pre-Built AI Runtimes</div>
-      </div>
+    <div class="value-card">
+      <div class="value-num">100%</div>
+      <div class="value-label" data-i18n="val2-label">Data Sovereignty</div>
+      <div class="value-detail" data-i18n="val2-detail">Your data never leaves your network. Full compliance with HIPAA, SOC 2, GDPR, and internal security policies.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">&lt;30m</div>
+      <div class="value-label" data-i18n="val3-label">Setup Time</div>
+      <div class="value-detail" data-i18n="val3-detail">Unbox, power on, and start running AI workloads. Pre-installed software stack means zero DevOps, zero configuration.</div>
+    </div>
+    <div class="value-card">
+      <div class="value-num">24/7</div>
+      <div class="value-label" data-i18n="val4-label">Always Available</div>
+      <div class="value-detail" data-i18n="val4-detail">No outages, no rate limits, no vendor policy changes. Your AI infrastructure runs when you need it, as fast as your hardware allows.</div>
     </div>
   </div>
 </section>
 
-<section class="section" id="lineup">
-  <div class="section-header">
-    <div class="section-eyebrow" data-i18n="lineup.eyebrow">Platform Lineup</div>
-    <h2 class="section-title" data-i18n="lineup.title">Choose Your Edge</h2>
-    <p class="section-desc" data-i18n="lineup.desc">A scalable module family sharing one SDK &mdash; pick the right compute for your workload.</p>
-  </div>
-  <div class="bento">
-    <div class="bento-cell featured">
-      <div>
-        <div class="bento-module-name">AGX Orin 64GB</div>
-        <div class="bento-featured-title" data-i18n="lineup.flagship.title">The Flagship Edge AI Computer</div>
-        <div class="bento-featured-desc" data-i18n="lineup.flagship.desc">The most powerful Jetson module &mdash; 2048 CUDA cores, 64 GB LPDDR5, and 275 TOPS of AI performance. Run multi-model generative AI, multi-sensor fusion, and complex robotics pipelines at the edge.</div>
-      </div>
-      <div class="bento-featured-badge">275 TOPS <small>&nbsp;/ 60W max</small></div>
-    </div>
-    <div class="bento-cell">
-      <div class="bento-module-name">Orin Nano 4GB</div>
-      <div class="bento-module-sub">Entry-level edge AI</div>
-      <div class="bento-specs">
-        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">20 TOPS</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">512 CUDA</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">4 GB</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">7&ndash;15 W</span></div>
-      </div>
-      <div class="bento-use">Education, prototyping</div>
-    </div>
-    <div class="bento-cell">
-      <div class="bento-module-name">Orin Nano 8GB</div>
-      <div class="bento-module-sub">Smart camera &amp; lightweight inference</div>
-      <div class="bento-specs">
-        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">40 TOPS</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">1024 CUDA</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">8 GB</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">7&ndash;15 W</span></div>
-      </div>
-      <div class="bento-use">Retail, access control</div>
-    </div>
-    <div class="bento-cell">
-      <div class="bento-module-name">Orin NX 8GB</div>
-      <div class="bento-module-sub" data-i18n="lineup.nx8.sub">Multi-stream video &amp; AMR</div>
-      <div class="bento-specs">
-        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">70 TOPS</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">1024 CUDA</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">8 GB</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">10&ndash;25 W</span></div>
-      </div>
-      <div class="bento-use">Mobile robots, drones</div>
-    </div>
-    <div class="bento-cell">
-      <div class="bento-module-name">Orin NX 16GB</div>
-      <div class="bento-module-sub">Complex vision pipelines</div>
-      <div class="bento-specs">
-        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">100 TOPS</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">1024 CUDA</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">16 GB</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">10&ndash;25 W</span></div>
-      </div>
-      <div class="bento-use">Industrial inspection, traffic</div>
-    </div>
-    <div class="bento-cell">
-      <div class="bento-module-name">AGX Orin 32GB</div>
-      <div class="bento-module-sub">Autonomous machines &amp; robotics</div>
-      <div class="bento-specs">
-        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">200 TOPS</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">1792 CUDA</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">32 GB</span></div>
-        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">15&ndash;40 W</span></div>
-      </div>
-      <div class="bento-use">Autonomous vehicles, surgery</div>
-    </div>
-  </div>
-
-  <!-- Mark Fan - 2026-06-30 - Orin Nano Super spotlight -->
-  <div class="spotlight">
-    <div>
-      <div class="spotlight-badge">&#9889; New Release</div>
-      <div class="spotlight-title">Orin Nano Super &mdash; The $249 GenAI Computer</div>
-      <div class="spotlight-desc">Same Orin Nano 8GB hardware, supercharged via software optimization. 67 TOPS of AI performance at just $249 &mdash; the most affordable way to run generative AI, LLMs, and vision transformers at the edge. Drop-in replacement for existing Orin Nano designs.</div>
-    </div>
-    <div class="spotlight-stats">
-      <div class="spotlight-stat"><div class="spotlight-stat-val">67</div><div class="spotlight-stat-label">TOPS (INT8)</div></div>
-      <div class="spotlight-stat"><div class="spotlight-stat-val">1.7&times;</div><div class="spotlight-stat-label">vs Orin Nano 8GB</div></div>
-      <div class="spotlight-stat"><div class="spotlight-stat-val">$249</div><div class="spotlight-stat-label">MSRP Dev Kit</div></div>
-      <div class="spotlight-stat"><div class="spotlight-stat-val">8 GB</div><div class="spotlight-stat-label">LPDDR5 Memory</div></div>
-    </div>
-  </div>
-
-  <!-- Mark Fan - 2026-06-30 - Dev Kit pricing -->
-  <div style="margin-top:3rem;">
-    <div class="section-eyebrow">Developer Kits</div>
-    <h3 class="section-title" style="font-size:1.4rem;">Start Building Today</h3>
-    <p class="section-desc">Complete development boards with carrier board, heatsink, and power supply &mdash; everything you need to prototype.</p>
-  </div>
-  <div class="devkit-grid">
-    <div class="devkit-card">
-      <div class="devkit-name">Jetson Orin Nano Developer Kit</div>
-      <div class="devkit-sub">Entry-level GenAI dev board. Runs LLaMA, Whisper, and Stable Diffusion out of the box. Perfect for makers, students, and edge AI prototyping.</div>
-      <div class="devkit-price"><span class="currency">$</span>249<span class="msrp">MSRP</span></div>
-      <div class="devkit-includes">
-        <span class="devkit-tag">Orin Nano 8GB module</span>
-        <span class="devkit-tag">Reference carrier board</span>
-        <span class="devkit-tag">802.11ac Wi-Fi</span>
-        <span class="devkit-tag">40-pin GPIO</span>
-        <span class="devkit-tag">USB 3.2 &times; 4</span>
-        <span class="devkit-tag">DisplayPort</span>
-      </div>
-    </div>
-    <div class="devkit-card">
-      <div class="devkit-name">Jetson AGX Orin Developer Kit</div>
-      <div class="devkit-sub">Flagship AI workstation for robotics, autonomous machines, and multi-model GenAI. The most powerful Jetson dev board ever built.</div>
-      <div class="devkit-price"><span class="currency">$</span>1,999<span class="msrp">MSRP</span></div>
-      <div class="devkit-includes">
-        <span class="devkit-tag">AGX Orin 64GB module</span>
-        <span class="devkit-tag">275 TOPS</span>
-        <span class="devkit-tag">PCIe Gen4</span>
-        <span class="devkit-tag">10GbE</span>
-        <span class="devkit-tag">USB-C &times; 3</span>
-        <span class="devkit-tag">16-lane CSI</span>
-        <span class="devkit-tag">CAN bus</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"><hr></div>
-
-<!-- Mark Fan - 2026-06-30 - Selection guide section -->
-<section class="section" id="guide">
-  <div class="section-header">
-    <div class="section-eyebrow">Selection Guide</div>
-    <h2 class="section-title">Which Jetson Orin Is Right for You?</h2>
-    <p class="section-desc">Match your workload to the right module &mdash; all share one SDK, so you can scale up without rewriting code.</p>
-  </div>
-  <div class="guide-table-wrap">
-    <table class="guide-table">
-      <thead>
-        <tr>
-          <th>Use Case</th>
-          <th>Recommended Module</th>
-          <th>AI Performance</th>
-          <th>Power Budget</th>
-          <th>Why This One</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>Student / Maker / Prototype</td>
-          <td class="module-col">Orin Nano 4GB</td>
-          <td>20 TOPS</td>
-          <td>7&ndash;15 W</td>
-          <td>Lowest cost entry point for learning edge AI</td>
-        </tr>
-        <tr>
-          <td>GenAI on a Budget</td>
-          <td class="module-col">Orin Nano Super <span class="rec-tag">Best Value</span></td>
-          <td>67 TOPS</td>
-          <td>7&ndash;15 W</td>
-          <td>$249 runs LLMs and diffusion models locally</td>
-        </tr>
-        <tr>
-          <td>Single Smart Camera</td>
-          <td class="module-col">Orin Nano 8GB</td>
-          <td>40 TOPS</td>
-          <td>7&ndash;15 W</td>
-          <td>Compact, low-power, single-stream inference</td>
-        </tr>
-        <tr>
-          <td>AMR / Drone / Mobile Robot</td>
-          <td class="module-col">Orin NX 8GB</td>
-          <td>70 TOPS</td>
-          <td>10&ndash;25 W</td>
-          <td>SLAM + perception + planning on battery</td>
-        </tr>
-        <tr>
-          <td>Multi-Camera Video Analytics</td>
-          <td class="module-col">Orin NX 16GB <span class="rec-tag">Popular</span></td>
-          <td>100 TOPS</td>
-          <td>10&ndash;25 W</td>
-          <td>8&ndash;16 streams with room for complex models</td>
-        </tr>
-        <tr>
-          <td>Autonomous Vehicle / Surgery</td>
-          <td class="module-col">AGX Orin 32GB</td>
-          <td>200 TOPS</td>
-          <td>15&ndash;40 W</td>
-          <td>Multi-sensor fusion, safety-critical workloads</td>
-        </tr>
-        <tr>
-          <td>Edge LLM / Multi-Model GenAI</td>
-          <td class="module-col">AGX Orin 64GB <span class="rec-tag">Flagship</span></td>
-          <td>275 TOPS</td>
-          <td>15&ndash;60 W</td>
-          <td>Run multiple large models simultaneously</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-
-  <!-- Mark Fan - 2026-06-30 - Jetson Thor next-gen teaser -->
-  <div class="nextgen">
-    <div>
-      <div class="nextgen-badge">Coming 2025</div>
-      <div class="nextgen-title">Jetson Thor &mdash; Next-Generation Robotics Superchip</div>
-      <div class="nextgen-desc">Built on NVIDIA Blackwell GPU architecture for humanoid robots and autonomous machines. Transformer engine with FP8 support, integrated functional safety processor, and a 100-TOPS DLA. A generational leap for embodied AI.</div>
-    </div>
-    <div class="nextgen-stat">
-      <div class="nextgen-stat-val">800</div>
-      <div class="nextgen-stat-label">TOPS (INT8)</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"><hr></div>
-
-<section class="section" id="stack">
-  <div class="section-header">
-    <div class="section-eyebrow">Software Stack</div>
-    <h2 class="section-title">Full NVIDIA AI Stack at the Edge</h2>
-    <p class="section-desc">From OS to application layer &mdash; every tool runs natively on Jetson Orin.</p>
-  </div>
-  <div class="stack-strip">
-    <div class="stack-card">
-      <div class="stack-icon">&#9881;</div>
-      <div class="stack-name">JetPack SDK</div>
-      <div class="stack-sub">Complete AI Development Platform</div>
-      <div class="stack-body">Linux kernel (L4T), CUDA, cuDNN, TensorRT, multimedia APIs &mdash; bundled into one installable package.</div>
-    </div>
-    <div class="stack-card">
-      <div class="stack-icon">&#129302;</div>
-      <div class="stack-name">Isaac ROS</div>
-      <div class="stack-sub">GPU-Accelerated Robotics</div>
-      <div class="stack-body">Hardware-accelerated ROS 2 packages for perception, navigation, and manipulation.</div>
-    </div>
-    <div class="stack-card">
-      <div class="stack-icon">&#128247;</div>
-      <div class="stack-name">DeepStream</div>
-      <div class="stack-sub">Multi-Stream Video Analytics</div>
-      <div class="stack-body">GStreamer-based SDK supporting 30+ simultaneous camera feeds with real-time detection and tracking.</div>
-    </div>
-    <div class="stack-card">
-      <div class="stack-icon">&#128640;</div>
-      <div class="stack-name">TAO Toolkit</div>
-      <div class="stack-sub">Transfer Learning &amp; Fine-Tuning</div>
-      <div class="stack-body">Start from NVIDIA pre-trained models, fine-tune with your data, export optimized TensorRT engines.</div>
-    </div>
-    <div class="stack-card">
-      <div class="stack-icon">&#128171;</div>
-      <div class="stack-name">TensorRT</div>
-      <div class="stack-sub">Inference Optimization Engine</div>
-      <div class="stack-body">Graph optimization, kernel fusion, mixed precision (FP16/INT8), and DLA offloading.</div>
-    </div>
-    <div class="stack-card">
-      <div class="stack-icon">&#127899;</div>
-      <div class="stack-name">Isaac Sim</div>
-      <div class="stack-sub">Robotics Simulation</div>
-      <div class="stack-body">Physically accurate simulation on Omniverse. Design workcells, generate synthetic data.</div>
-    </div>
-    <div class="stack-card">
-      <div class="stack-icon">&#128274;</div>
-      <div class="stack-name">Jetson Security</div>
-      <div class="stack-sub">Hardware Root of Trust</div>
-      <div class="stack-body">Secure boot, disk encryption, key management, OTA update verification.</div>
-    </div>
-    <div class="stack-card">
-      <div class="stack-icon">&#127760;</div>
-      <div class="stack-name">Metropolis</div>
-      <div class="stack-sub">Smart Spaces Platform</div>
-      <div class="stack-body">End-to-end framework for AI-powered smart city, retail, and industrial monitoring.</div>
-    </div>
-    <div class="stack-card">
-      <div class="stack-icon">&#128736;</div>
-      <div class="stack-name">Jetson Containers</div>
-      <div class="stack-sub">200+ Pre-Built AI Runtimes</div>
-      <div class="stack-body">Docker containers for PyTorch, TensorFlow, LLaMA, Whisper, Stable Diffusion.</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"><hr></div>
-
-<section class="section" id="cases">
-  <div class="section-header">
-    <div class="section-eyebrow">Deployment Cases</div>
-    <h2 class="section-title">Edge AI in Production</h2>
-    <p class="section-desc">From warehouse floors to operating rooms &mdash; Jetson Orin powering real-world autonomous systems.</p>
-  </div>
-  <div class="tabs-bar" role="tablist">
-    <button class="tab-btn active" onclick="switchTab(event,'warehouse')" role="tab">Smart Warehouse</button>
-    <button class="tab-btn" onclick="switchTab(event,'traffic')" role="tab">City Traffic</button>
-    <button class="tab-btn" onclick="switchTab(event,'surgery')" role="tab">Surgical Robotics</button>
-    <button class="tab-btn" onclick="switchTab(event,'agriculture')" role="tab">Precision Agriculture</button>
-  </div>
-  <div class="tab-panel active" id="warehouse">
-    <div class="case-layout">
-      <div class="case-meta">
-        <div class="case-industry">Logistics / Autonomous Mobile Robots</div>
-        <div class="case-title">24/7 Autonomous Picking &amp; Sorting &mdash; Zero Cloud Dependency</div>
-        <div class="case-quote">"No cloud latency, no downtime. Every AMR thinks for itself."</div>
-        <div class="case-metrics">
-          <div class="case-metric"><div class="case-metric-val">40%</div><div class="case-metric-label">Faster fulfillment</div></div>
-          <div class="case-metric"><div class="case-metric-val">12</div><div class="case-metric-label">AMRs coordinated</div></div>
-          <div class="case-metric"><div class="case-metric-val">100%</div><div class="case-metric-label">On-prem processing</div></div>
-        </div>
-      </div>
-      <div class="case-detail">
-        <div class="case-detail-title">How It Works</div>
-        <div class="case-detail-body">Each AGX Orin module powers one AMR &mdash; running SLAM navigation, pallet detection, and path planning entirely on-device. Isaac ROS handles the robot stack; DeepStream processes overhead cameras for zone monitoring. The fleet operates autonomously 24/7, with models updated via OTA during off-peak hours.</div>
-        <div class="case-tools"><span class="case-tool-tag">Isaac ROS</span><span class="case-tool-tag">DeepStream</span><span class="case-tool-tag">TensorRT</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="tab-panel" id="traffic">
-    <div class="case-layout">
-      <div class="case-meta">
-        <div class="case-industry">Urban Infrastructure / Video Analytics</div>
-        <div class="case-title">Every Intersection, Every Vehicle, Every Second &mdash; Processed at the Edge</div>
-        <div class="case-quote">"Only metadata leaves the node. Raw video stays where it was captured."</div>
-        <div class="case-metrics">
-          <div class="case-metric"><div class="case-metric-val">16</div><div class="case-metric-label">Streams per node</div></div>
-          <div class="case-metric"><div class="case-metric-val">&lt;50ms</div><div class="case-metric-label">Detection latency</div></div>
-          <div class="case-metric"><div class="case-metric-val">30%</div><div class="case-metric-label">Congestion reduction</div></div>
-        </div>
-      </div>
-      <div class="case-detail">
-        <div class="case-detail-title">How It Works</div>
-        <div class="case-detail-body">Orin NX nodes deployed at 200+ intersections, each processing 16 camera streams simultaneously. DeepStream handles vehicle/pedestrian detection; Metropolis provides the analytics dashboard. Custom models fine-tuned with TAO for local traffic patterns.</div>
-        <div class="case-tools"><span class="case-tool-tag">DeepStream</span><span class="case-tool-tag">Metropolis</span><span class="case-tool-tag">TAO Toolkit</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="tab-panel" id="surgery">
-    <div class="case-layout">
-      <div class="case-meta">
-        <div class="case-industry">Healthcare / Autonomous Instruments</div>
-        <div class="case-title">Real-Time Tissue Classification During Surgery</div>
-        <div class="case-quote">"10ms inference. 99.2% accuracy. Zero patient data ever leaves the device."</div>
-        <div class="case-metrics">
-          <div class="case-metric"><div class="case-metric-val">10ms</div><div class="case-metric-label">Inference latency</div></div>
-          <div class="case-metric"><div class="case-metric-val">99.2%</div><div class="case-metric-label">Classification accuracy</div></div>
-          <div class="case-metric"><div class="case-metric-val">HIPAA</div><div class="case-metric-label">Compliant</div></div>
-        </div>
-      </div>
-      <div class="case-detail">
-        <div class="case-detail-title">How It Works</div>
-        <div class="case-detail-body">AGX Orin 64GB embedded in the surgical instrument arm. Models trained on synthetic data from Isaac Sim, optimized to INT8 with TensorRT. Secure boot and encrypted storage ensure HIPAA compliance. Every inference happens on-device.</div>
-        <div class="case-tools"><span class="case-tool-tag">TensorRT</span><span class="case-tool-tag">Jetson Security</span><span class="case-tool-tag">Isaac Sim</span></div>
-      </div>
-    </div>
-  </div>
-  <div class="tab-panel" id="agriculture">
-    <div class="case-layout">
-      <div class="case-meta">
-        <div class="case-industry">AgTech / Autonomous Field Robots</div>
-        <div class="case-title">AI-Guided Crop Inspection &mdash; Offline, Rugged, Solar-Powered</div>
-        <div class="case-quote">"No cellular, no Wi-Fi, no problem. The rover sees what the farmer can't."</div>
-        <div class="case-metrics">
-          <div class="case-metric"><div class="case-metric-val">95%</div><div class="case-metric-label">Disease detection</div></div>
-          <div class="case-metric"><div class="case-metric-val">15W</div><div class="case-metric-label">Power draw</div></div>
-          <div class="case-metric"><div class="case-metric-val">4</div><div class="case-metric-label">Camera feeds</div></div>
-        </div>
-      </div>
-      <div class="case-detail">
-        <div class="case-detail-title">How It Works</div>
-        <div class="case-detail-body">Orin NX modules on autonomous field rovers, running multispectral crop analysis completely offline. TAO-trained models detect disease, pest damage, and nutrient deficiency. Solar-powered operation keeps the fleet running through full harvest seasons.</div>
-        <div class="case-tools"><span class="case-tool-tag">TAO Toolkit</span><span class="case-tool-tag">DeepStream</span><span class="case-tool-tag">Jetson Containers</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="footer-cta" id="start">
+<!-- ── Footer ── -->
+<footer class="footer">
   <div class="footer-inner">
-    <h2>Ready to Build at the Edge?</h2>
-    <p>From dev kit to fleet deployment &mdash; get the right Jetson Orin module, carrier board, and software stack for your edge AI application.</p>
+    <div class="footer-brand" data-i18n="footer-brand">Newegg AI Solutions</div>
     <div class="footer-links">
-      <div class="footer-link-item"><div class="footer-link-label">Shop Hardware</div><div class="footer-link-text">Newegg Jetson Store</div></div>
-      <div class="footer-link-item"><div class="footer-link-label">Developer</div><div class="footer-link-text">NVIDIA Jetson Portal</div></div>
-      <div class="footer-link-item"><div class="footer-link-label">Community</div><div class="footer-link-text">Jetson AI Lab</div></div>
-      <div class="footer-link-item"><div class="footer-link-label">Enterprise</div><div class="footer-link-text">Contact Solutions Team</div></div>
+      <a href="Jetson_Orin.html" data-i18n="footer-jetson">Jetson Orin Hub</a>
+      <a href="https://www.newegg.com/ABS" target="_blank" data-i18n="footer-abs">ABS Workstations</a>
+      <a href="https://www.neweggbusiness.com" target="_blank" data-i18n="footer-biz">Newegg Business</a>
     </div>
-    <div class="footer-copy">Newegg AI Workstation Hub &middot; NVIDIA Jetson Orin Platform</div>
+    <div class="footer-copy">&copy; 2026 Newegg Inc. All rights reserved.</div>
   </div>
-</section>
+</footer>
 
 <script>
-/* Mark Fan - 2026-06-30 - Tab switching */
-function switchTab(e, id) {
-  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
-  e.currentTarget.classList.add('active');
-  document.getElementById(id).classList.add('active');
-}
-
-/* Mark Fan - 2026-06-30 - Dark/Light theme toggle */
+/* Mark Fan - 2026-06-30 - Theme toggle, language switching, i18n */
 function toggleTheme() {
   var html = document.documentElement;
   var btn = document.getElementById('theme-toggle');
   if (html.getAttribute('data-theme') === 'dark') {
     html.setAttribute('data-theme', 'light');
-    btn.innerHTML = '&#9728; Light';
+    btn.textContent = '☀ Light';
   } else {
     html.setAttribute('data-theme', 'dark');
-    btn.innerHTML = '&#9790; Dark';
+    btn.textContent = '☾ Dark';
   }
-  try { localStorage.setItem('joh-theme', html.getAttribute('data-theme')); } catch(e) {}
+  localStorage.setItem('ai-hub-theme', html.getAttribute('data-theme'));
 }
 
-/* Mark Fan - 2026-06-30 - Chinese/English i18n toggle */
-var _lang = 'en';
-var _enCache = {};
+var I18N = { zh: [
+  { sel: '[data-i18n="brand"]', text: 'Newegg AI 解决方案' },
+  { sel: '[data-i18n="hero-badge"]', text: 'AI 赋能商业解决方案' },
+  { sel: '[data-i18n="hero-title"]', html: '你的 AI。<span class="accent">你的硬件。</span><br>你的竞争优势。' },
+  { sel: '[data-i18n="hero-sub"]', text: '从边缘设备到 AI 工作站 — Newegg 提供完整的硬件 + 软件解决方案，让你的企业在几分钟内部署 AI，而非几个月。' },
+  { sel: '[data-i18n="hero-cta1"]', text: '查看解决方案 ↓' },
+  { sel: '[data-i18n="hero-cta2"]', text: '探索硬件 ↓' },
+  { sel: '[data-i18n="hw-label"]', text: '硬件平台' },
+  { sel: '[data-i18n="hw-title"]', text: '专为 AI 构建的硬件' },
+  { sel: '[data-i18n="hw-desc"]', text: '每个平台针对特定 AI 工作负载优化。点击探索完整产品线、规格和软件生态。' },
+  { sel: '[data-i18n="hub-jetson-title"]', text: 'NVIDIA Jetson Orin — 边缘 AI' },
+  { sel: '[data-i18n="hub-jetson-desc"]', text: '在边缘部署 AI，用于机器人、智能摄像头和自主系统。从 4GB 到 64GB 的紧凑模块，完整支持 NVIDIA 软件栈。' },
+  { sel: '[data-i18n="hub-jetson-link"]', text: '探索边缘 AI Hub →' },
+  { sel: '[data-i18n="hub-abs-title"]', text: 'ABS AI 工作站 — 桌面级 AI' },
+  { sel: '[data-i18n="hub-abs-desc"]', text: '企业级 AI 工作站，搭载 NVIDIA RTX PRO GPU。开箱即用，预配置 LLM 推理、图像生成、RAG 和模型微调。' },
+  { sel: '[data-i18n="hub-abs-link"]', text: '探索 AI 工作站 Hub →' },
+  { sel: '[data-i18n="sol-label"]', text: 'AI 解决方案' },
+  { sel: '[data-i18n="sol-title"]', text: 'AI 工作站能帮你做什么？' },
+  { sel: '[data-i18n="sol-desc"]', text: '买硬件，得方案。每个场景都是一个完整的、开箱即用的 AI 应用 — 无需云 API，无需运维，无月费。' },
+  { sel: '[data-i18n="sol1-title"]', text: '私有 AI 助手' },
+  { sel: '[data-i18n="sol1-desc"]', text: '部署一个 ChatGPT 级别的 AI 助手，100% 运行在你的本地硬件上。你的对话、文档、数据 — 永不离开你的网络。' },
+  { sel: '[data-i18n="sol1-hw"]', text: '🖥️ ABS 工作站' },
+  { sel: '[data-i18n="sol1-use"]', text: '🏢 全行业通用' },
+  { sel: '[data-i18n="sol2-title"]', text: 'AI 创意工作室' },
+  { sel: '[data-i18n="sol2-desc"]', text: '使用本地 AI 模型生成产品图、营销素材和视频内容。无按图收费，无 IP 泄露给第三方 API。' },
+  { sel: '[data-i18n="sol2-hw"]', text: '🖥️ ABS 工作站' },
+  { sel: '[data-i18n="sol2-use"]', text: '🎨 市场营销 / 设计' },
+  { sel: '[data-i18n="sol3-title"]', text: '企业知识库' },
+  { sel: '[data-i18n="sol3-desc"]', text: '将企业文档变成 AI 驱动的知识库。员工用自然语言提问，获得基于内部数据的精准答案。' },
+  { sel: '[data-i18n="sol3-hw"]', text: '🖥️ ABS 工作站' },
+  { sel: '[data-i18n="sol3-use"]', text: '📋 法务 / 人事 / 客服' },
+  { sel: '[data-i18n="sol4-title"]', text: '本地代码助手' },
+  { sel: '[data-i18n="sol4-desc"]', text: '在本地运行代码补全和审查 AI。你的私有代码库留在你的机器上 — 质量比肩云端编程助手。' },
+  { sel: '[data-i18n="sol4-hw"]', text: '🖥️ ABS 工作站' },
+  { sel: '[data-i18n="sol4-use"]', text: '💻 软件工程' },
+  { sel: '[data-i18n="sol5-title"]', text: '视频与视觉分析' },
+  { sel: '[data-i18n="sol5-desc"]', text: '用本地 AI 分析安防监控、零售客流或制造质检。实时目标检测、人数统计、异常预警。' },
+  { sel: '[data-i18n="sol5-hw"]', text: '🤖 Jetson / ABS' },
+  { sel: '[data-i18n="sol5-use"]', text: '🏭 零售 / 安防' },
+  { sel: '[data-i18n="sol6-title"]', text: '模型微调实验室' },
+  { sel: '[data-i18n="sol6-desc"]', text: '用你自己的数据微调开源大模型。构建医疗、金融或法律领域的专业 AI — 无需将数据发送到云端。' },
+  { sel: '[data-i18n="sol6-hw"]', text: '🖥️ ABS 多 GPU' },
+  { sel: '[data-i18n="sol6-use"]', text: '🔬 数据科学' },
+  { sel: '[data-i18n="why-label"]', text: '为什么选择本地部署' },
+  { sel: '[data-i18n="why-title"]', text: '拥有你的 AI，掌控你的数据' },
+  { sel: '[data-i18n="why-desc"]', text: 'Newegg 的每个 AI 解决方案都运行在你拥有的硬件上。无云订阅、无 API 速率限制、数据不出内网。' },
+  { sel: '[data-i18n="val1-label"]', text: '月度 API 费用' },
+  { sel: '[data-i18n="val1-detail"]', text: '硬件购买后可运行无限 AI 推理。不再有按 token、按图片或按请求的收费。' },
+  { sel: '[data-i18n="val2-label"]', text: '数据主权' },
+  { sel: '[data-i18n="val2-detail"]', text: '你的数据永不离开你的网络。完全满足 HIPAA、SOC 2、GDPR 及内部安全策略。' },
+  { sel: '[data-i18n="val3-label"]', text: '搭建时间' },
+  { sel: '[data-i18n="val3-detail"]', text: '拆箱、开机、即刻运行 AI 工作负载。预装软件栈意味着零运维、零配置。' },
+  { sel: '[data-i18n="val4-label"]', text: '永远在线' },
+  { sel: '[data-i18n="val4-detail"]', text: '无宕机、无速率限制、无供应商策略变更。你的 AI 基础设施按需运行，速度取决于你的硬件。' },
+  { sel: '[data-i18n="footer-brand"]', text: 'Newegg AI 解决方案' },
+  { sel: '[data-i18n="footer-jetson"]', text: 'Jetson Orin Hub' },
+  { sel: '[data-i18n="footer-abs"]', text: 'ABS 工作站' },
+  { sel: '[data-i18n="footer-biz"]', text: 'Newegg 企业购' },
+]};
 
-var I18N = {
-  zh: [
-    /* --- Nav --- */
-    ['.nav-brand', 'Newegg AI 工作站中心'],
-    ['[data-i18n="nav.platform"]', '平台阵容'],
-    ['[data-i18n="nav.guide"]', '选型指南'],
-    ['[data-i18n="nav.software"]', '软件生态'],
-    ['[data-i18n="nav.cases"]', '应用案例'],
-    ['[data-i18n="nav.start"]', '开始使用'],
+var currentLang = 'en';
+var enBackup = {};
 
-    /* --- Hero --- */
-    ['[data-i18n="hero.badge"]', 'NVIDIA JETSON ORIN 平台'],
-    ['[data-i18n="hero.title"]', '边缘 AI，在现场<br><span>发挥价值</span>'],
-    ['[data-i18n="hero.desc"]', '构建和部署自主机器、智能摄像头和工业 AI —— 由 Jetson Orin 模组驱动。20 TOPS 到 275 TOPS，从原型到量产，共享同一套 NVIDIA 开发栈。'],
-    ['[data-i18n="hero.stat1"]', '峰值 AI 算力'],
-    ['[data-i18n="hero.stat2"]', '可配置功耗'],
-    ['[data-i18n="hero.stat3unit"]', '模组'],
-    ['[data-i18n="hero.stat3"]', '可扩展阵容'],
-    ['[data-i18n="hero.stat4unit"]', '容器'],
-    ['[data-i18n="hero.stat4"]', '预建 AI 运行时'],
-
-    /* --- Platform Lineup --- */
-    ['[data-i18n="lineup.eyebrow"]', '平台阵容'],
-    ['[data-i18n="lineup.title"]', '选择你的边缘计算'],
-    ['[data-i18n="lineup.desc"]', '可扩展的模组家族，共享同一套 SDK —— 根据工作负载选择合适的算力。'],
-    ['[data-i18n="lineup.flagship.title"]', '旗舰级边缘 AI 计算机'],
-    ['[data-i18n="lineup.flagship.desc"]', '最强大的 Jetson 模组 —— 2048 CUDA 核心、64 GB LPDDR5 和 275 TOPS AI 算力。运行多模型生成式 AI、多传感器融合和复杂机器人流水线。'],
-
-    /* Bento module subs (featured=1, Nano4=2, Nano8=3, NX8=4, NX16=5, AGX32=6) */
-    ['.bento-cell:nth-child(2) .bento-module-sub', '入门级边缘 AI'],
-    ['.bento-cell:nth-child(3) .bento-module-sub', '智能摄像头 & 轻量推理'],
-    ['[data-i18n="lineup.nx8.sub"]', '多路视频 & AMR'],
-    ['.bento-cell:nth-child(5) .bento-module-sub', '复杂视觉流水线'],
-    ['.bento-cell:nth-child(6) .bento-module-sub', '自主机器 & 机器人'],
-
-    /* Bento use tags */
-    ['.bento-cell:nth-child(2) .bento-use', '教育、原型开发'],
-    ['.bento-cell:nth-child(3) .bento-use', '零售、门禁控制'],
-    ['.bento-cell:nth-child(4) .bento-use', '移动机器人、无人机'],
-    ['.bento-cell:nth-child(5) .bento-use', '工业检测、交通'],
-    ['.bento-cell:nth-child(6) .bento-use', '自动驾驶、手术机器人'],
-
-    /* Bento spec keys */
-    [null, {sel: '.bento-spec-key', map: {'AI Perf': 'AI 算力', 'GPU': 'GPU', 'Memory': '内存', 'Power': '功耗'}}],
-
-    /* --- Spotlight --- */
-    ['.spotlight-badge', '⚡ 新品发布'],
-    ['.spotlight-title', 'Orin Nano Super —— $249 的 GenAI 计算机'],
-    ['.spotlight-desc', '与 Orin Nano 8GB 相同硬件，通过软件优化大幅提升性能。67 TOPS AI 算力，仅售 $249 —— 运行生成式 AI、LLM 和视觉 Transformer 最实惠的方案。可直接替换现有 Orin Nano 设计。'],
-    ['.spotlight-stat:nth-child(1) .spotlight-stat-label', 'TOPS (INT8)'],
-    ['.spotlight-stat:nth-child(2) .spotlight-stat-label', '对比 Orin Nano 8GB'],
-    ['.spotlight-stat:nth-child(3) .spotlight-stat-label', '建议零售价'],
-    ['.spotlight-stat:nth-child(4) .spotlight-stat-label', 'LPDDR5 内存'],
-
-    /* --- Dev Kits --- */
-    ['#lineup .section-eyebrow:last-of-type', null],
-    ['.devkit-grid ~ .section-eyebrow, #lineup > div:nth-of-type(2) .section-eyebrow', null],
-    ['#lineup > div[style] .section-eyebrow', '开发者套件'],
-    ['#lineup > div[style] .section-title', '立即开始构建'],
-    ['#lineup > div[style] .section-desc', '完整的开发板，含载板、散热器和电源 —— 原型开发所需的一切。'],
-    ['.devkit-card:nth-child(1) .devkit-name', 'Jetson Orin Nano 开发者套件'],
-    ['.devkit-card:nth-child(1) .devkit-sub', '入门级 GenAI 开发板。开箱即可运行 LLaMA、Whisper 和 Stable Diffusion。适合创客、学生和边缘 AI 原型开发。'],
-    ['.devkit-card:nth-child(2) .devkit-name', 'Jetson AGX Orin 开发者套件'],
-    ['.devkit-card:nth-child(2) .devkit-sub', '旗舰级 AI 工作站，适用于机器人、自主机器和多模型 GenAI。有史以来最强大的 Jetson 开发板。'],
-
-    /* --- Selection Guide --- */
-    ['#guide .section-eyebrow', '选型指南'],
-    ['#guide .section-title', '哪款 Jetson Orin 适合你？'],
-    ['#guide .section-desc', '根据工作负载选择合适的模组 —— 共享同一套 SDK，升级无需重写代码。'],
-    ['.guide-table th:nth-child(1)', '使用场景'],
-    ['.guide-table th:nth-child(2)', '推荐模组'],
-    ['.guide-table th:nth-child(3)', 'AI 算力'],
-    ['.guide-table th:nth-child(4)', '功耗范围'],
-    ['.guide-table th:nth-child(5)', '推荐理由'],
-    ['.guide-table tbody tr:nth-child(1) td:nth-child(1)', '学生 / 创客 / 原型'],
-    ['.guide-table tbody tr:nth-child(1) td:nth-child(5)', '学习边缘 AI 的最低成本起步方案'],
-    ['.guide-table tbody tr:nth-child(2) td:nth-child(1)', '低成本 GenAI'],
-    ['.guide-table tbody tr:nth-child(2) td:nth-child(5)', '$249 即可本地运行 LLM 和扩散模型'],
-    ['.guide-table tbody tr:nth-child(3) td:nth-child(1)', '单路智能摄像头'],
-    ['.guide-table tbody tr:nth-child(3) td:nth-child(5)', '紧凑、低功耗、单路推理'],
-    ['.guide-table tbody tr:nth-child(4) td:nth-child(1)', 'AMR / 无人机 / 移动机器人'],
-    ['.guide-table tbody tr:nth-child(4) td:nth-child(5)', 'SLAM + 感知 + 规划，电池供电'],
-    ['.guide-table tbody tr:nth-child(5) td:nth-child(1)', '多路视频分析'],
-    ['.guide-table tbody tr:nth-child(5) td:nth-child(5)', '8–16 路视频流，剩余算力运行复杂模型'],
-    ['.guide-table tbody tr:nth-child(6) td:nth-child(1)', '自动驾驶 / 手术机器人'],
-    ['.guide-table tbody tr:nth-child(6) td:nth-child(5)', '多传感器融合，安全关键工作负载'],
-    ['.guide-table tbody tr:nth-child(7) td:nth-child(1)', '边缘 LLM / 多模型 GenAI'],
-    ['.guide-table tbody tr:nth-child(7) td:nth-child(5)', '同时运行多个大模型'],
-
-    /* Selection guide tags */
-    [null, {sel: '.rec-tag', map: {'Best Value': '最佳性价比', 'Popular': '热门', 'Flagship': '旗舰'}}],
-
-    /* --- Thor --- */
-    ['.nextgen-badge', '即将发布 2025'],
-    ['.nextgen-title', 'Jetson Thor —— 下一代机器人超级芯片'],
-    ['.nextgen-desc', '基于 NVIDIA Blackwell GPU 架构，为仿人机器人和自主机器设计。支持 FP8 的 Transformer 引擎、集成功能安全处理器和 100-TOPS DLA。具身 AI 的一次代际飞跃。'],
-
-    /* --- Software Stack --- */
-    ['#stack .section-eyebrow', '软件生态'],
-    ['#stack .section-title', '完整的 NVIDIA AI 边缘计算栈'],
-    ['#stack .section-desc', '从操作系统到应用层 —— 每个工具都原生运行在 Jetson Orin 上。'],
-    ['.stack-card:nth-child(1) .stack-sub', '完整的 AI 开发平台'],
-    ['.stack-card:nth-child(1) .stack-body', 'Linux 内核 (L4T)、CUDA、cuDNN、TensorRT、多媒体 API —— 打包成一个可安装包。'],
-    ['.stack-card:nth-child(2) .stack-sub', 'GPU 加速机器人开发'],
-    ['.stack-card:nth-child(2) .stack-body', '硬件加速的 ROS 2 功能包，用于感知、导航和操作。'],
-    ['.stack-card:nth-child(3) .stack-sub', '多路视频分析'],
-    ['.stack-card:nth-child(3) .stack-body', '基于 GStreamer 的 SDK，支持 30+ 路摄像头同时实时检测和跟踪。'],
-    ['.stack-card:nth-child(4) .stack-sub', '迁移学习 & 微调'],
-    ['.stack-card:nth-child(4) .stack-body', '从 NVIDIA 预训练模型出发，用你的数据微调，导出优化的 TensorRT 引擎。'],
-    ['.stack-card:nth-child(5) .stack-sub', '推理优化引擎'],
-    ['.stack-card:nth-child(5) .stack-body', '图优化、算子融合、混合精度 (FP16/INT8) 和 DLA 卸载。'],
-    ['.stack-card:nth-child(6) .stack-sub', '机器人仿真'],
-    ['.stack-card:nth-child(6) .stack-body', '基于 Omniverse 的物理精确仿真。设计工作单元，生成合成数据。'],
-    ['.stack-card:nth-child(7) .stack-sub', '硬件信任根'],
-    ['.stack-card:nth-child(7) .stack-body', '安全启动、磁盘加密、密钥管理、OTA 更新验证。'],
-    ['.stack-card:nth-child(8) .stack-sub', '智慧空间平台'],
-    ['.stack-card:nth-child(8) .stack-body', '端到端 AI 智能城市、零售和工业监控框架。'],
-    ['.stack-card:nth-child(9) .stack-sub', '200+ 预建 AI 运行时'],
-    ['.stack-card:nth-child(9) .stack-body', 'Docker 容器，包含 PyTorch、TensorFlow、LLaMA、Whisper、Stable Diffusion。'],
-
-    /* --- Use Cases --- */
-    ['#cases .section-eyebrow', '应用案例'],
-    ['#cases .section-title', '边缘 AI 在生产中'],
-    ['#cases .section-desc', '从仓库车间到手术室 —— Jetson Orin 驱动的真实自主系统。'],
-    ['.tab-btn:nth-child(1)', '智能仓储'],
-    ['.tab-btn:nth-child(2)', '城市交通'],
-    ['.tab-btn:nth-child(3)', '手术机器人'],
-    ['.tab-btn:nth-child(4)', '精准农业'],
-
-    /* Warehouse */
-    ['#warehouse .case-industry', '物流 / 自主移动机器人'],
-    ['#warehouse .case-title', '全天候自主拣选与分拣 —— 零云依赖'],
-    ['#warehouse .case-quote', '"无云延迟，无停机。每台 AMR 独立思考。"'],
-    ['#warehouse .case-metric:nth-child(1) .case-metric-label', '履约提速'],
-    ['#warehouse .case-metric:nth-child(2) .case-metric-label', 'AMR 协同'],
-    ['#warehouse .case-metric:nth-child(3) .case-metric-label', '本地处理'],
-    ['#warehouse .case-detail-title', '工作原理'],
-    ['#warehouse .case-detail-body', '每台 AGX Orin 模组驱动一台 AMR —— 在设备端运行 SLAM 导航、托盘检测和路径规划。Isaac ROS 处理机器人栈；DeepStream 处理头顶摄像头区域监控。车队 24/7 自主运行，模型在低峰时通过 OTA 更新。'],
-
-    /* Traffic */
-    ['#traffic .case-industry', '城市基础设施 / 视频分析'],
-    ['#traffic .case-title', '每个路口、每辆车、每一秒 —— 边缘处理'],
-    ['#traffic .case-quote', '"只有元数据离开节点。原始视频始终留在采集地。"'],
-    ['#traffic .case-metric:nth-child(1) .case-metric-label', '每节点视频流'],
-    ['#traffic .case-metric:nth-child(2) .case-metric-label', '检测延迟'],
-    ['#traffic .case-metric:nth-child(3) .case-metric-label', '拥堵减少'],
-    ['#traffic .case-detail-title', '工作原理'],
-    ['#traffic .case-detail-body', 'Orin NX 节点部署在 200+ 个路口，每个同时处理 16 路摄像头。DeepStream 处理车辆/行人检测；Metropolis 提供分析仪表盘。通过 TAO 微调的定制模型适配本地交通模式。'],
-
-    /* Surgery */
-    ['#surgery .case-industry', '医疗 / 自主器械'],
-    ['#surgery .case-title', '手术中实时组织分类'],
-    ['#surgery .case-quote', '"10ms 推理、99.2% 准确率。患者数据绝不离开设备。"'],
-    ['#surgery .case-metric:nth-child(1) .case-metric-label', '推理延迟'],
-    ['#surgery .case-metric:nth-child(2) .case-metric-label', '分类准确率'],
-    ['#surgery .case-metric:nth-child(3) .case-metric-label', '合规'],
-    ['#surgery .case-detail-title', '工作原理'],
-    ['#surgery .case-detail-body', 'AGX Orin 64GB 嵌入手术器械臂。模型用 Isaac Sim 合成数据训练，通过 TensorRT 优化到 INT8。安全启动和加密存储确保 HIPAA 合规。所有推理均在设备端完成。'],
-
-    /* Agriculture */
-    ['#agriculture .case-industry', '农业科技 / 自主田间机器人'],
-    ['#agriculture .case-title', 'AI 引导的作物检测 —— 离线、坚固、太阳能供电'],
-    ['#agriculture .case-quote', '"无蜂窝、无 Wi-Fi，没问题。巡检车看到农民看不到的。"'],
-    ['#agriculture .case-metric:nth-child(1) .case-metric-label', '病害检测率'],
-    ['#agriculture .case-metric:nth-child(2) .case-metric-label', '功耗'],
-    ['#agriculture .case-metric:nth-child(3) .case-metric-label', '摄像头流'],
-    ['#agriculture .case-detail-title', '工作原理'],
-    ['#agriculture .case-detail-body', 'Orin NX 模组搭载在自主田间巡检车上，完全离线运行多光谱作物分析。TAO 训练的模型检测病害、虫害和营养缺乏。太阳能供电保证车队在整个收获季节持续运行。'],
-
-    /* --- Footer CTA --- */
-    ['.footer-cta h2', '准备好在边缘构建了吗？'],
-    ['.footer-cta p', '从开发套件到车队部署 —— 获取合适的 Jetson Orin 模组、载板和软件栈。'],
-    ['.footer-link-item:nth-child(1) .footer-link-label', '硬件购买'],
-    ['.footer-link-item:nth-child(1) .footer-link-text', 'Newegg Jetson 商店'],
-    ['.footer-link-item:nth-child(2) .footer-link-label', '开发者'],
-    ['.footer-link-item:nth-child(2) .footer-link-text', 'NVIDIA Jetson 门户'],
-    ['.footer-link-item:nth-child(3) .footer-link-label', '社区'],
-    ['.footer-link-item:nth-child(3) .footer-link-text', 'Jetson AI 实验室'],
-    ['.footer-link-item:nth-child(4) .footer-link-label', '企业'],
-    ['.footer-link-item:nth-child(4) .footer-link-text', '联系解决方案团队'],
-    ['.footer-copy', 'Newegg AI 工作站中心 · NVIDIA Jetson Orin 平台'],
-  ]
-};
-
-function toggleLang() {
-  _lang = (_lang === 'en') ? 'zh' : 'en';
-  var btn = document.getElementById('lang-toggle');
-  btn.textContent = (_lang === 'zh') ? '中 / EN' : 'EN / 中';
-  document.documentElement.lang = (_lang === 'zh') ? 'zh-CN' : 'en';
-  applyLang();
-  try { localStorage.setItem('joh-lang', _lang); } catch(e) {}
-}
-
-function applyLang() {
-  var entries = I18N.zh;
-  entries.forEach(function(entry) {
-    var sel = entry[0];
-    var val = entry[1];
-
-    /* Special: batch text-replace by map */
-    if (sel === null && val && val.sel && val.map) {
-      document.querySelectorAll(val.sel).forEach(function(el) {
-        if (_lang === 'zh') {
-          if (!el._enText) el._enText = el.textContent;
-          var txt = el._enText;
-          if (val.map[txt]) el.textContent = val.map[txt];
-        } else {
-          if (el._enText) el.textContent = el._enText;
-        }
-      });
-      return;
-    }
-
-    if (!sel || !val) return;
-
-    document.querySelectorAll(sel).forEach(function(el) {
-      if (_lang === 'zh') {
-        if (!el._enHTML) el._enHTML = el.innerHTML;
-        el.innerHTML = val;
-      } else {
-        if (el._enHTML) el.innerHTML = el._enHTML;
+function applyLang(lang) {
+  if (lang === 'zh') {
+    I18N.zh.forEach(function(entry) {
+      var el = document.querySelector(entry.sel);
+      if (!el) return;
+      if (!enBackup[entry.sel]) enBackup[entry.sel] = entry.html ? el.innerHTML : el.textContent;
+      if (entry.html) el.innerHTML = entry.html;
+      else el.textContent = entry.text;
+    });
+  } else {
+    Object.keys(enBackup).forEach(function(sel) {
+      var el = document.querySelector(sel);
+      if (el) {
+        if (enBackup[sel].indexOf('<') >= 0) el.innerHTML = enBackup[sel];
+        else el.textContent = enBackup[sel];
       }
     });
-  });
-
-  /* Nav brand - special: keep the egg icon */
-  var brand = document.querySelector('.nav-brand');
-  if (brand) {
-    var egg = brand.querySelector('.nav-egg');
-    var textNode = brand.childNodes[brand.childNodes.length - 1];
-    if (textNode && textNode.nodeType === 3) {
-      if (_lang === 'zh') {
-        textNode.textContent = ' Newegg AI 工作站中心';
-      } else {
-        textNode.textContent = '\n      Newegg AI Workstation Hub\n    ';
-      }
-    }
   }
 }
 
-/* Restore saved preferences */
+function toggleLang() {
+  currentLang = currentLang === 'en' ? 'zh' : 'en';
+  applyLang(currentLang);
+  localStorage.setItem('ai-hub-lang', currentLang);
+}
+
 (function() {
-  try {
-    var savedTheme = localStorage.getItem('joh-theme');
-    var savedLang = localStorage.getItem('joh-lang');
-    if (savedTheme === 'light') {
-      document.documentElement.setAttribute('data-theme', 'light');
-      document.getElementById('theme-toggle').innerHTML = '&#9728; Light';
-    }
-    if (savedLang === 'zh') {
-      _lang = 'zh';
-      document.documentElement.lang = 'zh-CN';
-      document.getElementById('lang-toggle').textContent = '中 / EN';
-      applyLang();
-    }
-  } catch(e) {}
+  var savedTheme = localStorage.getItem('ai-hub-theme');
+  if (savedTheme) {
+    document.documentElement.setAttribute('data-theme', savedTheme);
+    document.getElementById('theme-toggle').textContent = savedTheme === 'dark' ? '☾ Dark' : '☀ Light';
+  }
+  var savedLang = localStorage.getItem('ai-hub-lang');
+  if (savedLang && savedLang !== 'en') {
+    currentLang = savedLang;
+    applyLang(currentLang);
+  }
 })();
 </script>
-
 </body>
 </html>
