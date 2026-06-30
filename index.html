@@ -1,0 +1,1381 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NVIDIA Jetson Orin — Edge Robotics AI Hub | Newegg</title>
+  <meta name="description" content="Build and deploy edge AI with NVIDIA Jetson Orin modules. From smart cameras to autonomous robots — powered by the full NVIDIA software stack.">
+<style>
+  :root {
+    --orange: #FF6600;
+    --orange-dim: #e55b00;
+    --orange-glow: rgba(255, 102, 0, 0.08);
+    --nv-green: #76B900;
+    --nv-green-dim: rgba(118, 185, 0, 0.12);
+    --bg: #0a0e1a;
+    --bg-card: #111627;
+    --bg-card-hover: #161c33;
+    --bg-elevated: #1a2038;
+    --border: rgba(255,255,255,0.06);
+    --text: #e4e7ec;
+    --text-dim: #8b92a5;
+    --text-muted: #5a6178;
+    --white: #ffffff;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    --mono: 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: var(--font);
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  .topnav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 14, 26, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+  }
+
+  .topnav-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 56px;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    text-decoration: none;
+  }
+
+  .nav-egg {
+    width: 28px;
+    height: 28px;
+    background: var(--orange);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.7rem;
+    color: white;
+    font-weight: 800;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 1.8rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--text-dim);
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--orange); }
+
+  .hero {
+    position: relative;
+    padding: 5rem 2rem 4rem;
+    overflow: hidden;
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(118,185,0,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(255,102,0,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.4rem 1rem;
+    background: var(--nv-green-dim);
+    border: 1px solid rgba(118,185,0,0.2);
+    border-radius: 999px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--nv-green);
+    letter-spacing: 0.03em;
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-badge-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--nv-green);
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  .hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.2rem;
+    max-width: 700px;
+  }
+
+  .hero h1 span {
+    background: linear-gradient(135deg, var(--nv-green), #a0e040);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .hero-desc {
+    font-size: 1.1rem;
+    color: var(--text-dim);
+    max-width: 560px;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+  }
+
+  .hero-stats {
+    display: flex;
+    gap: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .hero-stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .hero-stat-value {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .hero-stat-value .unit {
+    font-size: 0.9rem;
+    color: var(--orange);
+    margin-left: 2px;
+  }
+
+  .hero-stat-label {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  .section {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+  }
+
+  .section-header {
+    margin-bottom: 2.5rem;
+  }
+
+  .section-eyebrow {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 0.5rem;
+  }
+
+  .section-title {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+
+  .section-desc {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-top: 0.5rem;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  .bento {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 2rem;
+  }
+
+  .bento-cell {
+    background: var(--bg-card);
+    padding: 2rem;
+    transition: background 0.2s;
+    cursor: default;
+  }
+  .bento-cell:hover { background: var(--bg-card-hover); }
+
+  .bento-cell.featured {
+    grid-column: span 2;
+    grid-row: span 2;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: linear-gradient(135deg, #111627 0%, #0f1a12 100%);
+  }
+
+  .bento-module-name {
+    font-family: var(--mono);
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: var(--nv-green);
+    margin-bottom: 0.3rem;
+  }
+
+  .bento-module-sub {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 1rem;
+  }
+
+  .bento-specs {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .bento-spec-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.82rem;
+  }
+
+  .bento-spec-row:last-child { border-bottom: none; }
+
+  .bento-spec-key { color: var(--text-muted); }
+
+  .bento-spec-val {
+    font-family: var(--mono);
+    font-weight: 600;
+    color: var(--text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .bento-featured-title {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+  }
+
+  .bento-featured-desc {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    line-height: 1.65;
+    max-width: 440px;
+  }
+
+  .bento-featured-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-family: var(--mono);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--nv-green);
+    background: var(--nv-green-dim);
+    margin-top: 1.5rem;
+    align-self: flex-start;
+  }
+
+  .bento-featured-badge small {
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .bento-use {
+    display: inline-block;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.5rem;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
+    margin-top: 0.5rem;
+  }
+
+  .stack-strip {
+    display: flex;
+    gap: 1rem;
+    overflow-x: auto;
+    padding-bottom: 1rem;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text-muted) transparent;
+    margin-top: 2rem;
+  }
+
+  .stack-strip::-webkit-scrollbar { height: 4px; }
+  .stack-strip::-webkit-scrollbar-track { background: transparent; }
+  .stack-strip::-webkit-scrollbar-thumb { background: var(--text-muted); border-radius: 4px; }
+
+  .stack-card {
+    flex: 0 0 300px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.6rem;
+    scroll-snap-align: start;
+    transition: border-color 0.2s, transform 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stack-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+  }
+
+  .stack-card:nth-child(odd)::before { background: var(--nv-green); }
+  .stack-card:nth-child(even)::before { background: var(--orange); }
+
+  .stack-card:hover {
+    border-color: rgba(255,255,255,0.12);
+    transform: translateY(-2px);
+  }
+
+  .stack-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+    background: rgba(255,255,255,0.04);
+  }
+
+  .stack-name {
+    font-weight: 700;
+    font-size: 1rem;
+    color: var(--white);
+    margin-bottom: 0.15rem;
+  }
+
+  .stack-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-bottom: 0.6rem;
+  }
+
+  .stack-body {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.55;
+  }
+
+  .divider {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  .divider hr {
+    border: none;
+    border-top: 1px solid var(--border);
+  }
+
+  .tabs-bar {
+    display: flex;
+    gap: 0;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 2rem;
+    overflow-x: auto;
+  }
+
+  .tab-btn {
+    font-family: var(--font);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.8rem 1.4rem;
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .tab-btn:hover { color: var(--text-dim); }
+
+  .tab-btn.active {
+    color: var(--orange);
+    border-bottom-color: var(--orange);
+  }
+
+  .tab-panel {
+    display: none;
+    animation: fadeIn 0.3s ease;
+  }
+
+  .tab-panel.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .case-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: start;
+  }
+
+  .case-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+  }
+
+  .case-industry {
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .case-title {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--white);
+    line-height: 1.3;
+  }
+
+  .case-quote {
+    font-style: italic;
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    padding-left: 1rem;
+    border-left: 2px solid var(--orange);
+    line-height: 1.6;
+  }
+
+  .case-metrics {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+  }
+
+  .case-metric {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+    text-align: center;
+  }
+
+  .case-metric-val {
+    font-family: var(--mono);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--nv-green);
+  }
+
+  .case-metric-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.2rem;
+  }
+
+  .case-detail {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem;
+  }
+
+  .case-detail-title {
+    font-weight: 700;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  .case-detail-body {
+    font-size: 0.9rem;
+    color: var(--text-dim);
+    line-height: 1.7;
+  }
+
+  .case-tools {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 1.2rem;
+  }
+
+  .case-tool-tag {
+    font-family: var(--mono);
+    font-size: 0.72rem;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    background: var(--nv-green-dim);
+    color: var(--nv-green);
+    font-weight: 600;
+    border: 1px solid rgba(118,185,0,0.15);
+  }
+
+  .footer-cta {
+    border-top: 1px solid var(--border);
+    padding: 4rem 2rem;
+    text-align: center;
+  }
+
+  .footer-inner {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .footer-cta h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.6rem;
+  }
+
+  .footer-cta p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+    margin-bottom: 2rem;
+    line-height: 1.6;
+  }
+
+  .footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .footer-link-item { text-align: center; }
+
+  .footer-link-label {
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    margin-bottom: 0.2rem;
+  }
+
+  .footer-link-text {
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--orange);
+  }
+
+  .footer-copy {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+
+  /* Mark Fan - 2026-06-30 - Orin Nano Super spotlight banner */
+  .spotlight {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    margin-top: 2.5rem;
+    padding: 2.2rem;
+    background: linear-gradient(135deg, #111627 0%, #1a1208 100%);
+    border: 1px solid rgba(255,102,0,0.2);
+    border-radius: 16px;
+    align-items: center;
+  }
+
+  .spotlight-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    background: rgba(255,102,0,0.12);
+    border: 1px solid rgba(255,102,0,0.25);
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--orange);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 0.8rem;
+  }
+
+  .spotlight-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.5rem;
+    line-height: 1.3;
+  }
+
+  .spotlight-desc {
+    font-size: 0.92rem;
+    color: var(--text-dim);
+    line-height: 1.65;
+  }
+
+  .spotlight-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+
+  .spotlight-stat {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.2rem;
+    text-align: center;
+  }
+
+  .spotlight-stat-val {
+    font-family: var(--mono);
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--orange);
+  }
+
+  .spotlight-stat-label {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 0.15rem;
+  }
+
+  /* Mark Fan - 2026-06-30 - Dev Kit pricing cards */
+  .devkit-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-top: 2rem;
+  }
+
+  .devkit-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: border-color 0.2s;
+  }
+
+  .devkit-card:hover { border-color: rgba(255,255,255,0.12); }
+
+  .devkit-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--nv-green), var(--orange));
+  }
+
+  .devkit-name {
+    font-family: var(--mono);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--nv-green);
+    margin-bottom: 0.3rem;
+  }
+
+  .devkit-sub {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin-bottom: 1.2rem;
+    line-height: 1.55;
+  }
+
+  .devkit-price {
+    font-family: var(--mono);
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+  }
+
+  .devkit-price .currency {
+    font-size: 1rem;
+    color: var(--orange);
+    margin-right: 2px;
+  }
+
+  .devkit-price .msrp {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-left: 0.5rem;
+  }
+
+  .devkit-includes {
+    margin-top: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+
+  .devkit-tag {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    background: rgba(255,255,255,0.04);
+    color: var(--text-dim);
+  }
+
+  /* Mark Fan - 2026-06-30 - Selection guide table */
+  .guide-table-wrap {
+    overflow-x: auto;
+    margin-top: 2rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+  }
+
+  .guide-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.85rem;
+    min-width: 700px;
+  }
+
+  .guide-table thead {
+    background: var(--bg-elevated);
+  }
+
+  .guide-table th {
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .guide-table td {
+    padding: 0.85rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .guide-table tr:last-child td { border-bottom: none; }
+
+  .guide-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .guide-table .module-col {
+    font-family: var(--mono);
+    font-weight: 600;
+    color: var(--nv-green);
+    white-space: nowrap;
+  }
+
+  .guide-table .rec-tag {
+    display: inline-block;
+    font-size: 0.68rem;
+    padding: 0.15rem 0.5rem;
+    border-radius: 4px;
+    background: var(--orange-glow);
+    color: var(--orange);
+    font-weight: 600;
+    border: 1px solid rgba(255,102,0,0.15);
+  }
+
+  /* Mark Fan - 2026-06-30 - Next-gen Jetson Thor teaser */
+  .nextgen {
+    margin-top: 2.5rem;
+    padding: 2rem;
+    background: linear-gradient(135deg, #0f1225 0%, #130d1e 100%);
+    border: 1px solid rgba(128,0,255,0.15);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+  }
+
+  .nextgen-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.3rem 0.8rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: #b07aff;
+    background: rgba(128,0,255,0.1);
+    border: 1px solid rgba(128,0,255,0.2);
+    margin-bottom: 0.6rem;
+  }
+
+  .nextgen-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--white);
+    margin-bottom: 0.4rem;
+  }
+
+  .nextgen-desc {
+    font-size: 0.88rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    max-width: 600px;
+  }
+
+  .nextgen-stat {
+    text-align: center;
+    flex-shrink: 0;
+  }
+
+  .nextgen-stat-val {
+    font-family: var(--mono);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #b07aff;
+  }
+
+  .nextgen-stat-label {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    margin-top: 0.1rem;
+  }
+
+  @media (max-width: 900px) {
+    .bento { grid-template-columns: 1fr; }
+    .bento-cell.featured { grid-column: span 1; grid-row: span 1; }
+    .case-layout { grid-template-columns: 1fr; }
+    .case-metrics { grid-template-columns: repeat(3, 1fr); }
+    .hero-stats { gap: 1.5rem; }
+    .nav-links { display: none; }
+    .spotlight { grid-template-columns: 1fr; }
+    .devkit-grid { grid-template-columns: 1fr; }
+    .nextgen { flex-direction: column; text-align: center; }
+  }
+
+  @media (max-width: 600px) {
+    .hero { padding: 3rem 1.2rem 2.5rem; }
+    .section { padding: 3rem 1.2rem; }
+    .case-metrics { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.2rem; }
+    .spotlight-stats { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <a class="nav-brand" href="#">
+      <div class="nav-egg">N</div>
+      Newegg AI Workstation Hub
+    </a>
+    <ul class="nav-links">
+      <li><a href="#lineup">Platform</a></li>
+      <li><a href="#guide">Selection Guide</a></li>
+      <li><a href="#stack">Software</a></li>
+      <li><a href="#cases">Use Cases</a></li>
+      <li><a href="#start">Get Started</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-badge">
+      <div class="hero-badge-dot"></div>
+      NVIDIA JETSON ORIN PLATFORM
+    </div>
+    <h1>Edge AI That Runs<br><span>Where It Matters</span></h1>
+    <p class="hero-desc">
+      Build and deploy autonomous machines, smart cameras, and industrial AI &mdash; powered by Jetson Orin modules. From 20 TOPS to 275 TOPS, prototype to production, all on the same NVIDIA stack.
+    </p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-value">275<span class="unit">TOPS</span></div>
+        <div class="hero-stat-label">Peak AI Performance</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">7&ndash;60<span class="unit">W</span></div>
+        <div class="hero-stat-label">Configurable Power</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">7<span class="unit">modules</span></div>
+        <div class="hero-stat-label">Scalable Lineup</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">200+<span class="unit">containers</span></div>
+        <div class="hero-stat-label">Pre-Built AI Runtimes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="lineup">
+  <div class="section-header">
+    <div class="section-eyebrow">Platform Lineup</div>
+    <h2 class="section-title">Choose Your Edge</h2>
+    <p class="section-desc">A scalable module family sharing one SDK &mdash; pick the right compute for your workload.</p>
+  </div>
+  <div class="bento">
+    <div class="bento-cell featured">
+      <div>
+        <div class="bento-module-name">AGX Orin 64GB</div>
+        <div class="bento-featured-title">The Flagship Edge AI Computer</div>
+        <div class="bento-featured-desc">The most powerful Jetson module &mdash; 2048 CUDA cores, 64 GB LPDDR5, and 275 TOPS of AI performance. Run multi-model generative AI, multi-sensor fusion, and complex robotics pipelines at the edge.</div>
+      </div>
+      <div class="bento-featured-badge">275 TOPS <small>&nbsp;/ 60W max</small></div>
+    </div>
+    <div class="bento-cell">
+      <div class="bento-module-name">Orin Nano 4GB</div>
+      <div class="bento-module-sub">Entry-level edge AI</div>
+      <div class="bento-specs">
+        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">20 TOPS</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">512 CUDA</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">4 GB</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">7&ndash;15 W</span></div>
+      </div>
+      <div class="bento-use">Education, prototyping</div>
+    </div>
+    <div class="bento-cell">
+      <div class="bento-module-name">Orin Nano 8GB</div>
+      <div class="bento-module-sub">Smart camera &amp; lightweight inference</div>
+      <div class="bento-specs">
+        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">40 TOPS</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">1024 CUDA</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">8 GB</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">7&ndash;15 W</span></div>
+      </div>
+      <div class="bento-use">Retail, access control</div>
+    </div>
+    <div class="bento-cell">
+      <div class="bento-module-name">Orin NX 8GB</div>
+      <div class="bento-module-sub">Multi-stream video &amp; AMR</div>
+      <div class="bento-specs">
+        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">70 TOPS</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">1024 CUDA</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">8 GB</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">10&ndash;25 W</span></div>
+      </div>
+      <div class="bento-use">Mobile robots, drones</div>
+    </div>
+    <div class="bento-cell">
+      <div class="bento-module-name">Orin NX 16GB</div>
+      <div class="bento-module-sub">Complex vision pipelines</div>
+      <div class="bento-specs">
+        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">100 TOPS</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">1024 CUDA</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">16 GB</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">10&ndash;25 W</span></div>
+      </div>
+      <div class="bento-use">Industrial inspection, traffic</div>
+    </div>
+    <div class="bento-cell">
+      <div class="bento-module-name">AGX Orin 32GB</div>
+      <div class="bento-module-sub">Autonomous machines &amp; robotics</div>
+      <div class="bento-specs">
+        <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">200 TOPS</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">1792 CUDA</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Memory</span><span class="bento-spec-val">32 GB</span></div>
+        <div class="bento-spec-row"><span class="bento-spec-key">Power</span><span class="bento-spec-val">15&ndash;40 W</span></div>
+      </div>
+      <div class="bento-use">Autonomous vehicles, surgery</div>
+    </div>
+  </div>
+
+  <!-- Mark Fan - 2026-06-30 - Orin Nano Super spotlight -->
+  <div class="spotlight">
+    <div>
+      <div class="spotlight-badge">&#9889; New Release</div>
+      <div class="spotlight-title">Orin Nano Super &mdash; The $249 GenAI Computer</div>
+      <div class="spotlight-desc">Same Orin Nano 8GB hardware, supercharged via software optimization. 67 TOPS of AI performance at just $249 &mdash; the most affordable way to run generative AI, LLMs, and vision transformers at the edge. Drop-in replacement for existing Orin Nano designs.</div>
+    </div>
+    <div class="spotlight-stats">
+      <div class="spotlight-stat"><div class="spotlight-stat-val">67</div><div class="spotlight-stat-label">TOPS (INT8)</div></div>
+      <div class="spotlight-stat"><div class="spotlight-stat-val">1.7&times;</div><div class="spotlight-stat-label">vs Orin Nano 8GB</div></div>
+      <div class="spotlight-stat"><div class="spotlight-stat-val">$249</div><div class="spotlight-stat-label">MSRP Dev Kit</div></div>
+      <div class="spotlight-stat"><div class="spotlight-stat-val">8 GB</div><div class="spotlight-stat-label">LPDDR5 Memory</div></div>
+    </div>
+  </div>
+
+  <!-- Mark Fan - 2026-06-30 - Dev Kit pricing -->
+  <div style="margin-top:3rem;">
+    <div class="section-eyebrow">Developer Kits</div>
+    <h3 class="section-title" style="font-size:1.4rem;">Start Building Today</h3>
+    <p class="section-desc">Complete development boards with carrier board, heatsink, and power supply &mdash; everything you need to prototype.</p>
+  </div>
+  <div class="devkit-grid">
+    <div class="devkit-card">
+      <div class="devkit-name">Jetson Orin Nano Developer Kit</div>
+      <div class="devkit-sub">Entry-level GenAI dev board. Runs LLaMA, Whisper, and Stable Diffusion out of the box. Perfect for makers, students, and edge AI prototyping.</div>
+      <div class="devkit-price"><span class="currency">$</span>249<span class="msrp">MSRP</span></div>
+      <div class="devkit-includes">
+        <span class="devkit-tag">Orin Nano 8GB module</span>
+        <span class="devkit-tag">Reference carrier board</span>
+        <span class="devkit-tag">802.11ac Wi-Fi</span>
+        <span class="devkit-tag">40-pin GPIO</span>
+        <span class="devkit-tag">USB 3.2 &times; 4</span>
+        <span class="devkit-tag">DisplayPort</span>
+      </div>
+    </div>
+    <div class="devkit-card">
+      <div class="devkit-name">Jetson AGX Orin Developer Kit</div>
+      <div class="devkit-sub">Flagship AI workstation for robotics, autonomous machines, and multi-model GenAI. The most powerful Jetson dev board ever built.</div>
+      <div class="devkit-price"><span class="currency">$</span>1,999<span class="msrp">MSRP</span></div>
+      <div class="devkit-includes">
+        <span class="devkit-tag">AGX Orin 64GB module</span>
+        <span class="devkit-tag">275 TOPS</span>
+        <span class="devkit-tag">PCIe Gen4</span>
+        <span class="devkit-tag">10GbE</span>
+        <span class="devkit-tag">USB-C &times; 3</span>
+        <span class="devkit-tag">16-lane CSI</span>
+        <span class="devkit-tag">CAN bus</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<!-- Mark Fan - 2026-06-30 - Selection guide section -->
+<section class="section" id="guide">
+  <div class="section-header">
+    <div class="section-eyebrow">Selection Guide</div>
+    <h2 class="section-title">Which Jetson Orin Is Right for You?</h2>
+    <p class="section-desc">Match your workload to the right module &mdash; all share one SDK, so you can scale up without rewriting code.</p>
+  </div>
+  <div class="guide-table-wrap">
+    <table class="guide-table">
+      <thead>
+        <tr>
+          <th>Use Case</th>
+          <th>Recommended Module</th>
+          <th>AI Performance</th>
+          <th>Power Budget</th>
+          <th>Why This One</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Student / Maker / Prototype</td>
+          <td class="module-col">Orin Nano 4GB</td>
+          <td>20 TOPS</td>
+          <td>7&ndash;15 W</td>
+          <td>Lowest cost entry point for learning edge AI</td>
+        </tr>
+        <tr>
+          <td>GenAI on a Budget</td>
+          <td class="module-col">Orin Nano Super <span class="rec-tag">Best Value</span></td>
+          <td>67 TOPS</td>
+          <td>7&ndash;15 W</td>
+          <td>$249 runs LLMs and diffusion models locally</td>
+        </tr>
+        <tr>
+          <td>Single Smart Camera</td>
+          <td class="module-col">Orin Nano 8GB</td>
+          <td>40 TOPS</td>
+          <td>7&ndash;15 W</td>
+          <td>Compact, low-power, single-stream inference</td>
+        </tr>
+        <tr>
+          <td>AMR / Drone / Mobile Robot</td>
+          <td class="module-col">Orin NX 8GB</td>
+          <td>70 TOPS</td>
+          <td>10&ndash;25 W</td>
+          <td>SLAM + perception + planning on battery</td>
+        </tr>
+        <tr>
+          <td>Multi-Camera Video Analytics</td>
+          <td class="module-col">Orin NX 16GB <span class="rec-tag">Popular</span></td>
+          <td>100 TOPS</td>
+          <td>10&ndash;25 W</td>
+          <td>8&ndash;16 streams with room for complex models</td>
+        </tr>
+        <tr>
+          <td>Autonomous Vehicle / Surgery</td>
+          <td class="module-col">AGX Orin 32GB</td>
+          <td>200 TOPS</td>
+          <td>15&ndash;40 W</td>
+          <td>Multi-sensor fusion, safety-critical workloads</td>
+        </tr>
+        <tr>
+          <td>Edge LLM / Multi-Model GenAI</td>
+          <td class="module-col">AGX Orin 64GB <span class="rec-tag">Flagship</span></td>
+          <td>275 TOPS</td>
+          <td>15&ndash;60 W</td>
+          <td>Run multiple large models simultaneously</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mark Fan - 2026-06-30 - Jetson Thor next-gen teaser -->
+  <div class="nextgen">
+    <div>
+      <div class="nextgen-badge">Coming 2025</div>
+      <div class="nextgen-title">Jetson Thor &mdash; Next-Generation Robotics Superchip</div>
+      <div class="nextgen-desc">Built on NVIDIA Blackwell GPU architecture for humanoid robots and autonomous machines. Transformer engine with FP8 support, integrated functional safety processor, and a 100-TOPS DLA. A generational leap for embodied AI.</div>
+    </div>
+    <div class="nextgen-stat">
+      <div class="nextgen-stat-val">800</div>
+      <div class="nextgen-stat-label">TOPS (INT8)</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="section" id="stack">
+  <div class="section-header">
+    <div class="section-eyebrow">Software Stack</div>
+    <h2 class="section-title">Full NVIDIA AI Stack at the Edge</h2>
+    <p class="section-desc">From OS to application layer &mdash; every tool runs natively on Jetson Orin.</p>
+  </div>
+  <div class="stack-strip">
+    <div class="stack-card">
+      <div class="stack-icon">&#9881;</div>
+      <div class="stack-name">JetPack SDK</div>
+      <div class="stack-sub">Complete AI Development Platform</div>
+      <div class="stack-body">Linux kernel (L4T), CUDA, cuDNN, TensorRT, multimedia APIs &mdash; bundled into one installable package.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">&#129302;</div>
+      <div class="stack-name">Isaac ROS</div>
+      <div class="stack-sub">GPU-Accelerated Robotics</div>
+      <div class="stack-body">Hardware-accelerated ROS 2 packages for perception, navigation, and manipulation.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">&#128247;</div>
+      <div class="stack-name">DeepStream</div>
+      <div class="stack-sub">Multi-Stream Video Analytics</div>
+      <div class="stack-body">GStreamer-based SDK supporting 30+ simultaneous camera feeds with real-time detection and tracking.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">&#128640;</div>
+      <div class="stack-name">TAO Toolkit</div>
+      <div class="stack-sub">Transfer Learning &amp; Fine-Tuning</div>
+      <div class="stack-body">Start from NVIDIA pre-trained models, fine-tune with your data, export optimized TensorRT engines.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">&#128171;</div>
+      <div class="stack-name">TensorRT</div>
+      <div class="stack-sub">Inference Optimization Engine</div>
+      <div class="stack-body">Graph optimization, kernel fusion, mixed precision (FP16/INT8), and DLA offloading.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">&#127899;</div>
+      <div class="stack-name">Isaac Sim</div>
+      <div class="stack-sub">Robotics Simulation</div>
+      <div class="stack-body">Physically accurate simulation on Omniverse. Design workcells, generate synthetic data.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">&#128274;</div>
+      <div class="stack-name">Jetson Security</div>
+      <div class="stack-sub">Hardware Root of Trust</div>
+      <div class="stack-body">Secure boot, disk encryption, key management, OTA update verification.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">&#127760;</div>
+      <div class="stack-name">Metropolis</div>
+      <div class="stack-sub">Smart Spaces Platform</div>
+      <div class="stack-body">End-to-end framework for AI-powered smart city, retail, and industrial monitoring.</div>
+    </div>
+    <div class="stack-card">
+      <div class="stack-icon">&#128736;</div>
+      <div class="stack-name">Jetson Containers</div>
+      <div class="stack-sub">200+ Pre-Built AI Runtimes</div>
+      <div class="stack-body">Docker containers for PyTorch, TensorFlow, LLaMA, Whisper, Stable Diffusion.</div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"><hr></div>
+
+<section class="section" id="cases">
+  <div class="section-header">
+    <div class="section-eyebrow">Deployment Cases</div>
+    <h2 class="section-title">Edge AI in Production</h2>
+    <p class="section-desc">From warehouse floors to operating rooms &mdash; Jetson Orin powering real-world autonomous systems.</p>
+  </div>
+  <div class="tabs-bar" role="tablist">
+    <button class="tab-btn active" onclick="switchTab(event,'warehouse')" role="tab">Smart Warehouse</button>
+    <button class="tab-btn" onclick="switchTab(event,'traffic')" role="tab">City Traffic</button>
+    <button class="tab-btn" onclick="switchTab(event,'surgery')" role="tab">Surgical Robotics</button>
+    <button class="tab-btn" onclick="switchTab(event,'agriculture')" role="tab">Precision Agriculture</button>
+  </div>
+  <div class="tab-panel active" id="warehouse">
+    <div class="case-layout">
+      <div class="case-meta">
+        <div class="case-industry">Logistics / Autonomous Mobile Robots</div>
+        <div class="case-title">24/7 Autonomous Picking &amp; Sorting &mdash; Zero Cloud Dependency</div>
+        <div class="case-quote">"No cloud latency, no downtime. Every AMR thinks for itself."</div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-val">40%</div><div class="case-metric-label">Faster fulfillment</div></div>
+          <div class="case-metric"><div class="case-metric-val">12</div><div class="case-metric-label">AMRs coordinated</div></div>
+          <div class="case-metric"><div class="case-metric-val">100%</div><div class="case-metric-label">On-prem processing</div></div>
+        </div>
+      </div>
+      <div class="case-detail">
+        <div class="case-detail-title">How It Works</div>
+        <div class="case-detail-body">Each AGX Orin module powers one AMR &mdash; running SLAM navigation, pallet detection, and path planning entirely on-device. Isaac ROS handles the robot stack; DeepStream processes overhead cameras for zone monitoring. The fleet operates autonomously 24/7, with models updated via OTA during off-peak hours.</div>
+        <div class="case-tools"><span class="case-tool-tag">Isaac ROS</span><span class="case-tool-tag">DeepStream</span><span class="case-tool-tag">TensorRT</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="traffic">
+    <div class="case-layout">
+      <div class="case-meta">
+        <div class="case-industry">Urban Infrastructure / Video Analytics</div>
+        <div class="case-title">Every Intersection, Every Vehicle, Every Second &mdash; Processed at the Edge</div>
+        <div class="case-quote">"Only metadata leaves the node. Raw video stays where it was captured."</div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-val">16</div><div class="case-metric-label">Streams per node</div></div>
+          <div class="case-metric"><div class="case-metric-val">&lt;50ms</div><div class="case-metric-label">Detection latency</div></div>
+          <div class="case-metric"><div class="case-metric-val">30%</div><div class="case-metric-label">Congestion reduction</div></div>
+        </div>
+      </div>
+      <div class="case-detail">
+        <div class="case-detail-title">How It Works</div>
+        <div class="case-detail-body">Orin NX nodes deployed at 200+ intersections, each processing 16 camera streams simultaneously. DeepStream handles vehicle/pedestrian detection; Metropolis provides the analytics dashboard. Custom models fine-tuned with TAO for local traffic patterns.</div>
+        <div class="case-tools"><span class="case-tool-tag">DeepStream</span><span class="case-tool-tag">Metropolis</span><span class="case-tool-tag">TAO Toolkit</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="surgery">
+    <div class="case-layout">
+      <div class="case-meta">
+        <div class="case-industry">Healthcare / Autonomous Instruments</div>
+        <div class="case-title">Real-Time Tissue Classification During Surgery</div>
+        <div class="case-quote">"10ms inference. 99.2% accuracy. Zero patient data ever leaves the device."</div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-val">10ms</div><div class="case-metric-label">Inference latency</div></div>
+          <div class="case-metric"><div class="case-metric-val">99.2%</div><div class="case-metric-label">Classification accuracy</div></div>
+          <div class="case-metric"><div class="case-metric-val">HIPAA</div><div class="case-metric-label">Compliant</div></div>
+        </div>
+      </div>
+      <div class="case-detail">
+        <div class="case-detail-title">How It Works</div>
+        <div class="case-detail-body">AGX Orin 64GB embedded in the surgical instrument arm. Models trained on synthetic data from Isaac Sim, optimized to INT8 with TensorRT. Secure boot and encrypted storage ensure HIPAA compliance. Every inference happens on-device.</div>
+        <div class="case-tools"><span class="case-tool-tag">TensorRT</span><span class="case-tool-tag">Jetson Security</span><span class="case-tool-tag">Isaac Sim</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="tab-panel" id="agriculture">
+    <div class="case-layout">
+      <div class="case-meta">
+        <div class="case-industry">AgTech / Autonomous Field Robots</div>
+        <div class="case-title">AI-Guided Crop Inspection &mdash; Offline, Rugged, Solar-Powered</div>
+        <div class="case-quote">"No cellular, no Wi-Fi, no problem. The rover sees what the farmer can't."</div>
+        <div class="case-metrics">
+          <div class="case-metric"><div class="case-metric-val">95%</div><div class="case-metric-label">Disease detection</div></div>
+          <div class="case-metric"><div class="case-metric-val">15W</div><div class="case-metric-label">Power draw</div></div>
+          <div class="case-metric"><div class="case-metric-val">4</div><div class="case-metric-label">Camera feeds</div></div>
+        </div>
+      </div>
+      <div class="case-detail">
+        <div class="case-detail-title">How It Works</div>
+        <div class="case-detail-body">Orin NX modules on autonomous field rovers, running multispectral crop analysis completely offline. TAO-trained models detect disease, pest damage, and nutrient deficiency. Solar-powered operation keeps the fleet running through full harvest seasons.</div>
+        <div class="case-tools"><span class="case-tool-tag">TAO Toolkit</span><span class="case-tool-tag">DeepStream</span><span class="case-tool-tag">Jetson Containers</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="footer-cta" id="start">
+  <div class="footer-inner">
+    <h2>Ready to Build at the Edge?</h2>
+    <p>From dev kit to fleet deployment &mdash; get the right Jetson Orin module, carrier board, and software stack for your edge AI application.</p>
+    <div class="footer-links">
+      <div class="footer-link-item"><div class="footer-link-label">Shop Hardware</div><div class="footer-link-text">Newegg Jetson Store</div></div>
+      <div class="footer-link-item"><div class="footer-link-label">Developer</div><div class="footer-link-text">NVIDIA Jetson Portal</div></div>
+      <div class="footer-link-item"><div class="footer-link-label">Community</div><div class="footer-link-text">Jetson AI Lab</div></div>
+      <div class="footer-link-item"><div class="footer-link-label">Enterprise</div><div class="footer-link-text">Contact Solutions Team</div></div>
+    </div>
+    <div class="footer-copy">Newegg AI Workstation Hub &middot; NVIDIA Jetson Orin Platform</div>
+  </div>
+</section>
+
+<script>
+function switchTab(e, id) {
+  document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
+  document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
+  e.currentTarget.classList.add('active');
+  document.getElementById(id).classList.add('active');
+}
+</script>
+
+</body>
+</html>
