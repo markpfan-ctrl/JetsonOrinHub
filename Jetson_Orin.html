@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,6 +23,21 @@
     --white: #ffffff;
     --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
     --mono: 'Cascadia Code', 'JetBrains Mono', 'Consolas', monospace;
+  }
+
+  /* Mark Fan - 2026-06-30 - Light theme variables */
+  [data-theme="light"] {
+    --bg: #f4f5f7;
+    --bg-card: #ffffff;
+    --bg-card-hover: #f0f1f4;
+    --bg-elevated: #e8eaef;
+    --border: rgba(0,0,0,0.08);
+    --text: #1a1d26;
+    --text-dim: #4a5068;
+    --text-muted: #7a819a;
+    --white: #111320;
+    --orange-glow: rgba(255, 102, 0, 0.1);
+    --nv-green-dim: rgba(118, 185, 0, 0.1);
   }
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -914,6 +929,86 @@
     margin-top: 0.1rem;
   }
 
+  /* Mark Fan - 2026-06-30 - Light theme hardcoded color overrides */
+  [data-theme="light"] .topnav {
+    background: rgba(244, 245, 247, 0.9);
+  }
+  [data-theme="light"] .hero::before {
+    background: radial-gradient(circle, rgba(118,185,0,0.12) 0%, transparent 70%);
+  }
+  [data-theme="light"] .hero::after {
+    background: radial-gradient(circle, rgba(255,102,0,0.08) 0%, transparent 70%);
+  }
+  [data-theme="light"] .hero h1 span {
+    background: linear-gradient(135deg, #5a9400, #76B900);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+  [data-theme="light"] .bento-cell.featured {
+    background: linear-gradient(135deg, #f0f4e8 0%, #e8f0dc 100%);
+  }
+  [data-theme="light"] .bento-cell { background: var(--bg-card); }
+  [data-theme="light"] .bento { background: var(--border); }
+  [data-theme="light"] .spotlight {
+    background: linear-gradient(135deg, #fff7f0 0%, #fef3e6 100%);
+    border-color: rgba(255,102,0,0.18);
+  }
+  [data-theme="light"] .spotlight-stat {
+    background: rgba(0,0,0,0.03);
+    border-color: rgba(0,0,0,0.06);
+  }
+  [data-theme="light"] .devkit-card { background: var(--bg-card); }
+  [data-theme="light"] .guide-table tr:hover td { background: rgba(0,0,0,0.02); }
+  [data-theme="light"] .nextgen {
+    background: linear-gradient(135deg, #f3f0fa 0%, #ede6f7 100%);
+    border-color: rgba(128,0,255,0.12);
+  }
+  [data-theme="light"] .stack-card { background: var(--bg-card); }
+  [data-theme="light"] .stack-icon { background: rgba(0,0,0,0.04); }
+  [data-theme="light"] .case-metric { background: var(--bg-card); }
+  [data-theme="light"] .case-detail { background: var(--bg-card); }
+  [data-theme="light"] .case-tool-tag {
+    background: rgba(118,185,0,0.08);
+    border-color: rgba(118,185,0,0.18);
+  }
+  [data-theme="light"] .devkit-tag { background: rgba(0,0,0,0.05); }
+  [data-theme="light"] .bento-use { background: rgba(0,0,0,0.05); }
+  [data-theme="light"] .footer-cta { border-top-color: var(--border); }
+
+  /* Mark Fan - 2026-06-30 - Theme & language toggle buttons */
+  .nav-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .toggle-btn {
+    font-family: var(--font);
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+    background: rgba(255,255,255,0.05);
+    color: var(--text-dim);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+    line-height: 1.4;
+  }
+  .toggle-btn:hover {
+    background: rgba(255,255,255,0.1);
+    color: var(--text);
+    border-color: rgba(255,255,255,0.15);
+  }
+  [data-theme="light"] .toggle-btn {
+    background: rgba(0,0,0,0.04);
+    border-color: rgba(0,0,0,0.1);
+  }
+  [data-theme="light"] .toggle-btn:hover {
+    background: rgba(0,0,0,0.08);
+    border-color: rgba(0,0,0,0.18);
+  }
+
   @media (max-width: 900px) {
     .bento { grid-template-columns: 1fr; }
     .bento-cell.featured { grid-column: span 1; grid-row: span 1; }
@@ -921,6 +1016,7 @@
     .case-metrics { grid-template-columns: repeat(3, 1fr); }
     .hero-stats { gap: 1.5rem; }
     .nav-links { display: none; }
+    .nav-controls { gap: 0.3rem; }
     .spotlight { grid-template-columns: 1fr; }
     .devkit-grid { grid-template-columns: 1fr; }
     .nextgen { flex-direction: column; text-align: center; }
@@ -944,12 +1040,16 @@
       Newegg AI Workstation Hub
     </a>
     <ul class="nav-links">
-      <li><a href="#lineup">Platform</a></li>
-      <li><a href="#guide">Selection Guide</a></li>
-      <li><a href="#stack">Software</a></li>
-      <li><a href="#cases">Use Cases</a></li>
-      <li><a href="#start">Get Started</a></li>
+      <li><a href="#lineup" data-i18n="nav.platform">Platform</a></li>
+      <li><a href="#guide" data-i18n="nav.guide">Selection Guide</a></li>
+      <li><a href="#stack" data-i18n="nav.software">Software</a></li>
+      <li><a href="#cases" data-i18n="nav.cases">Use Cases</a></li>
+      <li><a href="#start" data-i18n="nav.start">Get Started</a></li>
     </ul>
+    <div class="nav-controls">
+      <button class="toggle-btn" id="theme-toggle" onclick="toggleTheme()" title="Toggle light/dark mode">&#9790; Dark</button>
+      <button class="toggle-btn" id="lang-toggle" onclick="toggleLang()" title="Switch language">EN / &#20013;</button>
+    </div>
   </div>
 </nav>
 
@@ -957,28 +1057,28 @@
   <div class="hero-inner">
     <div class="hero-badge">
       <div class="hero-badge-dot"></div>
-      NVIDIA JETSON ORIN PLATFORM
+      <span data-i18n="hero.badge">NVIDIA JETSON ORIN PLATFORM</span>
     </div>
-    <h1>Edge AI That Runs<br><span>Where It Matters</span></h1>
-    <p class="hero-desc">
+    <h1 data-i18n="hero.title">Edge AI That Runs<br><span>Where It Matters</span></h1>
+    <p class="hero-desc" data-i18n="hero.desc">
       Build and deploy autonomous machines, smart cameras, and industrial AI &mdash; powered by Jetson Orin modules. From 20 TOPS to 275 TOPS, prototype to production, all on the same NVIDIA stack.
     </p>
     <div class="hero-stats">
       <div class="hero-stat">
         <div class="hero-stat-value">275<span class="unit">TOPS</span></div>
-        <div class="hero-stat-label">Peak AI Performance</div>
+        <div class="hero-stat-label" data-i18n="hero.stat1">Peak AI Performance</div>
       </div>
       <div class="hero-stat">
         <div class="hero-stat-value">7&ndash;60<span class="unit">W</span></div>
-        <div class="hero-stat-label">Configurable Power</div>
+        <div class="hero-stat-label" data-i18n="hero.stat2">Configurable Power</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-value">7<span class="unit">modules</span></div>
-        <div class="hero-stat-label">Scalable Lineup</div>
+        <div class="hero-stat-value">7<span class="unit" data-i18n="hero.stat3unit">modules</span></div>
+        <div class="hero-stat-label" data-i18n="hero.stat3">Scalable Lineup</div>
       </div>
       <div class="hero-stat">
-        <div class="hero-stat-value">200+<span class="unit">containers</span></div>
-        <div class="hero-stat-label">Pre-Built AI Runtimes</div>
+        <div class="hero-stat-value">200+<span class="unit" data-i18n="hero.stat4unit">containers</span></div>
+        <div class="hero-stat-label" data-i18n="hero.stat4">Pre-Built AI Runtimes</div>
       </div>
     </div>
   </div>
@@ -986,16 +1086,16 @@
 
 <section class="section" id="lineup">
   <div class="section-header">
-    <div class="section-eyebrow">Platform Lineup</div>
-    <h2 class="section-title">Choose Your Edge</h2>
-    <p class="section-desc">A scalable module family sharing one SDK &mdash; pick the right compute for your workload.</p>
+    <div class="section-eyebrow" data-i18n="lineup.eyebrow">Platform Lineup</div>
+    <h2 class="section-title" data-i18n="lineup.title">Choose Your Edge</h2>
+    <p class="section-desc" data-i18n="lineup.desc">A scalable module family sharing one SDK &mdash; pick the right compute for your workload.</p>
   </div>
   <div class="bento">
     <div class="bento-cell featured">
       <div>
         <div class="bento-module-name">AGX Orin 64GB</div>
-        <div class="bento-featured-title">The Flagship Edge AI Computer</div>
-        <div class="bento-featured-desc">The most powerful Jetson module &mdash; 2048 CUDA cores, 64 GB LPDDR5, and 275 TOPS of AI performance. Run multi-model generative AI, multi-sensor fusion, and complex robotics pipelines at the edge.</div>
+        <div class="bento-featured-title" data-i18n="lineup.flagship.title">The Flagship Edge AI Computer</div>
+        <div class="bento-featured-desc" data-i18n="lineup.flagship.desc">The most powerful Jetson module &mdash; 2048 CUDA cores, 64 GB LPDDR5, and 275 TOPS of AI performance. Run multi-model generative AI, multi-sensor fusion, and complex robotics pipelines at the edge.</div>
       </div>
       <div class="bento-featured-badge">275 TOPS <small>&nbsp;/ 60W max</small></div>
     </div>
@@ -1023,7 +1123,7 @@
     </div>
     <div class="bento-cell">
       <div class="bento-module-name">Orin NX 8GB</div>
-      <div class="bento-module-sub">Multi-stream video &amp; AMR</div>
+      <div class="bento-module-sub" data-i18n="lineup.nx8.sub">Multi-stream video &amp; AMR</div>
       <div class="bento-specs">
         <div class="bento-spec-row"><span class="bento-spec-key">AI Perf</span><span class="bento-spec-val">70 TOPS</span></div>
         <div class="bento-spec-row"><span class="bento-spec-key">GPU</span><span class="bento-spec-val">1024 CUDA</span></div>
@@ -1369,12 +1469,289 @@
 </section>
 
 <script>
+/* Mark Fan - 2026-06-30 - Tab switching */
 function switchTab(e, id) {
   document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
   document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
   e.currentTarget.classList.add('active');
   document.getElementById(id).classList.add('active');
 }
+
+/* Mark Fan - 2026-06-30 - Dark/Light theme toggle */
+function toggleTheme() {
+  var html = document.documentElement;
+  var btn = document.getElementById('theme-toggle');
+  if (html.getAttribute('data-theme') === 'dark') {
+    html.setAttribute('data-theme', 'light');
+    btn.innerHTML = '&#9728; Light';
+  } else {
+    html.setAttribute('data-theme', 'dark');
+    btn.innerHTML = '&#9790; Dark';
+  }
+  try { localStorage.setItem('joh-theme', html.getAttribute('data-theme')); } catch(e) {}
+}
+
+/* Mark Fan - 2026-06-30 - Chinese/English i18n toggle */
+var _lang = 'en';
+var _enCache = {};
+
+var I18N = {
+  zh: [
+    /* --- Nav --- */
+    ['.nav-brand', 'Newegg AI 工作站中心'],
+    ['[data-i18n="nav.platform"]', '平台阵容'],
+    ['[data-i18n="nav.guide"]', '选型指南'],
+    ['[data-i18n="nav.software"]', '软件生态'],
+    ['[data-i18n="nav.cases"]', '应用案例'],
+    ['[data-i18n="nav.start"]', '开始使用'],
+
+    /* --- Hero --- */
+    ['[data-i18n="hero.badge"]', 'NVIDIA JETSON ORIN 平台'],
+    ['[data-i18n="hero.title"]', '边缘 AI，在现场<br><span>发挥价值</span>'],
+    ['[data-i18n="hero.desc"]', '构建和部署自主机器、智能摄像头和工业 AI —— 由 Jetson Orin 模组驱动。20 TOPS 到 275 TOPS，从原型到量产，共享同一套 NVIDIA 开发栈。'],
+    ['[data-i18n="hero.stat1"]', '峰值 AI 算力'],
+    ['[data-i18n="hero.stat2"]', '可配置功耗'],
+    ['[data-i18n="hero.stat3unit"]', '模组'],
+    ['[data-i18n="hero.stat3"]', '可扩展阵容'],
+    ['[data-i18n="hero.stat4unit"]', '容器'],
+    ['[data-i18n="hero.stat4"]', '预建 AI 运行时'],
+
+    /* --- Platform Lineup --- */
+    ['[data-i18n="lineup.eyebrow"]', '平台阵容'],
+    ['[data-i18n="lineup.title"]', '选择你的边缘计算'],
+    ['[data-i18n="lineup.desc"]', '可扩展的模组家族，共享同一套 SDK —— 根据工作负载选择合适的算力。'],
+    ['[data-i18n="lineup.flagship.title"]', '旗舰级边缘 AI 计算机'],
+    ['[data-i18n="lineup.flagship.desc"]', '最强大的 Jetson 模组 —— 2048 CUDA 核心、64 GB LPDDR5 和 275 TOPS AI 算力。运行多模型生成式 AI、多传感器融合和复杂机器人流水线。'],
+
+    /* Bento module subs (featured=1, Nano4=2, Nano8=3, NX8=4, NX16=5, AGX32=6) */
+    ['.bento-cell:nth-child(2) .bento-module-sub', '入门级边缘 AI'],
+    ['.bento-cell:nth-child(3) .bento-module-sub', '智能摄像头 & 轻量推理'],
+    ['[data-i18n="lineup.nx8.sub"]', '多路视频 & AMR'],
+    ['.bento-cell:nth-child(5) .bento-module-sub', '复杂视觉流水线'],
+    ['.bento-cell:nth-child(6) .bento-module-sub', '自主机器 & 机器人'],
+
+    /* Bento use tags */
+    ['.bento-cell:nth-child(2) .bento-use', '教育、原型开发'],
+    ['.bento-cell:nth-child(3) .bento-use', '零售、门禁控制'],
+    ['.bento-cell:nth-child(4) .bento-use', '移动机器人、无人机'],
+    ['.bento-cell:nth-child(5) .bento-use', '工业检测、交通'],
+    ['.bento-cell:nth-child(6) .bento-use', '自动驾驶、手术机器人'],
+
+    /* Bento spec keys */
+    [null, {sel: '.bento-spec-key', map: {'AI Perf': 'AI 算力', 'GPU': 'GPU', 'Memory': '内存', 'Power': '功耗'}}],
+
+    /* --- Spotlight --- */
+    ['.spotlight-badge', '⚡ 新品发布'],
+    ['.spotlight-title', 'Orin Nano Super —— $249 的 GenAI 计算机'],
+    ['.spotlight-desc', '与 Orin Nano 8GB 相同硬件，通过软件优化大幅提升性能。67 TOPS AI 算力，仅售 $249 —— 运行生成式 AI、LLM 和视觉 Transformer 最实惠的方案。可直接替换现有 Orin Nano 设计。'],
+    ['.spotlight-stat:nth-child(1) .spotlight-stat-label', 'TOPS (INT8)'],
+    ['.spotlight-stat:nth-child(2) .spotlight-stat-label', '对比 Orin Nano 8GB'],
+    ['.spotlight-stat:nth-child(3) .spotlight-stat-label', '建议零售价'],
+    ['.spotlight-stat:nth-child(4) .spotlight-stat-label', 'LPDDR5 内存'],
+
+    /* --- Dev Kits --- */
+    ['#lineup .section-eyebrow:last-of-type', null],
+    ['.devkit-grid ~ .section-eyebrow, #lineup > div:nth-of-type(2) .section-eyebrow', null],
+    ['#lineup > div[style] .section-eyebrow', '开发者套件'],
+    ['#lineup > div[style] .section-title', '立即开始构建'],
+    ['#lineup > div[style] .section-desc', '完整的开发板，含载板、散热器和电源 —— 原型开发所需的一切。'],
+    ['.devkit-card:nth-child(1) .devkit-name', 'Jetson Orin Nano 开发者套件'],
+    ['.devkit-card:nth-child(1) .devkit-sub', '入门级 GenAI 开发板。开箱即可运行 LLaMA、Whisper 和 Stable Diffusion。适合创客、学生和边缘 AI 原型开发。'],
+    ['.devkit-card:nth-child(2) .devkit-name', 'Jetson AGX Orin 开发者套件'],
+    ['.devkit-card:nth-child(2) .devkit-sub', '旗舰级 AI 工作站，适用于机器人、自主机器和多模型 GenAI。有史以来最强大的 Jetson 开发板。'],
+
+    /* --- Selection Guide --- */
+    ['#guide .section-eyebrow', '选型指南'],
+    ['#guide .section-title', '哪款 Jetson Orin 适合你？'],
+    ['#guide .section-desc', '根据工作负载选择合适的模组 —— 共享同一套 SDK，升级无需重写代码。'],
+    ['.guide-table th:nth-child(1)', '使用场景'],
+    ['.guide-table th:nth-child(2)', '推荐模组'],
+    ['.guide-table th:nth-child(3)', 'AI 算力'],
+    ['.guide-table th:nth-child(4)', '功耗范围'],
+    ['.guide-table th:nth-child(5)', '推荐理由'],
+    ['.guide-table tbody tr:nth-child(1) td:nth-child(1)', '学生 / 创客 / 原型'],
+    ['.guide-table tbody tr:nth-child(1) td:nth-child(5)', '学习边缘 AI 的最低成本起步方案'],
+    ['.guide-table tbody tr:nth-child(2) td:nth-child(1)', '低成本 GenAI'],
+    ['.guide-table tbody tr:nth-child(2) td:nth-child(5)', '$249 即可本地运行 LLM 和扩散模型'],
+    ['.guide-table tbody tr:nth-child(3) td:nth-child(1)', '单路智能摄像头'],
+    ['.guide-table tbody tr:nth-child(3) td:nth-child(5)', '紧凑、低功耗、单路推理'],
+    ['.guide-table tbody tr:nth-child(4) td:nth-child(1)', 'AMR / 无人机 / 移动机器人'],
+    ['.guide-table tbody tr:nth-child(4) td:nth-child(5)', 'SLAM + 感知 + 规划，电池供电'],
+    ['.guide-table tbody tr:nth-child(5) td:nth-child(1)', '多路视频分析'],
+    ['.guide-table tbody tr:nth-child(5) td:nth-child(5)', '8–16 路视频流，剩余算力运行复杂模型'],
+    ['.guide-table tbody tr:nth-child(6) td:nth-child(1)', '自动驾驶 / 手术机器人'],
+    ['.guide-table tbody tr:nth-child(6) td:nth-child(5)', '多传感器融合，安全关键工作负载'],
+    ['.guide-table tbody tr:nth-child(7) td:nth-child(1)', '边缘 LLM / 多模型 GenAI'],
+    ['.guide-table tbody tr:nth-child(7) td:nth-child(5)', '同时运行多个大模型'],
+
+    /* Selection guide tags */
+    [null, {sel: '.rec-tag', map: {'Best Value': '最佳性价比', 'Popular': '热门', 'Flagship': '旗舰'}}],
+
+    /* --- Thor --- */
+    ['.nextgen-badge', '即将发布 2025'],
+    ['.nextgen-title', 'Jetson Thor —— 下一代机器人超级芯片'],
+    ['.nextgen-desc', '基于 NVIDIA Blackwell GPU 架构，为仿人机器人和自主机器设计。支持 FP8 的 Transformer 引擎、集成功能安全处理器和 100-TOPS DLA。具身 AI 的一次代际飞跃。'],
+
+    /* --- Software Stack --- */
+    ['#stack .section-eyebrow', '软件生态'],
+    ['#stack .section-title', '完整的 NVIDIA AI 边缘计算栈'],
+    ['#stack .section-desc', '从操作系统到应用层 —— 每个工具都原生运行在 Jetson Orin 上。'],
+    ['.stack-card:nth-child(1) .stack-sub', '完整的 AI 开发平台'],
+    ['.stack-card:nth-child(1) .stack-body', 'Linux 内核 (L4T)、CUDA、cuDNN、TensorRT、多媒体 API —— 打包成一个可安装包。'],
+    ['.stack-card:nth-child(2) .stack-sub', 'GPU 加速机器人开发'],
+    ['.stack-card:nth-child(2) .stack-body', '硬件加速的 ROS 2 功能包，用于感知、导航和操作。'],
+    ['.stack-card:nth-child(3) .stack-sub', '多路视频分析'],
+    ['.stack-card:nth-child(3) .stack-body', '基于 GStreamer 的 SDK，支持 30+ 路摄像头同时实时检测和跟踪。'],
+    ['.stack-card:nth-child(4) .stack-sub', '迁移学习 & 微调'],
+    ['.stack-card:nth-child(4) .stack-body', '从 NVIDIA 预训练模型出发，用你的数据微调，导出优化的 TensorRT 引擎。'],
+    ['.stack-card:nth-child(5) .stack-sub', '推理优化引擎'],
+    ['.stack-card:nth-child(5) .stack-body', '图优化、算子融合、混合精度 (FP16/INT8) 和 DLA 卸载。'],
+    ['.stack-card:nth-child(6) .stack-sub', '机器人仿真'],
+    ['.stack-card:nth-child(6) .stack-body', '基于 Omniverse 的物理精确仿真。设计工作单元，生成合成数据。'],
+    ['.stack-card:nth-child(7) .stack-sub', '硬件信任根'],
+    ['.stack-card:nth-child(7) .stack-body', '安全启动、磁盘加密、密钥管理、OTA 更新验证。'],
+    ['.stack-card:nth-child(8) .stack-sub', '智慧空间平台'],
+    ['.stack-card:nth-child(8) .stack-body', '端到端 AI 智能城市、零售和工业监控框架。'],
+    ['.stack-card:nth-child(9) .stack-sub', '200+ 预建 AI 运行时'],
+    ['.stack-card:nth-child(9) .stack-body', 'Docker 容器，包含 PyTorch、TensorFlow、LLaMA、Whisper、Stable Diffusion。'],
+
+    /* --- Use Cases --- */
+    ['#cases .section-eyebrow', '应用案例'],
+    ['#cases .section-title', '边缘 AI 在生产中'],
+    ['#cases .section-desc', '从仓库车间到手术室 —— Jetson Orin 驱动的真实自主系统。'],
+    ['.tab-btn:nth-child(1)', '智能仓储'],
+    ['.tab-btn:nth-child(2)', '城市交通'],
+    ['.tab-btn:nth-child(3)', '手术机器人'],
+    ['.tab-btn:nth-child(4)', '精准农业'],
+
+    /* Warehouse */
+    ['#warehouse .case-industry', '物流 / 自主移动机器人'],
+    ['#warehouse .case-title', '全天候自主拣选与分拣 —— 零云依赖'],
+    ['#warehouse .case-quote', '"无云延迟，无停机。每台 AMR 独立思考。"'],
+    ['#warehouse .case-metric:nth-child(1) .case-metric-label', '履约提速'],
+    ['#warehouse .case-metric:nth-child(2) .case-metric-label', 'AMR 协同'],
+    ['#warehouse .case-metric:nth-child(3) .case-metric-label', '本地处理'],
+    ['#warehouse .case-detail-title', '工作原理'],
+    ['#warehouse .case-detail-body', '每台 AGX Orin 模组驱动一台 AMR —— 在设备端运行 SLAM 导航、托盘检测和路径规划。Isaac ROS 处理机器人栈；DeepStream 处理头顶摄像头区域监控。车队 24/7 自主运行，模型在低峰时通过 OTA 更新。'],
+
+    /* Traffic */
+    ['#traffic .case-industry', '城市基础设施 / 视频分析'],
+    ['#traffic .case-title', '每个路口、每辆车、每一秒 —— 边缘处理'],
+    ['#traffic .case-quote', '"只有元数据离开节点。原始视频始终留在采集地。"'],
+    ['#traffic .case-metric:nth-child(1) .case-metric-label', '每节点视频流'],
+    ['#traffic .case-metric:nth-child(2) .case-metric-label', '检测延迟'],
+    ['#traffic .case-metric:nth-child(3) .case-metric-label', '拥堵减少'],
+    ['#traffic .case-detail-title', '工作原理'],
+    ['#traffic .case-detail-body', 'Orin NX 节点部署在 200+ 个路口，每个同时处理 16 路摄像头。DeepStream 处理车辆/行人检测；Metropolis 提供分析仪表盘。通过 TAO 微调的定制模型适配本地交通模式。'],
+
+    /* Surgery */
+    ['#surgery .case-industry', '医疗 / 自主器械'],
+    ['#surgery .case-title', '手术中实时组织分类'],
+    ['#surgery .case-quote', '"10ms 推理、99.2% 准确率。患者数据绝不离开设备。"'],
+    ['#surgery .case-metric:nth-child(1) .case-metric-label', '推理延迟'],
+    ['#surgery .case-metric:nth-child(2) .case-metric-label', '分类准确率'],
+    ['#surgery .case-metric:nth-child(3) .case-metric-label', '合规'],
+    ['#surgery .case-detail-title', '工作原理'],
+    ['#surgery .case-detail-body', 'AGX Orin 64GB 嵌入手术器械臂。模型用 Isaac Sim 合成数据训练，通过 TensorRT 优化到 INT8。安全启动和加密存储确保 HIPAA 合规。所有推理均在设备端完成。'],
+
+    /* Agriculture */
+    ['#agriculture .case-industry', '农业科技 / 自主田间机器人'],
+    ['#agriculture .case-title', 'AI 引导的作物检测 —— 离线、坚固、太阳能供电'],
+    ['#agriculture .case-quote', '"无蜂窝、无 Wi-Fi，没问题。巡检车看到农民看不到的。"'],
+    ['#agriculture .case-metric:nth-child(1) .case-metric-label', '病害检测率'],
+    ['#agriculture .case-metric:nth-child(2) .case-metric-label', '功耗'],
+    ['#agriculture .case-metric:nth-child(3) .case-metric-label', '摄像头流'],
+    ['#agriculture .case-detail-title', '工作原理'],
+    ['#agriculture .case-detail-body', 'Orin NX 模组搭载在自主田间巡检车上，完全离线运行多光谱作物分析。TAO 训练的模型检测病害、虫害和营养缺乏。太阳能供电保证车队在整个收获季节持续运行。'],
+
+    /* --- Footer CTA --- */
+    ['.footer-cta h2', '准备好在边缘构建了吗？'],
+    ['.footer-cta p', '从开发套件到车队部署 —— 获取合适的 Jetson Orin 模组、载板和软件栈。'],
+    ['.footer-link-item:nth-child(1) .footer-link-label', '硬件购买'],
+    ['.footer-link-item:nth-child(1) .footer-link-text', 'Newegg Jetson 商店'],
+    ['.footer-link-item:nth-child(2) .footer-link-label', '开发者'],
+    ['.footer-link-item:nth-child(2) .footer-link-text', 'NVIDIA Jetson 门户'],
+    ['.footer-link-item:nth-child(3) .footer-link-label', '社区'],
+    ['.footer-link-item:nth-child(3) .footer-link-text', 'Jetson AI 实验室'],
+    ['.footer-link-item:nth-child(4) .footer-link-label', '企业'],
+    ['.footer-link-item:nth-child(4) .footer-link-text', '联系解决方案团队'],
+    ['.footer-copy', 'Newegg AI 工作站中心 · NVIDIA Jetson Orin 平台'],
+  ]
+};
+
+function toggleLang() {
+  _lang = (_lang === 'en') ? 'zh' : 'en';
+  var btn = document.getElementById('lang-toggle');
+  btn.textContent = (_lang === 'zh') ? '中 / EN' : 'EN / 中';
+  document.documentElement.lang = (_lang === 'zh') ? 'zh-CN' : 'en';
+  applyLang();
+  try { localStorage.setItem('joh-lang', _lang); } catch(e) {}
+}
+
+function applyLang() {
+  var entries = I18N.zh;
+  entries.forEach(function(entry) {
+    var sel = entry[0];
+    var val = entry[1];
+
+    /* Special: batch text-replace by map */
+    if (sel === null && val && val.sel && val.map) {
+      document.querySelectorAll(val.sel).forEach(function(el) {
+        if (_lang === 'zh') {
+          if (!el._enText) el._enText = el.textContent;
+          var txt = el._enText;
+          if (val.map[txt]) el.textContent = val.map[txt];
+        } else {
+          if (el._enText) el.textContent = el._enText;
+        }
+      });
+      return;
+    }
+
+    if (!sel || !val) return;
+
+    document.querySelectorAll(sel).forEach(function(el) {
+      if (_lang === 'zh') {
+        if (!el._enHTML) el._enHTML = el.innerHTML;
+        el.innerHTML = val;
+      } else {
+        if (el._enHTML) el.innerHTML = el._enHTML;
+      }
+    });
+  });
+
+  /* Nav brand - special: keep the egg icon */
+  var brand = document.querySelector('.nav-brand');
+  if (brand) {
+    var egg = brand.querySelector('.nav-egg');
+    var textNode = brand.childNodes[brand.childNodes.length - 1];
+    if (textNode && textNode.nodeType === 3) {
+      if (_lang === 'zh') {
+        textNode.textContent = ' Newegg AI 工作站中心';
+      } else {
+        textNode.textContent = '\n      Newegg AI Workstation Hub\n    ';
+      }
+    }
+  }
+}
+
+/* Restore saved preferences */
+(function() {
+  try {
+    var savedTheme = localStorage.getItem('joh-theme');
+    var savedLang = localStorage.getItem('joh-lang');
+    if (savedTheme === 'light') {
+      document.documentElement.setAttribute('data-theme', 'light');
+      document.getElementById('theme-toggle').innerHTML = '&#9728; Light';
+    }
+    if (savedLang === 'zh') {
+      _lang = 'zh';
+      document.documentElement.lang = 'zh-CN';
+      document.getElementById('lang-toggle').textContent = '中 / EN';
+      applyLang();
+    }
+  } catch(e) {}
+})();
 </script>
 
 </body>
